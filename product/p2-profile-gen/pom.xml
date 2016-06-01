@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~  Copyright (c) 2005-2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~  WSO2 Inc. licenses this file to you under the Apache License,
+  ~  Version 2.0 (the "License"); you may not use this file except
+  ~  in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing,
+  ~  software distributed under the License is distributed on an
+  ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~  KIND, either express or implied.  See the License for the
+  ~  specific language governing permissions and limitations
+  ~  under the License.
+  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -125,7 +142,7 @@
                                     org.wso2.carbon:org.wso2.carbon.core.ui.feature:${carbon.kernel.version}
                                 </featureArtifactDef>
 
-                                <!-- ********* START - Registry related  *********** -->
+                                <!-- START - Registry related -->
                                 <featureArtifactDef>
                                     org.wso2.carbon.registry:org.wso2.carbon.registry.core.feature:${carbon.registry.version}
                                 </featureArtifactDef>
@@ -138,9 +155,9 @@
                                 <featureArtifactDef>
                                     org.wso2.carbon.registry:org.wso2.carbon.registry.contentsearch.feature:${carbon.registry.version}
                                 </featureArtifactDef>
-                                <!-- ********* END - Registry related  *********** -->
+                                <!-- END - Registry related -->
 
-                                <!-- ************** START - User Management ********* -->
+                                <!-- START - User Management -->
                                 <featureArtifactDef>
                                     org.wso2.carbon.identity:org.wso2.carbon.user.mgt.feature:${carbon.identity.version}
                                 </featureArtifactDef>
@@ -150,24 +167,24 @@
                                 <featureArtifactDef>
                                     org.wso2.carbon.identity:org.wso2.carbon.identity.core.server.feature:${carbon.identity.version}
                                 </featureArtifactDef>
-                                <!-- ************** END - User Management ********* -->
+                                <!-- END - User Management -->
 
-                                <!-- ************** START - Deployment Synchronizer ********* -->
+                                <!-- START - Deployment Synchronizer -->
                                 <featureArtifactDef>
                                     org.wso2.carbon.commons:org.wso2.carbon.deployment.synchronizer.feature:${carbon.commons.version}
                                 </featureArtifactDef>
                                 <featureArtifactDef>
                                     org.wso2.carbon.commons:org.wso2.carbon.event.server.feature:${carbon.commons.version}
                                 </featureArtifactDef>
-                                <!-- ************** END - Deployment Synchronizer ********* -->
+                                <!-- END - Deployment Synchronizer -->
 
-                                <!-- ************** START - Capp Management ********* -->
+                                <!-- START - Capp Management -->
                                 <featureArtifactDef>
                                     org.wso2.carbon.commons:org.wso2.carbon.application.mgt.feature:${carbon.commons.version}
                                 </featureArtifactDef>
-                                <!-- ************** END - Capp Management ********* -->
+                                <!-- END - Capp Management -->
 
-                                <!-- ************** START - Data Bridge ************ -->
+                                <!-- START - Data Bridge -->
                                 <featureArtifactDef>
                                     org.wso2.carbon.analytics-common:org.wso2.carbon.databridge.datareceiver.feature:${carbon.analytics.common.version}
                                 </featureArtifactDef>
@@ -183,9 +200,9 @@
                                 <featureArtifactDef>
                                     org.wso2.carbon.analytics:org.wso2.carbon.analytics.eventtable.feature:${carbon.analytics.version}
                                 </featureArtifactDef>
-                                <!-- ************** END - Data Bridge ************ -->
+                                <!-- END - Data Bridge -->
 
-                                <!-- ************** START - WebApp Deployment ************ -->
+                                <!-- START - WebApp Deployment -->
                                 <featureArtifactDef>
                                     org.wso2.carbon.deployment:org.wso2.carbon.webapp.mgt.server.feature:${carbon.deployment.version}
                                 </featureArtifactDef>
@@ -195,13 +212,13 @@
                                 <featureArtifactDef>
                                     org.wso2.carbon.commons:org.wso2.carbon.logging.mgt.feature:${carbon.commons.version}
                                 </featureArtifactDef>
-                                <!-- ************** END - WebApp Deployment ************ -->
+                                <!-- END - WebApp Deployment -->
 
-                                <!-- ************** START - Jaggery feature ************ -->
+                                <!-- START - Jaggery feature -->
                                 <featureArtifactDef>
                                     org.jaggeryjs:org.jaggeryjs.feature:${jaggery.version}
                                 </featureArtifactDef>
-                                <!-- ************** END - Jaggery feature ************ -->
+                                <!-- END - Jaggery feature -->
 
                                 <!-- Multitenancy related -->
                                 <featureArtifactDef>
@@ -242,7 +259,7 @@
                                 </featureArtifactDef>
                                 <!-- END - Data source related -->
 
-                                <!-- ************** START - EVENT PROCESSING FEATURES *********** -->
+                                <!-- START - EVENT PROCESSING FEATURES -->
                                 <featureArtifactDef>
                                     org.wso2.carbon.analytics-common:org.wso2.carbon.event.receiver.feature:${carbon.analytics.common.version}
                                 </featureArtifactDef>
@@ -282,7 +299,7 @@
                                 <featureArtifactDef>
                                     org.wso2.carbon.analytics-common:org.wso2.carbon.event.execution.manager.feature:${carbon.analytics.common.version}
                                 </featureArtifactDef>
-                                <!-- ************** END - EVENT PROCESSING FEATURES ************ -->
+                                <!-- END - EVENT PROCESSING FEATURES -->
 
                                 <!-- START - UES Features -->
                                 <featureArtifactDef>
@@ -407,7 +424,7 @@
                                     <version>${carbon.kernel.version}</version>
                                 </feature>
 
-                                <!-- ********* START - Registry related  *********** -->
+                                <!-- START - Registry related  -->
                                 <feature>
                                     <id>org.wso2.carbon.registry.core.feature.group</id>
                                     <version>${carbon.registry.version}</version>
@@ -424,9 +441,9 @@
                                     <id>org.wso2.carbon.registry.contentsearch.feature.group</id>
                                     <version>${carbon.registry.version}</version>
                                 </feature>
-                                <!-- ********* END - Registry related  *********** -->
+                                <!-- END - Registry related -->
 
-                                <!-- ************** START - User Management ********* -->
+                                <!-- START - User Management -->
                                 <feature>
                                     <id>org.wso2.carbon.user.mgt.feature.group</id>
                                     <version>${carbon.identity.version}</version>
@@ -439,9 +456,9 @@
                                     <id>org.wso2.carbon.identity.core.server.feature.group</id>
                                     <version>${carbon.identity.version}</version>
                                 </feature>
-                                <!-- ************** END - User Management ********* -->
+                                <!-- END - User Management -->
 
-                                <!-- ************** START - Deployment Synchronizer ********* -->
+                                <!-- START - Deployment Synchronizer -->
                                 <feature>
                                     <id>org.wso2.carbon.deployment.synchronizer.feature.group</id>
                                     <version>${carbon.commons.version}</version>
@@ -450,16 +467,16 @@
                                     <id>org.wso2.carbon.event.server.feature.group</id>
                                     <version>${carbon.commons.version}</version>
                                 </feature>
-                                <!-- ************** END - Deployment Synchronizer ********* -->
+                                <!-- END - Deployment Synchronizer -->
 
-                                <!-- ************** START - Capp Management ********* -->
+                                <!-- START - Capp Management -->
                                 <feature>
                                     <id>org.wso2.carbon.application.mgt.feature.group</id>
                                     <version>${carbon.commons.version}</version>
                                 </feature>
-                                <!-- ************** END - Capp Management ********* -->
+                                <!-- END - Capp Management -->
 
-                                <!-- ************** START - Data Bridge ************ -->
+                                <!-- START - Data Bridge -->
                                 <feature>
                                     <id>org.wso2.carbon.databridge.datareceiver.feature.group</id>
                                     <version>${carbon.analytics.common.version}</version>
@@ -480,9 +497,9 @@
                                     <id>org.wso2.carbon.analytics.eventtable.feature.group</id>
                                     <version>${carbon.analytics.version}</version>
                                 </feature>
-                                <!-- ************** END - Data Bridge ************ -->
+                                <!-- END - Data Bridge -->
 
-                                <!-- ************** START - WebApp Deployment ************ -->
+                                <!-- START - WebApp Deployment -->
                                 <feature>
                                     <id>org.wso2.carbon.webapp.mgt.server.feature.group</id>
                                     <version>${carbon.deployment.version}</version>
@@ -495,15 +512,15 @@
                                     <id>org.wso2.carbon.logging.mgt.feature.group</id>
                                     <version>${carbon.commons.version}</version>
                                 </feature>
-                                <!-- ************** END - WebApp Deployment ************* -->
+                                <!-- END - WebApp Deployment -->
 
 
-                                <!-- ************** jaggery feature groups ***************-->
+                                <!-- jaggery feature groups -->
                                 <feature>
                                     <id>org.jaggeryjs.feature.group</id>
                                     <version>${jaggery.version}</version>
                                 </feature>
-                                <!-- ***************feature groups end *******************-->
+                                <!-- feature groups end -->
 
                                 <!-- START - Multitenancy related -->
                                 <feature>
@@ -550,7 +567,7 @@
                                 </feature>
                                 <!-- END - Data source related -->
 
-                                <!-- ************** START - EVENT PROCESSING FEATURES ************ -->
+                                <!-- START - EVENT PROCESSING FEATURES -->
                                 <feature>
                                     <id>org.wso2.carbon.event.receiver.feature.group</id>
                                     <version>${carbon.analytics.common.version}</version>
@@ -608,7 +625,7 @@
                                     <version>${carbon.analytics.common.version}</version>
                                 </feature>
 
-                                <!-- ************** END - EVENT PROCESSING FEATURES ************ -->
+                                <!-- END - EVENT PROCESSING FEATURES -->
 
                                 <!-- START - UES Features -->
                                 <feature>
