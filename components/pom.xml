@@ -22,7 +22,7 @@
 
     <parent>
         <groupId>org.wso2.analytics.mb</groupId>
-        <artifactId>analytics-mb-parent</artifactId>
+        <artifactId>wso2analytics-mb-parent</artifactId>
         <version>3.5.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
