@@ -112,6 +112,10 @@
                                 </featureArtifactDef>
                                 <!-- END - Analytics features -->
 
+
+                                <featureArtifactDef>
+                                    org.wso2.analytics.mb:org.wso2.analytics.mb.feature:${mb.analytics.version}
+                                </featureArtifactDef>
                                 <featureArtifactDef>
                                     org.wso2.carbon.analytics:org.wso2.carbon.analytics.dashboard.ui.feature:${carbon.analytics.version}
                                 </featureArtifactDef>
@@ -385,6 +389,11 @@
                                     <version>${carbon.analytics.common.version}</version>
                                 </feature>
                                 <!-- END - Analytics features -->
+
+                                <feature>
+                                    <id>org.wso2.analytics.mb.feature.group</id>
+                                    <version>${mb.analytics.version}</version>
+                                </feature>
                                 <feature>
                                     <id>org.wso2.carbon.analytics.dashboard.ui.feature.group</id>
                                     <version>${carbon.analytics.version}</version>
