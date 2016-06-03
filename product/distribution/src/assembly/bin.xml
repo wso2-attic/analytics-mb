@@ -194,7 +194,7 @@
                 <include>org.wso2.cep.storm.dependencies.jar</include>
             </includes>
         </fileSet>
-        
+
         <!-- Some war files related to CEP websockets -->
         <fileSet>
             <directory>
@@ -241,7 +241,8 @@
             <directory>
                 ../p2-profile-gen/target/wso2carbon-core-${carbon.kernel.version}/repository/deployment/server/jaggeryapps/portal
             </directory>
-            <outputDirectory>${pom.artifactId}-${pom.version}/repository/deployment/server/jaggeryapps/portal</outputDirectory>
+            <outputDirectory>${pom.artifactId}-${pom.version}/repository/deployment/server/jaggeryapps/portal
+            </outputDirectory>
             <excludes>
                 <exclude>**/extensions/themes/basic/css/dashboard.css</exclude>
                 <exclude>**/extensions/themes/basic/css/portal.css</exclude>
@@ -254,12 +255,14 @@
             <directory>
                 src/ues/themes/basic
             </directory>
-            <outputDirectory>${pom.artifactId}-${pom.version}/repository/deployment/server/jaggeryapps/portal/extensions/themes/basic/</outputDirectory>
+            <outputDirectory>
+                ${pom.artifactId}-${pom.version}/repository/deployment/server/jaggeryapps/portal/extensions/themes/basic/
+            </outputDirectory>
             <includes>
                 <include>**/*</include>
             </includes>
         </fileSet>
-       
+
         <!-- END UES related dashboard artifacts -->
 
 
@@ -296,8 +299,6 @@
             </includes>
         </fileSet>
 
-
-        
 
     </fileSets>
 
@@ -352,10 +353,10 @@
         </file>
         <!--a custom wso2server.bat file is included later on-->
         <!--<file>-->
-            <!--<source>target/wso2carbon-core-${carbon.kernel.version}/bin/wso2server.bat</source>-->
-            <!--<outputDirectory>${pom.artifactId}-${pom.version}/bin/</outputDirectory>-->
-            <!--<filtered>true</filtered>-->
-            <!--<fileMode>644</fileMode>-->
+        <!--<source>target/wso2carbon-core-${carbon.kernel.version}/bin/wso2server.bat</source>-->
+        <!--<outputDirectory>${pom.artifactId}-${pom.version}/bin/</outputDirectory>-->
+        <!--<filtered>true</filtered>-->
+        <!--<fileMode>644</fileMode>-->
         <!--</file>-->
         <file>
             <source>target/wso2carbon-core-${carbon.kernel.version}/repository/README.txt</source>
@@ -432,7 +433,9 @@
 
         <!-- ************* Data bridge related files ********** -->
         <file>
-            <source>../p2-profile-gen/target/wso2carbon-core-${carbon.kernel.version}/repository/conf/data-bridge/data-bridge-config.xml</source>
+            <source>
+                ../p2-profile-gen/target/wso2carbon-core-${carbon.kernel.version}/repository/conf/data-bridge/data-bridge-config.xml
+            </source>
             <outputDirectory>${pom.artifactId}-${pom.version}/repository/conf/data-bridge</outputDirectory>
             <filtered>true</filtered>
             <fileMode>644</fileMode>
@@ -562,7 +565,7 @@
             <fileMode>644</fileMode>
         </file>
 
-		<!-- Analytics REST APIs WebApp -->
+        <!-- Analytics REST APIs WebApp -->
         <file>
             <source>
                 ../p2-profile-gen/target/wso2carbon-core-${carbon.kernel.version}/repository/deployment/server/webapps/analytics.war
@@ -573,15 +576,15 @@
             <fileMode>644</fileMode>
         </file>
 
-	<!--<file>
-        <source>
-            ../p2-profile-gen/target/wso2carbon-core-${carbon.kernel.version}/repository/deployment/server/carbonapps/org_wso2_carbon_analytics_esb-1.0.0.car
-        </source>
+        <file>
+            <source>
+                ../p2-profile-gen/target/wso2carbon-core-${carbon.kernel.version}/repository/deployment/server/carbonapps/org_wso2_carbon_metrics-1.0.0.car
+            </source>
             <outputDirectory>${pom.artifactId}-${pom.version}/repository/deployment/server/carbonapps</outputDirectory>
-            &lt;!&ndash;commented since this tag causes issues in maven assembly plugin when copying zip formats&ndash;&gt;
-            &lt;!&ndash;filtered>true</filtered&ndash;&gt;
+            <!--commented since this tag causes issues in maven assembly plugin when copying zip formats-->
+            <!--filtered>true</filtered-->
             <fileMode>644</fileMode>
-        </file>-->
+        </file>
 
         <file>
             <source>
@@ -713,7 +716,6 @@
 
 
         <!-- CEP -->
-
         <file>
             <source>
                 ../p2-profile-gen/target/wso2carbon-core-${carbon.kernel.version}/repository/conf/cep/storm/storm.yaml
@@ -812,21 +814,21 @@
             <fileMode>644</fileMode>
         </file>
 
-	<file>
+        <file>
             <source>
                 ../p2-profile-gen/target/wso2carbon-core-${carbon.kernel.version}/repository/conf/analytics/spark/carbon-spark-classpath.conf
             </source>
             <outputDirectory>${pom.artifactId}-${pom.version}/repository/conf/analytics/spark/
             </outputDirectory>
             <fileMode>755</fileMode>
-       </file>
+        </file>
         <!--Siddhi conf-->
-<!--        <file>
-            <source>repository/conf/siddhi/siddhi.extension</source>
-            <outputDirectory>${pom.artifactId}-${pom.version}/repository/conf/siddhi/
-            </outputDirectory>
-            <filtered>true</filtered>
-        </file>-->
+        <!--        <file>
+                    <source>repository/conf/siddhi/siddhi.extension</source>
+                    <outputDirectory>${pom.artifactId}-${pom.version}/repository/conf/siddhi/
+                    </outputDirectory>
+                    <filtered>true</filtered>
+                </file>-->
 
         <!-- END CEP -->
 

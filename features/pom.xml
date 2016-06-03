@@ -31,4 +31,8 @@
     <artifactId>analytics-mb-features</artifactId>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>org.wso2.analytics.mb.feature</module>
+    </modules>
+
 </project>
