@@ -30,6 +30,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>wso2analytics-mb</artifactId>
     <packaging>jar</packaging>
+    <name>WSO2 Analytics MB - Distribution</name>
 
     <build>
         <plugins>

@@ -31,6 +31,7 @@
     <artifactId>wso2analytics-mb-parent</artifactId>
     <packaging>pom</packaging>
     <version>3.5.0-SNAPSHOT</version>
+    <name>WSO2 Analytics MB - Parent</name>
 
     <licenses>
         <license>
@@ -42,6 +43,9 @@
     <modules>
         <module>components</module>
         <module>features</module>
+        <module>product/multitenancy-dashboard</module>
+        <module>product/styles</module>
+        <module>product/features</module>
         <module>product/p2-profile-gen</module>
         <module>product/distribution</module>
     </modules>
@@ -358,8 +362,6 @@
                 <artifactId>geoip-api</artifactId>
                 <version>${geoip.api.version}</version>
             </dependency>
-            <!-- END - Samples Dependencies -->
-
             <dependency>
                 <groupId>org.wso2.orbit.joda-time</groupId>
                 <artifactId>joda-time</artifactId>
@@ -400,6 +402,26 @@
                 <artifactId>kryo</artifactId>
                 <version>${kryo.orbit.version}</version>
             </dependency>
+            <!-- END - Samples Dependencies -->
+
+            <!--START - Analytics MB dependencies-->
+            <dependency>
+                <groupId>org.wso2.analytics.mb</groupId>
+                <artifactId>org.wso2.das4mb.styles</artifactId>
+                <version>${mb.analytics.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wso2.analytics.mb</groupId>
+                <artifactId>org.wso2.das4mb.multitenancy.styles</artifactId>
+                <version>${mb.analytics.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wso2.analytics.mb</groupId>
+                <artifactId>org.wso2.das4mb.multitenancy.dashboard.ui</artifactId>
+                <version>${mb.analytics.version}</version>
+            </dependency>
+            <!--END - Analytics MB dependencies-->
+
         </dependencies>
     </dependencyManagement>
 

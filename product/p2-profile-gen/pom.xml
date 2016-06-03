@@ -30,6 +30,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>wso2analytics-mb-release-profile-gen</artifactId>
     <packaging>pom</packaging>
+    <name>WSO2 Analytics MB - P2 Profile</name>
 
     <build>
         <plugins>
@@ -112,10 +113,18 @@
                                 </featureArtifactDef>
                                 <!-- END - Analytics features -->
 
-
+                                <!--START - Analytics MB features-->
                                 <featureArtifactDef>
                                     org.wso2.analytics.mb:org.wso2.analytics.mb.feature:${mb.analytics.version}
                                 </featureArtifactDef>
+                                <featureArtifactDef>
+                                    org.wso2.analytics.mb:org.wso2.das4mb.styles.feature:${mb.analytics.version}
+                                </featureArtifactDef>
+                                <featureArtifactDef>
+                                    org.wso2.analytics.mb:org.wso2.das4mb.multitenancy.dashboard.ui.feature:${mb.analytics.version}
+                                </featureArtifactDef>
+                                <!--END - Analytics MB features-->
+
                                 <featureArtifactDef>
                                     org.wso2.carbon.analytics:org.wso2.carbon.analytics.dashboard.ui.feature:${carbon.analytics.version}
                                 </featureArtifactDef>
@@ -390,10 +399,21 @@
                                 </feature>
                                 <!-- END - Analytics features -->
 
+                                <!--START - Analytics MB Features-->
                                 <feature>
                                     <id>org.wso2.analytics.mb.feature.group</id>
                                     <version>${mb.analytics.version}</version>
                                 </feature>
+                                <feature>
+                                    <id>org.wso2.das4mb.styles.feature.group</id>
+                                    <version>${mb.analytics.version}</version>
+                                </feature>
+                                <feature>
+                                    <id>org.wso2.das4mb.multitenancy.dashboard.ui.feature.group</id>
+                                    <version>${mb.analytics.version}</version>
+                                </feature>
+                                <!--END - Analytics MB Features-->
+
                                 <feature>
                                     <id>org.wso2.carbon.analytics.dashboard.ui.feature.group</id>
                                     <version>${carbon.analytics.version}</version>
