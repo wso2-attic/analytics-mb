@@ -18,34 +18,20 @@
  * This Javascript module groups utility methods that are being used by all the gadgets in the ESB analytics dashboard
  */
 
-var CONTEXT = "/portal/apis/esbanalytics";
-var DASHBOARD_NAME = parent.ues.global.dashboard.id; //"esb-analytics"
+var CONTEXT = "/portal/apis/mbanalytics";
+var DASHBOARD_NAME = parent.ues.global.dashboard.id; //"mb-analytics"
 var BASE_URL = "/portal/dashboards/" + DASHBOARD_NAME + "/";
 
-var TYPE_LANDING = "landing";
-var TYPE_PROXY = "proxy";
-var TYPE_API = "api";
-var TYPE_SEQUENCE = "sequences";
-var TYPE_ENDPOINT = "endpoint";
-var TYPE_INBOUND_ENDPOINT = "inbound";
-var TYPE_MEDIATOR = "mediator";
-var TYPE_MESSAGE = "message";
+var PAGE_LANDING = "landing";
 
-var ROLE_TPS = "tps";
-var ROLE_LATENCY = "latency";
 var ROLE_RATE = "rate";
 
-var PARAM_ID = "id";
-var PARAM_TYPE = "type";
-var PARAM_GADGET_ROLE = "role";
+var TYPE_MSG_RECEIVE = "msg_receive";
+var TYPE_MSG_SEND = "msg_send";
 
-var PROXY_PAGE_URL = BASE_URL + TYPE_PROXY;
-var API_PAGE_URL = BASE_URL + TYPE_API;
-var SEQUENCE_PAGE_URL = BASE_URL + TYPE_SEQUENCE;
-var ENDPOINT_PAGE_URL = BASE_URL + TYPE_ENDPOINT;
-var INBOUND_ENDPOINT_PAGE_URL = BASE_URL + TYPE_INBOUND_ENDPOINT;
-var MEDIATOR_PAGE_URL = BASE_URL + TYPE_MEDIATOR;
-var MESSAGE_PAGE_URL = BASE_URL + TYPE_MESSAGE;
+var PARAM_ID = "id";
+var PARAM_GADGET_VIEW = "view";
+var PARAM_GADGET_ROLE = "role";
 
 var COLOR_BLUE = "#438CAD";
 var COLOR_RED = "#D9534F";
@@ -79,7 +65,7 @@ function GadgetUtil() {
     };
 
     this.getCurrentPageName = function() {
-        var pageName,type;
+        var pageName;
         var href = parent.window.location.href;
         var lastSegment = href.substr(href.lastIndexOf('/') + 1);
         if (lastSegment.indexOf('?') == -1) {
@@ -88,14 +74,15 @@ function GadgetUtil() {
             pageName = lastSegment.substr(0, lastSegment.indexOf('?'));
         }
         if(!pageName || pageName === DASHBOARD_NAME) {
-            pageName = TYPE_LANDING;
+            pageName = PAGE_LANDING;
         }
         return pageName;
     };
 
-    this.getRequestType = function(pageName,chart) {
+    this.getRequestType = function(view, chart) {
+        var type;
         chart.types.forEach(function(item, i) {
-            if (item.name === pageName) {
+            if (item.name === view) {
                 type = item.type;
             }
         });
