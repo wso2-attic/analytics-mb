@@ -5,7 +5,8 @@
         <Require feature="dynamic-height"/>        
         <Require feature="setprefs"/>
     </ModulePrefs>
-    <UserPref name="role" display_name="Gadet Role" required="true" />
+    <UserPref name="role" display_name="Gadget Role" required="true" />
+    <UserPref name="view" display_name="Gadget View" required="true" />
     <Content type="html">
         <![CDATA[
         <head>
@@ -31,8 +32,8 @@
 
           <!-- Custom -->
           <link rel="stylesheet" type="text/css" href="css/custom.css" />
-          <!--<script src="js/gadgetconf.js"></script>-->
-          <script src="js/wso2gadgets.js"></script>
+          <script src="js/gadgetconf.js"></script>
+          <!--<script src="js/wso2gadgets.js"></script>-->
           <script src="js/main.js"></script>
 
         </head>

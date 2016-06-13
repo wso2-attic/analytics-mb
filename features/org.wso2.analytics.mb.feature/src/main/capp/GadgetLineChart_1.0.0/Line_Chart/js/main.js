@@ -1,86 +1,95 @@
-var views = [{
-    id: "chart-0",
-    schema: [{
-        "metadata": {
-            "names": ["time", "count"],
-            "types": ["time", "linear"]
-        }
-    }],
-    chartConfig: {
-        x: "time",
-        charts: [{
-            type: "line",
-            y: "count"
-        }],
-        padding: {
-            "top": 20,
-            "left": 80,
-            "bottom": 20,
-            "right": 80
-        },
-        range: false,
-        height: 300
-    },
-    callbacks: [{
-        type: "click",
-        callback: function() {
-            //wso2gadgets.load("chart-1");
-            alert("Clicked on bar chart of chart-0. You can implement your own callback handler for this.");
-        }
-    }],
-    subscriptions: [{
-        topic: "range-selected",
-        callback: function(topic, data, subscriberData) {
-            //do some stuff
-        }
-    }],
-    data: function() {
-        var SERVER_URL = "/portal/apis/analytics";
-        var client = new AnalyticsClient().init(null, null, SERVER_URL);
-        var queryInfo = {
-            tableName: "ORG_WSO2_METRICS_STREAM_METER", //table being queried
-            searchParams: {
-                query: "name: \"org.wso2.mb.message.receive\"", //lucene query to search the records
-                start: 0, //starting index of the matching record set
-                count: 100, //page size for pagination
-                sortBy: [{
-                    field: "meta_timestamp",
-                    sortType: "ASC", // This can be ASC, DESC
-                }]
-            }
-        };
-        client.search(
-            queryInfo,
-            function(response) {
-                var results = [];
-                var data = JSON.parse(response.message);
-                data.forEach(function(record, i) {
-                    var values = record.values;
-                    var result = [values["meta_timestamp"], values["count"]];
-                    results.push(result);
-                });
-                //results.sort(function(a,b) {
-                //    return a[2] - b[2];
-                //});
-                console.log(results);
-                //Call the framework to draw the chart with received data.
-                //Note that data should be in VizGrammar ready format
-                wso2gadgets.onDataReady(results);
-            },
-            function(e) {
-                //throw it to upper level
-                onError(e);
-            }
-        );
-    }
-}];
+var TOPIC = "subscriber";
+var PUBLISHER_TOPIC = "chart-zoomed";
+var page = gadgetUtil.getCurrentPageName();
+var qs = gadgetUtil.getQueryString();
+var prefs = new gadgets.Prefs();
+var type;
+var view = prefs.getString(PARAM_GADGET_VIEW);
+var chart = gadgetUtil.getChart(prefs.getString(PARAM_GADGET_ROLE));
+var rangeStart;
+var rangeEnd;
+
+if (chart) {
+    type = gadgetUtil.getRequestType(view, chart);
+}
 
 $(function() {
-    try {
-        wso2gadgets.init("#canvas", views);
-        var view = wso2gadgets.load("chart-0");
-    } catch (e) {
-        console.error(e);
+    if (!chart || !view) {
+        $("#canvas").html(gadgetUtil.getErrorText("Gadget initialization failed. Gadget role and Gadget view must be provided."));
+        return;
     }
-
+    if (page != PAGE_LANDING && qs[PARAM_ID] == null) {
+        $("#canvas").html(gadgetUtil.getDefaultText());
+        return;
+    }
+    var timeFrom = gadgetUtil.timeFrom();
+    var timeTo = gadgetUtil.timeTo();
+    console.log("LINE_CHART[" + view + "]: TimeFrom: " + timeFrom + " TimeTo: " + timeTo);
+    gadgetUtil.fetchData(CONTEXT, {
+        type: type,
+        timeFrom: timeFrom,
+        timeTo: timeTo
+    }, onData, onError);
 });
+
+gadgets.HubSettings.onConnect = function() {
+    gadgets.Hub.subscribe(TOPIC, function(topic, data, subscriberData) {
+        onTimeRangeChanged(data);
+    });
+};
+
+function onTimeRangeChanged(data) {
+    gadgetUtil.fetchData(CONTEXT, {
+        type: type,
+        id: qs.id,
+        timeFrom: data.timeFrom,
+        timeTo: data.timeTo,
+        entryPoint: qs.entryPoint
+    }, onData, onError);
+};
+
+function onData(response) {
+    try {
+        var data = response.message;
+        if (data.length == 0) {
+            $('#canvas').html(gadgetUtil.getEmptyRecordsText());
+            return;
+        }
+        //sort the timestamps
+        //data.sort(function(a, b) {
+        //    return a.timestamp - b.timestamp;
+        //});
+
+        //perform necessary transformation on input data
+        chart.schema[0].data = chart.processData(data);
+        //finally draw the chart on the given canvas
+        chart.chartConfig.width = $('body').width();
+        chart.chartConfig.height = $('body').height();
+
+        var vg = new vizg(chart.schema, chart.chartConfig);
+        $("#canvas").empty();
+        vg.draw("#canvas",[{type:"range", callback:onRangeSelected}]);
+    } catch (e) {
+        $('#canvas').html(gadgetUtil.getErrorText(e));
+    }
+};
+
+function onError(msg) {
+    $("#canvas").html(gadgetUtil.getErrorText(msg));
+};
+
+document.body.onmouseup = function() {
+    if((rangeStart) && (rangeEnd) && (rangeStart.toString() !== rangeEnd.toString())){
+        var message = {
+            timeFrom: new Date(rangeStart).getTime(),
+            timeTo: new Date(rangeEnd).getTime(),
+            timeUnit: "Custom"
+        };
+        gadgets.Hub.publish(PUBLISHER_TOPIC, message);
+    }
+}
+
+var onRangeSelected = function(start, end) {
+    rangeStart = start;
+    rangeEnd = end;
+};

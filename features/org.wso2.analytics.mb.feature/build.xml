@@ -21,7 +21,7 @@
     <property name="project-name" value="${ant.project.name}"/>
     <property name="res-dir" value="src/main/resources"/>
     <property name="target-dir" value="target"/>
-    <!--<property name="jaggery-api-dir" value="src/main/jaggeryapi"/>-->
+    <property name="jaggery-api-dir" value="src/main/jaggeryapi"/>
 
     <property name="ANALYTICS_MB_dir" value="src/main/capp"/>
     <property name="ANALYTICS_MB_capp" value="org_wso2_analytics_mb-1.0.0"/>
@@ -32,8 +32,8 @@
 
     <target name="pre-configure">
         <mkdir dir="${target-dir}"/>
-	<!--<copy file="${jaggery-api-dir}/esbanalytics.jag" todir="${res-dir}"/>-->
-	<!--<copy file="${jaggery-api-dir}/esbanalytics-utils.jag" todir="${res-dir}"/>-->
+	<copy file="${jaggery-api-dir}/mbanalytics.jag" todir="${res-dir}"/>
+	<!--<copy file="${jaggery-api-dir}/mbanalytics-utils.jag" todir="${res-dir}"/>-->
     </target>
 
     <target name="zip" depends="clean,pre-configure">

@@ -1,0 +1,181 @@
+<%
+(function () {
+    var PARAM_TYPE = "type";
+    var CONTENT_TYPE_JSON = "application/json";
+    var AUTHORIZATION_HEADER = "Authorization";
+    var USER_TOKEN = "user";
+    var USERNAME = "username";
+    var HTTP_USER_NOT_AUTHENTICATED = 403;
+    var HTTP_INTERNAL_ERROR = 500;
+    var log = new Log();
+    var carbon = require('carbon');
+    var configs = require('/configs/designer.json');
+    var utils = require('/modules/utils.js');
+    //var esbanalyticsUtils = require('mbbanalytics-utils.jag');
+    var JSUtils = Packages.org.wso2.carbon.analytics.jsservice.Utils;
+    var AnalyticsCachedJSServiceConnector = Packages.org.wso2.carbon.analytics.jsservice.AnalyticsCachedJSServiceConnector;
+    var AnalyticsCache = Packages.org.wso2.carbon.analytics.jsservice.AnalyticsCachedJSServiceConnector.AnalyticsCache;
+    var cacheTimeoutSeconds = 5;
+    var loggedInUser = null;
+    //var timeRangeUtil = Packages.org.wso2.carbon.analytics.esb.util.TimeRangeUtils;
+    //var timeRange = Packages.org.wso2.carbon.analytics.esb.bean.TimeRange;
+
+    //operation types
+    var TYPE_MSG_RECEIVE = 1;
+    var TYPE_MSG_SEND = 2;
+
+    if (configs.cacheTimeoutSeconds) {
+        cacheTimeoutSeconds = parseInt(configs.cacheTimeoutSeconds);
+    }
+    var cacheSizeBytes = 1024 * 1024 * 1024; // 1GB
+    if (configs.cacheSizeBytes) {
+        cacheSizeBytes = parseInt(configs.cacheSizeBytes);
+    }
+
+    response.contentType = CONTENT_TYPE_JSON;
+
+    var authParam = request.getHeader(AUTHORIZATION_HEADER);
+    if (authParam != null) {
+        credentials = JSUtils.authenticate(authParam);
+        loggedInUser = credentials[0];
+    } else {
+        var token = session.get(USER_TOKEN);
+        if (token != null) {
+            loggedInUser = token[USERNAME];
+        } else {
+            log.error("user is not authenticated!");
+            response.status = HTTP_USER_NOT_AUTHENTICATED;
+            print('{ "status": "Failed", "message": "User is not authenticated." }');
+            return;
+        }
+    }
+
+    var cache = application.get("AnalyticsWebServiceCache");
+    if (cache == null) {
+        cache = new AnalyticsCache(cacheTimeoutSeconds, cacheSizeBytes);
+        application.put("AnalyticsWebServiceCache", cache);
+    }
+
+    var connector = new AnalyticsCachedJSServiceConnector(cache);
+
+    var type = 0;
+    var paramType = request.getParameter(PARAM_TYPE);
+    if (paramType != null) {
+        type = parseInt(paramType);
+    }
+
+    if (type == 0) {
+        log.error("operation type is not specified!");
+        response.status = HTTP_INTERNAL_ERROR;
+        print('{ "status": "Failed", "message": "Operation type is not specified" }');
+        return;
+    }
+
+    var content = request.getContent();
+    if (content != '' && content != null) {
+        if (log.isDebugEnabled()) {
+            log.debug("value of content: " + stringify(contentAsString));
+        }
+    }
+
+    if (connector != null && loggedInUser != null) {
+        var result = null;
+        var query = null;
+        var resp = null;
+        var timeFrom = request.getParameter("timeFrom");
+        var timeTo = request.getParameter("timeTo");
+        switch (type) {
+            case TYPE_MSG_RECEIVE:
+            {
+                result = [];
+                var tableName = "ORG_WSO2_METRICS_STREAM_METER";
+                var view = "org.wso2.mb.message.receive";
+                query = stringify({
+                    query: "name : " + view + " AND meta_timestamp : [" + timeFrom + " TO " + timeTo + "]",
+                    "start": 0,
+                    "count": 200,
+                    "sortBy": [{
+                            field: "meta_timestamp",
+                            sortType: "ASC",
+                        }]
+                });
+                resp = connector.search(loggedInUser, tableName, query);
+                var dataPoints = [];
+                try {
+                    dataPoints = JSON.parse(resp.getMessage());
+                } catch (error) {
+                    log.error(error);
+                }
+                for (var i = 0; i < dataPoints.length; i++) {
+                    var obj = dataPoints[i];
+                    if (obj != null) {
+                        result.push({
+                            "timestamp": obj.values.meta_timestamp,
+                            "meanRate": obj.values.mean_rate,
+                            "oneMinuteRate": obj.values.one_minute_rate,
+                            "fiveMinuteRate": obj.values.five_minute_rate,
+                            "fifteenMinuteRate": obj.values.fifteen_minute_rate
+                        });
+                    }
+                }
+                break;
+            }
+            case TYPE_MSG_SEND:
+            {
+                result = [];
+                var tableName = "ORG_WSO2_METRICS_STREAM_METER";
+                var view = "org.wso2.mb.message.send";
+                query = stringify({
+                    query: "name : " + view + " AND meta_timestamp : [" + timeFrom + " TO " + timeTo + "]",
+                    "start": 0,
+                    "count": 200,
+                    "sortBy": [{
+                        field: "meta_timestamp",
+                        sortType: "ASC",
+                    }]
+                });
+                resp = connector.search(loggedInUser, tableName, query);
+                var dataPoints = [];
+                try {
+                    dataPoints = JSON.parse(resp.getMessage());
+                } catch (error) {
+                    log.error(error);
+                }
+                for (var i = 0; i < dataPoints.length; i++) {
+                    var obj = dataPoints[i];
+                    if (obj != null) {
+                        result.push({
+                            "timestamp": obj.values.meta_timestamp,
+                            "meanRate": obj.values.mean_rate,
+                            "oneMinuteRate": obj.values.one_minute_rate,
+                            "fiveMinuteRate": obj.values.five_minute_rate,
+                            "fifteenMinuteRate": obj.values.fifteen_minute_rate
+                        });
+                    }
+                }
+                break;
+            }
+            default:
+            {
+                result = '{ "status": "Failed", "message": "Unidentified operation" }';
+                break;
+            }
+        }
+        if (log.isDebugEnabled()) {
+            if (result != null) {
+                log.debug("value of result: " + result);
+            }
+        }
+        if (result != null) {
+            var finalResult = {
+                status: "success",
+                message: result
+            }
+            print(finalResult);
+        }
+    } else {
+        print('{ "status": "Failed", "statusCode": "500", "message": "AnalyticsCachedWebServiceConnector is unavailable" }');
+    }
+
+}());
+%>
