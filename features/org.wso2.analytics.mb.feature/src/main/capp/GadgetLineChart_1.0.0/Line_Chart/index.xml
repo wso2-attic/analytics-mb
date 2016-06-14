@@ -33,7 +33,6 @@
           <!-- Custom -->
           <link rel="stylesheet" type="text/css" href="css/custom.css" />
           <script src="js/gadgetconf.js"></script>
-          <!--<script src="js/wso2gadgets.js"></script>-->
           <script src="js/main.js"></script>
 
         </head>
