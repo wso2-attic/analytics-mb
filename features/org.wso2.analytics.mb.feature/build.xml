@@ -33,7 +33,7 @@
     <target name="pre-configure">
         <mkdir dir="${target-dir}"/>
 	<copy file="${jaggery-api-dir}/mbanalytics.jag" todir="${res-dir}"/>
-	<!--<copy file="${jaggery-api-dir}/mbanalytics-utils.jag" todir="${res-dir}"/>-->
+	<copy file="${jaggery-api-dir}/mbanalytics-utils.jag" todir="${res-dir}"/>
     </target>
 
     <target name="zip" depends="clean,pre-configure">

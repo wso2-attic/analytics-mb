@@ -41,6 +41,7 @@
                             <directory>src/main/resources</directory>
                             <includes>
                                 <include>*.car</include>
+                                <include>*.jag</include>
                             </includes>
                             <followSymlinks>false</followSymlinks>
                         </fileset>
