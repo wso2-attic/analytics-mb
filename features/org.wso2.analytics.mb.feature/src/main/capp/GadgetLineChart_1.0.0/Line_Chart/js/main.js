@@ -15,7 +15,11 @@ if (chart) {
 
 $(function() {
     if (!chart || !view) {
-        $("#canvas").html(gadgetUtil.getErrorText("Gadget initialization failed. Gadget role and Gadget view must be provided."));
+        var message = {
+            status: "Gadget initialization failed",
+            statusText: "Gadget role and Gadget view must be provided"
+        };
+        $("#canvas").html(gadgetUtil.getErrorText(message));
         return;
     }
     if (page != PAGE_LANDING && qs[PARAM_ID] == null) {
@@ -41,10 +45,8 @@ gadgets.HubSettings.onConnect = function() {
 function onTimeRangeChanged(data) {
     gadgetUtil.fetchData(CONTEXT, {
         type: type,
-        id: qs.id,
         timeFrom: data.timeFrom,
         timeTo: data.timeTo,
-        entryPoint: qs.entryPoint
     }, onData, onError);
 };
 
@@ -55,11 +57,6 @@ function onData(response) {
             $('#canvas').html(gadgetUtil.getEmptyRecordsText());
             return;
         }
-        //sort the timestamps
-        //data.sort(function(a, b) {
-        //    return a.timestamp - b.timestamp;
-        //});
-
         //perform necessary transformation on input data
         chart.schema[0].data = chart.processData(data);
         //finally draw the chart on the given canvas

@@ -1,3 +1,41 @@
 <%
-
+/*
+* Get the results of given view from metrics METER table
+*/
+function getResultsFromMeterTable(connector, loggedInUser, view) {
+    var result = [];
+    var timeFrom = request.getParameter("timeFrom");
+    var timeTo = request.getParameter("timeTo");
+    var tableName = "ORG_WSO2_METRICS_STREAM_METER";
+    var query = stringify({
+        query: "name : " + view + " AND meta_timestamp : [" + timeFrom + " TO " + timeTo + "]",
+        "start": 0,
+        "count": 200,
+        "sortBy": [{
+            field: "meta_timestamp",
+            sortType: "ASC",
+        }]
+    });
+    var resp = connector.search(loggedInUser, tableName, query);
+    var dataPoints = [];
+    try {
+        dataPoints = JSON.parse(resp.getMessage());
+    } catch (error) {
+        var log = new Log();
+        log.error(error);
+    }
+    for (var i = 0; i < dataPoints.length; i++) {
+        var obj = dataPoints[i];
+        if (obj != null) {
+            result.push({
+                "timestamp": obj.values.meta_timestamp,
+                "meanRate": obj.values.mean_rate,
+                "oneMinuteRate": obj.values.one_minute_rate,
+                "fiveMinuteRate": obj.values.five_minute_rate,
+                "fifteenMinuteRate": obj.values.fifteen_minute_rate
+            });
+        }
+    }
+    return result;
+};
 %>
