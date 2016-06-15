@@ -23,6 +23,9 @@
     //operation types
     var TYPE_MSG_RECEIVE = 1;
     var TYPE_MSG_SEND = 2;
+    var TYPE_TOTAL_CHANNEL = 3;
+    var TYPE_TOTAL_QUEUE_SUB = 4;
+    var TYPE_TOTAL_TOPIC_SUB = 5;
 
     if (configs.cacheTimeoutSeconds) {
         cacheTimeoutSeconds = parseInt(configs.cacheTimeoutSeconds);
@@ -92,7 +95,22 @@
         }
         case TYPE_MSG_SEND:
         {
-            var result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, "org.wso2.mb.message.send");
+            var result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, "org.wso2.mb.message.sent");
+            break;
+        }
+        case TYPE_TOTAL_CHANNEL:
+        {
+            var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, "org.wso2.mb.channels.active.count");
+            break;
+        }
+        case TYPE_TOTAL_QUEUE_SUB:
+        {
+            var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, "org.wso2.mb.queue.subscribers.count");
+            break;
+        }
+        case TYPE_TOTAL_TOPIC_SUB:
+        {
+            var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, "org.wso2.mb.topic.subscribers.count");
             break;
         }
         default:
