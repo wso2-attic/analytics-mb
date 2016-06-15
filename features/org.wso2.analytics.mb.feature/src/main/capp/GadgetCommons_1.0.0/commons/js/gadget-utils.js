@@ -25,9 +25,13 @@ var BASE_URL = "/portal/dashboards/" + DASHBOARD_NAME + "/";
 var PAGE_LANDING = "landing";
 
 var ROLE_RATE = "rate";
+var ROLE_COUNT = "count";
 
 var TYPE_MSG_RECEIVE = "msg_receive";
 var TYPE_MSG_SEND = "msg_send";
+var TYPE_TOTAL_CHANNEL = "total_channel";
+var TYPE_TOTAL_QUEUE_SUB = "total_queue_sub";
+var TYPE_TOTAL_TOPIC_SUB = "total_topic_sub";
 
 var PARAM_ID = "id";
 var PARAM_GADGET_VIEW = "view";
