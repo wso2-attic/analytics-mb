@@ -1,5 +1,27 @@
 <%
+/*
+ * Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+* The mbanalytics api exposed in /portal/apis/mbanalytics context path. Purpose of this api is to retrieve data from
+* backend and send back to visualize gadget.
+*/
 (function () {
+
+    //variable define and initialization
     var PARAM_TYPE = "type";
     var CONTENT_TYPE_JSON = "application/json";
     var AUTHORIZATION_HEADER = "Authorization";
@@ -21,11 +43,15 @@
     //var timeRange = Packages.org.wso2.carbon.analytics.esb.bean.TimeRange;
 
     //operation types
-    var TYPE_MSG_RECEIVE = 1;
-    var TYPE_MSG_SEND = 2;
-    var TYPE_TOTAL_CHANNEL = 3;
-    var TYPE_TOTAL_QUEUE_SUB = 4;
-    var TYPE_TOTAL_TOPIC_SUB = 5;
+    var TYPE_MSG_RECEIVE_RATE = 1;
+    var TYPE_MSG_SEND_RATE = 2;
+    var TYPE_TOTAL_CHANNEL_COUNT = 3;
+    var TYPE_TOTAL_QUEUE_SUB_COUNT = 4;
+    var TYPE_TOTAL_TOPIC_SUB_COUNT = 5;
+    var TYPE_DB_READ_TIME = 6;
+    var TYPE_DB_WRITE_TIME = 7;
+    var TYPE_DB_READ_RATE = 8;
+    var TYPE_DB_WRITE_RATE = 9;
 
     if (configs.cacheTimeoutSeconds) {
         cacheTimeoutSeconds = parseInt(configs.cacheTimeoutSeconds);
@@ -86,31 +112,52 @@
         return;
     }
 
+    //call relevant function in mbanalytics-utils.jag based on the type passed by gadget
     var result = null;
     switch (type) {
-        case TYPE_MSG_RECEIVE:
+        case TYPE_MSG_RECEIVE_RATE:
         {
             var result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, "org.wso2.mb.message.receive");
             break;
         }
-        case TYPE_MSG_SEND:
+        case TYPE_MSG_SEND_RATE:
         {
             var result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, "org.wso2.mb.message.sent");
             break;
         }
-        case TYPE_TOTAL_CHANNEL:
+        case TYPE_TOTAL_CHANNEL_COUNT:
         {
             var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, "org.wso2.mb.channels.active.count");
             break;
         }
-        case TYPE_TOTAL_QUEUE_SUB:
+        case TYPE_TOTAL_QUEUE_SUB_COUNT:
         {
             var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, "org.wso2.mb.queue.subscribers.count");
             break;
         }
-        case TYPE_TOTAL_TOPIC_SUB:
+        case TYPE_TOTAL_TOPIC_SUB_COUNT:
         {
             var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, "org.wso2.mb.topic.subscribers.count");
+            break;
+        }
+        case TYPE_DB_READ_TIME:
+        {
+            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, "org.wso2.mb.database.read");
+            break;
+        }
+        case TYPE_DB_WRITE_TIME:
+        {
+            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, "org.wso2.mb.database.write");
+            break;
+        }
+        case TYPE_DB_READ_RATE:
+        {
+            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, "org.wso2.mb.database.read");
+            break;
+        }
+        case TYPE_DB_WRITE_RATE:
+        {
+            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, "org.wso2.mb.database.write");
             break;
         }
         default:

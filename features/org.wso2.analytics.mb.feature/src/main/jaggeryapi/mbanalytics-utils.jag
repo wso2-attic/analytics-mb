@@ -1,5 +1,21 @@
 <%
 /*
+ * Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
 * Get results from metrics METER table for the given view
 */
 function getResultsFromMeterTable(connector, loggedInUser, view) {
@@ -70,6 +86,56 @@ function getResultsFromGaugeTable(connector, loggedInUser, view) {
             result.push({
                 "timestamp": obj.values.meta_timestamp,
                 "count": obj.values.value
+            });
+        }
+    }
+    return result;
+};
+
+/*
+* Get results from metrics TIMER table for the given view
+*/
+function getResultsFromTimerTable(connector, loggedInUser, view) {
+    var result = [];
+    var timeFrom = request.getParameter("timeFrom");
+    var timeTo = request.getParameter("timeTo");
+    var tableName = "ORG_WSO2_METRICS_STREAM_TIMER";
+    var query = stringify({
+        query: "_name : \"" + view + "\" AND meta_timestamp : [" + timeFrom + " TO " + timeTo + "]",
+        "start": 0,
+        "count": 1000,
+        "sortBy": [{
+            field: "meta_timestamp",
+            sortType: "ASC",
+        }]
+    });
+    var resp = connector.search(loggedInUser, tableName, query);
+    var dataPoints = [];
+    try {
+        dataPoints = JSON.parse(resp.getMessage());
+    } catch (error) {
+        var log = new Log();
+        log.error(error);
+    }
+    for (var i = 0; i < dataPoints.length; i++) {
+        var obj = dataPoints[i];
+        if (obj != null) {
+            result.push({
+                "timestamp": obj.values.meta_timestamp,
+                "max": obj.values.max,
+                "mean": obj.values.mean,
+                "min": obj.values.min,
+                "stddev": obj.values.stddev,
+                "median": obj.values.median,
+                "percentile75": obj.values["75th_percentile"],
+                "percentile95": obj.values["95th_percentile"],
+                "percentile98": obj.values["98th_percentile"],
+                "percentile99": obj.values["99th_percentile"],
+                "percentile999": obj.values["999th_percentile"],
+                "meanRate": obj.values.mean_rate,
+                "oneMinuteRate": obj.values.one_minute_rate,
+                "fiveMinuteRate": obj.values.five_minute_rate,
+                "fifteenMinuteRate": obj.values.fifteen_minute_rate
             });
         }
     }

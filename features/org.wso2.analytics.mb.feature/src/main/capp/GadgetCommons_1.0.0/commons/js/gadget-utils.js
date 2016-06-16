@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ * Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 /**
- * This Javascript module groups utility methods that are being used by all the gadgets in the ESB analytics dashboard
+ * This Javascript module groups utility methods that are being used by all the gadgets in the MB analytics dashboard
  */
 
 var CONTEXT = "/portal/apis/mbanalytics";
@@ -26,12 +26,23 @@ var PAGE_LANDING = "landing";
 
 var ROLE_RATE = "rate";
 var ROLE_COUNT = "count";
+var ROLE_TIME = "time";
 
-var TYPE_MSG_RECEIVE = "msg_receive";
-var TYPE_MSG_SEND = "msg_send";
-var TYPE_TOTAL_CHANNEL = "total_channel";
-var TYPE_TOTAL_QUEUE_SUB = "total_queue_sub";
-var TYPE_TOTAL_TOPIC_SUB = "total_topic_sub";
+//rate types
+var TYPE_MSG_RECEIVE_RATE = "msg_receive_rate";
+var TYPE_MSG_SEND_RATE = "msg_send_rate";
+var TYPE_DB_READ_RATE = "db_read_rate";
+var TYPE_DB_WRITE_RATE = "db_write_rate";
+
+//gauge types
+var TYPE_TOTAL_CHANNEL_COUNT = "total_channel_count";
+var TYPE_TOTAL_QUEUE_SUB_COUNT = "total_queue_sub_count";
+var TYPE_TOTAL_TOPIC_SUB_COUNT = "total_topic_sub_count";
+
+//timer type
+var TYPE_DB_READ_TIME = "db_read_time";
+var TYPE_DB_WRITE_TIME = "db_write_time";
+
 
 var PARAM_ID = "id";
 var PARAM_GADGET_VIEW = "view";
