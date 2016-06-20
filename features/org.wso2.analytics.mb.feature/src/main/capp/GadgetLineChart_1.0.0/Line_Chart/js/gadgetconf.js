@@ -18,14 +18,14 @@ var charts = [{
     name: ROLE_RATE,
     schema: [{
         "metadata": {
-            "names": ["Time", "Status", "Rate (msg/sec)"],
+            "names": ["Time", "Status", "Rate (event/sec)"],
             "types": ["time", "ordinal", "linear"]
         },
         "data": []
     }],
     chartConfig: {
         x: "Time",
-        charts: [{ type: "line", y: "Rate (msg/sec)", color: "Status" }],
+        charts: [{ type: "line", y: "Rate (event/sec)", color: "Status" }],
         padding: { "top": 30, "left": 60, "bottom": 60, "right": 110 },
         range: false
     },
