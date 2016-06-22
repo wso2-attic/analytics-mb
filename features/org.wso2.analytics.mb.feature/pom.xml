@@ -128,9 +128,9 @@
                                 <bundleDef>
                                     org.wso2.orbit.joda-time:joda-time
                                 </bundleDef>
-                                <!--<bundleDef>
+                                <bundleDef>
                                     org.wso2.analytics.mb:org.wso2.analytics.mb:${mb.analytics.version}
-                                </bundleDef>-->
+                                </bundleDef>
                             </bundles>
                         </configuration>
                     </execution>
