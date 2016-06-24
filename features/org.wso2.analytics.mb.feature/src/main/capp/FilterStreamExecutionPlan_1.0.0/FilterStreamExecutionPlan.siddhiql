@@ -1,0 +1,39 @@
+/* Enter a unique ExecutionPlan */
+@Plan:name('FilterStreamExecutionPlan')
+
+/* Enter a unique description for ExecutionPlan */
+-- @Plan:description('ExecutionPlan')
+
+/* define streams/tables and write queries here ... */
+
+@Import('org.wso2.metrics.stream.Timer:1.0.0')
+define stream metricTimerStream (meta_timestamp long, source string, name string, count long, max double, mean double, min double, stddev double, median double, percentile_75th double, percentile_95th double, percentile_98th double, percentile_99th double, percentile_999th double, mean_rate double, one_minute_rate double, five_minute_rate double, fifteen_minute_rate double, rate_unit string, duration_unit string);
+
+
+@Import('org.wso2.metrics.stream.Gauge:1.0.0')
+define stream metricGaugeStream (meta_timestamp long, source string, name string, value double);
+
+@Import('org.wso2.metrics.stream.Meter:1.0.0')
+define stream metricMeterStream (meta_timestamp long, source string, name string, count long, mean_rate double, one_minute_rate double, five_minute_rate double, fifteen_minute_rate double, rate_unit string);
+
+
+@Export('org.wso2.mb.analytics.stream.Timer:1.0.0')
+define stream mbAnalyticsTimerStream (meta_timestamp long, source string, name string, type string, destination string, count long, max double, mean double, min double, stddev double, median double, percentile_75th double, percentile_95th double, percentile_98th double, percentile_99th double, percentile_999th double, mean_rate double, one_minute_rate double, five_minute_rate double, fifteen_minute_rate double, rate_unit string, duration_unit string);
+
+@Export('org.wso2.mb.analytics.stream.Gauge:1.0.0')
+define stream mbAnalyticsGaugeStream (meta_timestamp long, source string, name string, type string, destination string, value double);
+
+@Export('org.wso2.mb.analytics.stream.Meter:1.0.0')
+define stream mbAnalyticsMeterStream (meta_timestamp long, source string, name string, type string, destination string, count long, mean_rate double, one_minute_rate double, five_minute_rate double, fifteen_minute_rate double, rate_unit string);
+
+from metricMeterStream[str:contains(name, 'org.wso2.mb.message.receive') or str:contains(name, 'org.wso2.mb.message.sent')]#mbAnalytics:formatStream(name)
+select meta_timestamp, source, name, type, destination, count, mean_rate, one_minute_rate, five_minute_rate, fifteen_minute_rate, rate_unit
+insert into mbAnalyticsMeterStream;
+
+from metricGaugeStream[str:contains(name, 'org.wso2.mb.channels.active.count') or str:contains(name, 'org.wso2.mb.queue.subscribers.count') or str:contains(name, 'org.wso2.mb.topic.subscribers.count')]#mbAnalytics:formatStream(name)
+select meta_timestamp, source, name, type, destination, value 
+insert into mbAnalyticsGaugeStream;
+
+from metricTimerStream[str:contains(name, 'org.wso2.mb.database.read') or str:contains(name, 'org.wso2.mb.database.write')]#mbAnalytics:formatStream(name)
+select meta_timestamp, source, name, type, destination, count, max, mean, min, stddev, median, percentile_75th, percentile_95th, percentile_98th, percentile_99th, percentile_999th, mean_rate, one_minute_rate, five_minute_rate, fifteen_minute_rate, rate_unit, duration_unit
+insert into mbAnalyticsTimerStream;

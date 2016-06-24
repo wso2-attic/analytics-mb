@@ -7,5 +7,15 @@
         <dependency artifact="GadgetDateRangePicker" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <!-- Dashboard Definition -->
         <dependency artifact="Dashboard" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <!-- Persistent Store and Stream-->
+        <dependency artifact="MBGaugeStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MBGaugeStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MBMeterStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MBMeterStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MBTimerStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MBTimerStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <!-- Execution plan -->
+        <dependency artifact="FilterStreamExecutionPlan" version="1.0.0" include="true" serverRole="ComplexEventProcessor"/>
+
     </artifact>
 </artifacts>
