@@ -1,0 +1,34 @@
+{
+  "name": "org.wso2.mb.analytics.stream.Gauge",
+  "version": "1.0.0",
+  "nickName": "AnalyticsMBGauge",
+  "description": "Analytics MB Gauge Metrics",
+  "metaData": [
+    {
+      "name": "timestamp",
+      "type": "LONG"
+    }
+  ],
+  "payloadData": [
+    {
+      "name": "source",
+      "type": "STRING"
+    },
+    {
+      "name": "name",
+      "type": "STRING"
+    },
+    {
+      "name": "type",
+      "type": "STRING"
+    },
+    {
+      "name": "destination",
+      "type": "STRING"
+    },
+    {
+      "name": "value",
+      "type": "DOUBLE"
+    }
+  ]
+}
