@@ -48,6 +48,7 @@
         <module>product/features</module>
         <module>product/p2-profile-gen</module>
         <module>product/distribution</module>
+        <module>product/integration</module>
     </modules>
 
     <dependencyManagement>
@@ -116,6 +117,16 @@
             <!-- END - Vanilla carbon server + DAS style -->
 
             <!-- START - Integration test dependencies -->
+            <dependency>
+                <groupId>org.wso2.analytics.mb</groupId>
+                <artifactId>org.wso2.das4mb.integration.common.utils</artifactId>
+                <version>${mb.analytics.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wso2.analytics.mb</groupId>
+                <artifactId>org.wso2.das4mb.integration.common.clients</artifactId>
+                <version>${mb.analytics.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.wso2.carbon.commons</groupId>
                 <artifactId>org.wso2.carbon.wsdl2code.stub</artifactId>
