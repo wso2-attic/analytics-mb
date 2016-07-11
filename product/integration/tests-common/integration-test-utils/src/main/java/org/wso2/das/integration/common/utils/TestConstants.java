@@ -31,21 +31,12 @@ public class TestConstants {
     public static final String FAULT_COUNT = "faultCount";
     
     // Event streams
-    public static final String MEDIATOR_STAT_PER_SECOND_TABLE = "MEDIATOR-STAT-PER-SECOND";
-    public static final String MEDIATOR_STAT_PER_MINUTE_TABLE = "MEDIATOR-STAT-PER-MINUTE";
-    public static final String MEDIATOR_STAT_PER_HOUR_TABLE = "MEDIATOR-STAT-PER-HOUR";
-    public static final String MEDIATOR_STAT_PER_DAY_TABLE = "MEDIATOR-STAT-PER-DAY";
-    public static final String MEDIATOR_STAT_PER_MONTH_TABLE = "MEDIATOR-STAT-PER-MONTH";
-    
-    public static final String ESB_STAT_PER_SECOND_TABLE = "ESB-STAT-PER-SECOND";
-    public static final String ESB_STAT_PER_SECOND_ALL_TABLE = "ESB-STAT-PER-SECOND-ALL";
-    public static final String ESB_STAT_PER_MINUTE_TABLE = "ESB-STAT-PER-MINUTE";
-    public static final String ESB_STAT_PER_MINUTE_ALL_TABLE = "ESB-STAT-PER-MINUTE-ALL";
-    public static final String ESB_STAT_PER_HOUR_TABLE = "ESB-STAT-PER-HOUR";
-    public static final String ESB_STAT_PER_DAY_TABLE = "ESB-STAT-PER-DAY";
-    public static final String ESB_STAT_PER_MONTH_TABLE = "ESB-STAT-PER-MONTH";
-    
-    public static final String ESB_FLOW_ENTRY_STREAM_NAME = "esb-flow-entry-stream";
-    public static final String ESB_CONFIGS_TABLE = "esb-config-entry-stream";
-    public static final String ESB_EVENTS_TABLE = "ESB-EVENT";
+    public static final String ORG_WSO2_MB_ANALYTICS_STREAM_GAUGE = "ORG_WSO2_MB_ANALYTICS_STREAM_GAUGE";
+    public static final String ORG_WSO2_MB_ANALYTICS_STREAM_METER = "ORG_WSO2_MB_ANALYTICS_STREAM_METER";
+    public static final String ORG_WSO2_MB_ANALYTICS_STREAM_TIMER = "ORG_WSO2_MB_ANALYTICS_STREAM_TIMER";
+    public static final String ORG_WSO2_METRICS_STREAM_COUNTER = "ORG_WSO2_METRICS_STREAM_COUNTER";
+    public static final String ORG_WSO2_METRICS_STREAM_GAUGE = "ORG_WSO2_METRICS_STREAM_GAUGE";
+    public static final String ORG_WSO2_METRICS_STREAM_HISTOGRAM = "ORG_WSO2_METRICS_STREAM_HISTOGRAM";
+    public static final String ORG_WSO2_METRICS_STREAM_METER = "ORG_WSO2_METRICS_STREAM_METER";
+    public static final String ORG_WSO2_METRICS_STREAM_TIMER = "ORG_WSO2_METRICS_STREAM_TIMER";
 }

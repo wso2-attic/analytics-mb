@@ -48,5 +48,9 @@
             <groupId>org.wso2.orbit.joda-time</groupId>
             <artifactId>joda-time</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon.metrics</groupId>
+            <artifactId>org.wso2.carbon.metrics.das.reporter</artifactId>
+        </dependency>
     </dependencies>
 </project>

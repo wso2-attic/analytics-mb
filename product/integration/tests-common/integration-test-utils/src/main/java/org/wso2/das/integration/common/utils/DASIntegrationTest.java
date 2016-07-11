@@ -130,13 +130,10 @@ public class DASIntegrationTest {
         ClientConnectionUtil.waitForLogin(dasServer);
         log.info("Restarting complete.");
         
-        String [] tables =  new String[] {TestConstants.ESB_EVENTS_TABLE, TestConstants.ESB_STAT_PER_SECOND_TABLE,
-                TestConstants.ESB_STAT_PER_SECOND_ALL_TABLE, TestConstants.ESB_STAT_PER_MINUTE_TABLE,
-                TestConstants.ESB_STAT_PER_MINUTE_ALL_TABLE, TestConstants.ESB_STAT_PER_HOUR_TABLE, 
-                TestConstants.ESB_STAT_PER_DAY_TABLE, TestConstants.ESB_STAT_PER_MONTH_TABLE,
-                TestConstants.MEDIATOR_STAT_PER_SECOND_TABLE, TestConstants.MEDIATOR_STAT_PER_MINUTE_TABLE,
-                TestConstants.MEDIATOR_STAT_PER_HOUR_TABLE, TestConstants.MEDIATOR_STAT_PER_DAY_TABLE, 
-                TestConstants.MEDIATOR_STAT_PER_MONTH_TABLE};
+        String [] tables =  new String[] {TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_GAUGE, TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_METER,
+                TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_TIMER, TestConstants.ORG_WSO2_METRICS_STREAM_COUNTER,
+                TestConstants.ORG_WSO2_METRICS_STREAM_GAUGE, TestConstants.ORG_WSO2_METRICS_STREAM_HISTOGRAM,
+                TestConstants.ORG_WSO2_METRICS_STREAM_METER, TestConstants.ORG_WSO2_METRICS_STREAM_TIMER};
         long currentTime = System.currentTimeMillis();
         while ((currentTime - startTime) < maxWaitTime) {
             boolean isCleaned = true;
