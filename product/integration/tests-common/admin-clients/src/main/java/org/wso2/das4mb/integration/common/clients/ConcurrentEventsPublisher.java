@@ -19,9 +19,7 @@
 package org.wso2.das4mb.integration.common.clients;
 
 import org.joda.time.DateTime;
-import org.wso2.carbon.databridge.agent.exception.DataEndpointException;
 import org.wso2.carbon.databridge.commons.Event;
-import org.wso2.das.integration.common.utils.TestConstants;
 import org.wso2.das.integration.common.utils.Utils;
 
 import java.util.UUID;
@@ -96,15 +94,15 @@ public class ConcurrentEventsPublisher implements Runnable {
                 payloadData[1] = Utils.getESBCompressedEventString(messageId, this.entryPointName, this.noOfMediators,
                     this.payloadsEnabled, this.propertiesEnabled, isFault, timeInMilliSec);
                 event = new Event(null, System.currentTimeMillis(), metaData, null, payloadData);
-                this.dataPublisherClient.publish(TestConstants.ESB_FLOW_ENTRY_STREAM_NAME, "1.0.0", event);
+//                this.dataPublisherClient.publish(TestConstants.ESB_FLOW_ENTRY_STREAM_NAME, "1.0.0", event);
                 if (isFault) {
                     sentFaults++;
                 }
                 // sleep to control the throughput
                 Thread.sleep(this.sleepBetweenRequests);
             }
-        } catch (DataEndpointException e) {
-            throw new RuntimeException("Falied to publish event: " + e.getMessage(), e);
+//        } catch (DataEndpointException e) {
+//            throw new RuntimeException("Falied to publish event: " + e.getMessage(), e);
         } catch (InterruptedException ignored) {
         } finally {
             try {
