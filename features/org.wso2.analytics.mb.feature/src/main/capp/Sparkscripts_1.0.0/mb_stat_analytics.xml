@@ -83,6 +83,102 @@
         year, month, day, hour, name, type, destination, source, _tenantId;
 
         INCREMENTAL_TABLE_COMMIT mbGaugeStatPerMinute;
+
+        CREATE TEMPORARY TABLE mbTimerStatPerDay USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_timer_stats_day",
+        schema "year INT -i, month INT -i, day INT -i, source FACET -i, name FACET -i, type FACET -i,
+        destination FACET -i, maxDuration DOUBLE, meanDuration DOUBLE, rate DOUBLE, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, day, name, type, destination, source",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        INSERT INTO TABLE mbTimerStatPerDay
+        SELECT year, month, day, source, name, type, destination, MAX(maxDuration) as maxDuration,
+        AVG(meanDuration) as meanDuration, AVG(rate) as rate, _tenantId,
+        getDateStartingTime(year, month, day) as _timestamp
+        FROM mbTimerStatPerHour
+        GROUP BY
+        year, month, day, name, type, destination, source, _tenantId;
+
+        INCREMENTAL_TABLE_COMMIT mbTimerStatPerHour;
+
+        CREATE TEMPORARY TABLE mbMeterStatPerDay USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_meter_stats_day",
+        schema "year INT -i, month INT -i, day INT -i, source FACET -i, name FACET -i, type FACET -i,
+        destination FACET -i, rate DOUBLE, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, day, name, type, destination, source",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        INSERT INTO TABLE mbMeterStatPerDay
+        SELECT year, month, day, source, name, type, destination, AVG(rate) as rate, _tenantId,
+        getDateStartingTime(year, month, day) as _timestamp
+        FROM mbMeterStatPerHour
+        GROUP BY
+        year, month, day, name, type, destination, source, _tenantId;
+
+        INCREMENTAL_TABLE_COMMIT mbMeterStatPerHour;
+
+        CREATE TEMPORARY TABLE mbGaugeStatPerDay USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_gauge_stats_day",
+        schema "year INT -i, month INT -i, day INT -i, source FACET -i, name FACET -i, type FACET -i,
+        destination FACET -i, value DOUBLE, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, day, name, type, destination, source",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        INSERT INTO TABLE mbGaugeStatPerDay
+        SELECT year, month, day, source, name, type, destination, AVG(value) as value, _tenantId,
+        getDateStartingTime(year, month, day) as _timestamp
+        FROM mbGaugeStatPerHour
+        GROUP BY
+        year, month, day, name, type, destination, source, _tenantId;
+
+        CREATE TEMPORARY TABLE mbTimerStatPerMonth USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_timer_stats_month",
+        schema "year INT -i, month INT -i, source FACET -i, name FACET -i, type FACET -i,
+        destination FACET -i, maxDuration DOUBLE, meanDuration DOUBLE, rate DOUBLE, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, name, type, destination, source",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        INSERT INTO TABLE mbTimerStatPerMonth
+        SELECT year, month, source, name, type, destination, MAX(maxDuration) as maxDuration,
+        AVG(meanDuration) as meanDuration, AVG(rate) as rate, _tenantId,
+        getMonthStartingTime(year, month) as _timestamp
+        FROM mbTimerStatPerDay
+        GROUP BY
+        year, month, name, type, destination, source, _tenantId;
+
+        CREATE TEMPORARY TABLE mbMeterStatPerMonth USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_meter_stats_month",
+        schema "year INT -i, month INT -i, source FACET -i, name FACET -i, type FACET -i,
+        destination FACET -i, rate DOUBLE, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, name, type, destination, source",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        INSERT INTO TABLE mbMeterStatPerMonth
+        SELECT year, month, source, name, type, destination, AVG(rate) as rate, _tenantId,
+        getMonthStartingTime(year, month) as _timestamp
+        FROM mbMeterStatPerDay
+        GROUP BY
+        year, month, name, type, destination, source, _tenantId;
+
+        CREATE TEMPORARY TABLE mbGaugeStatPerMonth USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_gauge_stats_month",
+        schema "year INT -i, month INT -i, source FACET -i, name FACET -i, type FACET -i,
+        destination FACET -i, value DOUBLE, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, name, type, destination, source",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        INSERT INTO TABLE mbGaugeStatPerMonth
+        SELECT year, month, source, name, type, destination, AVG(value) as value, _tenantId,
+        getMonthStartingTime(year, month) as _timestamp
+        FROM mbGaugeStatPerDay
+        GROUP BY
+        year, month, name, type, destination, source, _tenantId;
     </Script>
     <CronExpression>0 0/2 * * * ? *</CronExpression>
 </Analytics>
