@@ -14,6 +14,6 @@
     # See the License for the specific language governing permissions and
     # limitations under the License.
 -->
-<artifact name="MBMeterStream" version="1.0.0" type="event/stream" serverRole="DataAnalyticsServer">
-    <file>org.wso2.mb.analytics.stream.Meter_1.0.0.json</file>
+<artifact name="MBMeterStatsMinuteStore" version="1.0.0" type="analytics/eventstore" serverRole="DataAnalyticsServer">
+    <file>org_wso2_mb_meter_stats_minute.xml</file>
 </artifact>

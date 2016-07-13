@@ -20,12 +20,16 @@ package org.wso2.analytics.mb.siddhi.extension;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.wso2.analytics.mb.udf.DateTimeUDF;
 import org.wso2.siddhi.core.config.ExecutionPlanContext;
+import org.wso2.siddhi.core.exception.ExecutionPlanCreationException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.query.processor.stream.function.StreamFunctionProcessor;
 import org.wso2.siddhi.query.api.definition.AbstractDefinition;
 import org.wso2.siddhi.query.api.definition.Attribute;
+import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +39,7 @@ import java.util.List;
 public class MetricsStreamFunctionProcessor extends StreamFunctionProcessor {
 
     private static final Log log = LogFactory.getLog(MetricsStreamFunctionProcessor.class);
+    DateTimeUDF dateTimeUDF = new DateTimeUDF();
 
     /**
      * The process method used when more than one function parameters are provided
@@ -44,7 +49,21 @@ public class MetricsStreamFunctionProcessor extends StreamFunctionProcessor {
      */
     @Override
     protected Object[] process(Object[] data) {
-        return new Object[0];
+        Long timestamp = (Long) data[0];
+        String name = (String) data[1];
+        int year, month, day, hour, minute;
+        String type = "queue";
+        String destination = "myQueue";
+        try {
+            year = dateTimeUDF.getYear(timestamp);
+            month = dateTimeUDF.getMonth(timestamp);
+            day = dateTimeUDF.getDay(timestamp);
+            hour = dateTimeUDF.getHour(timestamp);
+            minute = dateTimeUDF.getMinute(timestamp);
+        } catch (ParseException e) {
+            throw new ExecutionPlanCreationException("Error occurred while parsing timestamp");
+        }
+        return new Object[]{year, month, day, hour, minute, type, destination};
     }
 
     /**
@@ -55,10 +74,7 @@ public class MetricsStreamFunctionProcessor extends StreamFunctionProcessor {
      */
     @Override
     protected Object[] process(Object data) {
-        String type = "queue";
-        String destination = "myQueue";
-        log.info("data " + data);
-        return new Object[]{type, destination};
+        return new Object[0];
     }
 
     /**
@@ -72,7 +88,16 @@ public class MetricsStreamFunctionProcessor extends StreamFunctionProcessor {
     @Override
     protected List<Attribute> init(AbstractDefinition inputDefinition, ExpressionExecutor[] attributeExpressionExecutors,
                                    ExecutionPlanContext executionPlanContext) {
+        if(attributeExpressionExecutors.length < 2) {
+            throw new ExecutionPlanValidationException("Invalid no of arguments passed to formatStream() function, " +
+                    "required 2: meta_timestamp and name, but found " + attributeExpressionExecutors.length);
+        }
         ArrayList<Attribute> attributes = new ArrayList<>();
+        attributes.add(new Attribute("year", Attribute.Type.INT));
+        attributes.add(new Attribute("month", Attribute.Type.INT));
+        attributes.add(new Attribute("day", Attribute.Type.INT));
+        attributes.add(new Attribute("hour", Attribute.Type.INT));
+        attributes.add(new Attribute("minute", Attribute.Type.INT));
         attributes.add(new Attribute("type", Attribute.Type.STRING));
         attributes.add(new Attribute("destination", Attribute.Type.STRING));
         return attributes;
