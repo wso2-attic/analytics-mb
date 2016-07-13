@@ -14,6 +14,6 @@
     # See the License for the specific language governing permissions and
     # limitations under the License.
 -->
-<artifact name="MBTimerStream" version="1.0.0" type="event/stream" serverRole="DataAnalyticsServer">
-    <file>org.wso2.mb.analytics.stream.Timer_1.0.0.json</file>
+<artifact name="MBTimerStatsMinuteStream" version="1.0.0" type="event/stream" serverRole="DataAnalyticsServer">
+    <file>org.wso2.mb.timer.stats.minute_1.0.0.json</file>
 </artifact>

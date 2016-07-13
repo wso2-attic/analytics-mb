@@ -14,6 +14,6 @@
     # See the License for the specific language governing permissions and
     # limitations under the License.
 -->
-<artifact name="MBTimerStore" version="1.0.0" type="analytics/eventstore" serverRole="DataAnalyticsServer">
-    <file>ORG_WSO2_MB_ANALYTICS_STREAM_TIMER.xml</file>
+<artifact name="MBTimerStatsMinuteStore" version="1.0.0" type="analytics/eventstore" serverRole="DataAnalyticsServer">
+    <file>org_wso2_mb_timer_stats_minute.xml</file>
 </artifact>

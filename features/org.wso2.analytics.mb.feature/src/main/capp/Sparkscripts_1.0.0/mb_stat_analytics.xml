@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Analytics>
+    <Name>mb_stat_analytics</Name>
+    <Script>
+        CREATE TEMPORARY TABLE mbTimerStatPerMinute USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_timer_stats_minute",
+        schema "year INT -i, month INT -i, day INT -i, hour INT -i, minute INT -i, source FACET -i, name FACET -i,
+        type FACET -i, destination FACET -i, maxDuration DOUBLE, meanDuration DOUBLE, rate DOUBLE, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, day, hour, minute, name, type, destination, source",
+        incrementalProcessing "mbTimerStatPerMinute, HOUR",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        CREATE TEMPORARY TABLE mbMeterStatPerMinute USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_meter_stats_minute",
+        schema "year INT -i, month INT -i, day INT -i, hour INT -i, minute INT -i, source FACET -i, name FACET -i,
+        type FACET -i, destination FACET -i, rate DOUBLE, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, day, hour, minute, name, type, destination, source",
+        incrementalProcessing "mbMeterStatPerMinute, HOUR",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        CREATE TEMPORARY TABLE mbGaugeStatPerMinute USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_gauge_stats_minute",
+        schema "year INT -i, month INT -i, day INT -i, hour INT -i, minute INT -i, source FACET -i, name FACET -i,
+        type FACET -i, destination FACET -i, value DOUBLE, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, day, hour, minute, name, type, destination, source",
+        incrementalProcessing "mbGaugeStatPerMinute, HOUR",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        CREATE TEMPORARY TABLE mbTimerStatPerHour USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_timer_stats_hour",
+        schema "year INT -i, month INT -i, day INT -i, hour INT -i, source FACET -i, name FACET -i, type FACET -i,
+        destination FACET -i, maxDuration DOUBLE, meanDuration DOUBLE, rate DOUBLE, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, day, hour, name, type, destination, source",
+        incrementalProcessing "mbTimerStatPerHour, DAY",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        INSERT INTO TABLE mbTimerStatPerHour
+        SELECT year, month, day, hour, source, name, type, destination, MAX(maxDuration) as maxDuration,
+        AVG(meanDuration) as meanDuration, AVG(rate) as rate, _tenantId,
+        getHourStartingTime(year, month, day, hour) as _timestamp
+        FROM mbTimerStatPerMinute
+        GROUP BY
+        year, month, day, hour, name, type, destination, source, _tenantId;
+
+        INCREMENTAL_TABLE_COMMIT mbTimerStatPerMinute;
+
+        CREATE TEMPORARY TABLE mbMeterStatPerHour USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_meter_stats_hour",
+        schema "year INT -i, month INT -i, day INT -i, hour INT -i, source FACET -i, name FACET -i, type FACET -i,
+        destination FACET -i, rate DOUBLE, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, day, hour, name, type, destination, source",
+        incrementalProcessing "mbMeterStatPerHour, DAY",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        INSERT INTO TABLE mbMeterStatPerHour
+        SELECT year, month, day, hour, source, name, type, destination, AVG(rate) as rate, _tenantId,
+        getHourStartingTime(year, month, day, hour) as _timestamp
+        FROM mbMeterStatPerMinute
+        GROUP BY
+        year, month, day, hour, name, type, destination, source, _tenantId;
+
+        INCREMENTAL_TABLE_COMMIT mbMeterStatPerMinute;
+
+        CREATE TEMPORARY TABLE mbGaugeStatPerHour USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_gauge_stats_hour",
+        schema "year INT -i, month INT -i, day INT -i, hour INT -i, source FACET -i, name FACET -i, type FACET -i,
+        destination FACET -i, value DOUBLE, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, day, hour, name, type, destination, source",
+        incrementalProcessing "mbGaugeStatPerHour, DAY",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        INSERT INTO TABLE mbGaugeStatPerHour
+        SELECT year, month, day, hour, source, name, type, destination, AVG(value) as value, _tenantId,
+        getHourStartingTime(year, month, day, hour) as _timestamp
+        FROM mbGaugeStatPerMinute
+        GROUP BY
+        year, month, day, hour, name, type, destination, source, _tenantId;
+
+        INCREMENTAL_TABLE_COMMIT mbGaugeStatPerMinute;
+    </Script>
+    <CronExpression>0 0/2 * * * ? *</CronExpression>
+</Analytics>

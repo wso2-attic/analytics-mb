@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    # Copyright 2015 WSO2 Inc. (http://wso2.org)
+    # Copyright 2016 WSO2 Inc. (http://wso2.org)
     #
     # Licensed under the Apache License, Version 2.0 (the "License");
     # you may not use this file except in compliance with the License.
@@ -14,6 +14,6 @@
     # See the License for the specific language governing permissions and
     # limitations under the License.
 -->
-<artifact name="MBGaugeStore" version="1.0.0" type="analytics/eventstore" serverRole="DataAnalyticsServer">
-    <file>ORG_WSO2_MB_ANALYTICS_STREAM_GAUGE.xml</file>
+<artifact name="MBMeterStatsMinuteStream" version="1.0.0" type="event/stream" serverRole="DataAnalyticsServer">
+    <file>org.wso2.mb.meter.stats.minute_1.0.0.json</file>
 </artifact>
