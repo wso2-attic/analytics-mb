@@ -18,17 +18,15 @@
 /*
 * Get results from metrics METER table for the given view
 */
-function getResultsFromMeterTable(connector, loggedInUser, view) {
+function getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view) {
     var result = [];
-    var timeFrom = request.getParameter("timeFrom");
-    var timeTo = request.getParameter("timeTo");
-    var tableName = "ORG_WSO2_METRICS_STREAM_METER";
+    var tableName = "ORG_WSO2_MB_METER_STATS_" + timeUnit;
     var query = stringify({
-        query: "_name : \"" + view + "\" AND meta_timestamp : [" + timeFrom + " TO " + timeTo + "]",
+        query: "_name : \"" + view + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "]",
         "start": 0,
         "count": 1000,
         "sortBy": [{
-            field: "meta_timestamp",
+            field: "_timestamp",
             sortType: "ASC",
         }]
     });
@@ -44,11 +42,8 @@ function getResultsFromMeterTable(connector, loggedInUser, view) {
         var obj = dataPoints[i];
         if (obj != null) {
             result.push({
-                "timestamp": obj.values.meta_timestamp,
-                "meanRate": obj.values.mean_rate,
-                "oneMinuteRate": obj.values.one_minute_rate,
-                "fiveMinuteRate": obj.values.five_minute_rate,
-                "fifteenMinuteRate": obj.values.fifteen_minute_rate
+                "timestamp": obj.timestamp,
+                "oneMinuteRate": obj.values.rate.toFixed(2)
             });
         }
     }
@@ -58,17 +53,15 @@ function getResultsFromMeterTable(connector, loggedInUser, view) {
 /*
 * Get results from metrics GAUGE table for the given view
 */
-function getResultsFromGaugeTable(connector, loggedInUser, view) {
+function getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view) {
     var result = [];
-    var timeFrom = request.getParameter("timeFrom");
-    var timeTo = request.getParameter("timeTo");
-    var tableName = "ORG_WSO2_METRICS_STREAM_GAUGE";
+    var tableName = "ORG_WSO2_MB_GAUGE_STATS_" + timeUnit;
     var query = stringify({
-        query: "_name : \"" + view + "\" AND meta_timestamp : [" + timeFrom + " TO " + timeTo + "]",
+        query: "_name : \"" + view + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "]",
         "start": 0,
         "count": 1000,
         "sortBy": [{
-            field: "meta_timestamp",
+            field: "_timestamp",
             sortType: "ASC",
         }]
     });
@@ -84,8 +77,8 @@ function getResultsFromGaugeTable(connector, loggedInUser, view) {
         var obj = dataPoints[i];
         if (obj != null) {
             result.push({
-                "timestamp": obj.values.meta_timestamp,
-                "count": obj.values.value
+                "timestamp": obj.timestamp,
+                "count": obj.values.value.toFixed(2)
             });
         }
     }
@@ -95,17 +88,15 @@ function getResultsFromGaugeTable(connector, loggedInUser, view) {
 /*
 * Get results from metrics TIMER table for the given view
 */
-function getResultsFromTimerTable(connector, loggedInUser, view) {
+function getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view) {
     var result = [];
-    var timeFrom = request.getParameter("timeFrom");
-    var timeTo = request.getParameter("timeTo");
-    var tableName = "ORG_WSO2_METRICS_STREAM_TIMER";
+    var tableName = "ORG_WSO2_MB_TIMER_STATS_" + timeUnit;
     var query = stringify({
-        query: "_name : \"" + view + "\" AND meta_timestamp : [" + timeFrom + " TO " + timeTo + "]",
+        query: "_name : \"" + view + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "]",
         "start": 0,
         "count": 1000,
         "sortBy": [{
-            field: "meta_timestamp",
+            field: "_timestamp",
             sortType: "ASC",
         }]
     });
@@ -121,21 +112,10 @@ function getResultsFromTimerTable(connector, loggedInUser, view) {
         var obj = dataPoints[i];
         if (obj != null) {
             result.push({
-                "timestamp": obj.values.meta_timestamp,
-                "max": obj.values.max,
-                "mean": obj.values.mean,
-                "min": obj.values.min,
-                "stddev": obj.values.stddev,
-                "median": obj.values.median,
-                "percentile75": obj.values.percentile_75th,
-                "percentile95": obj.values.percentile_95th,
-                "percentile98": obj.values.percentile_98th,
-                "percentile99": obj.values.percentile_99th,
-                "percentile999": obj.values.percentile_999th,
-                "meanRate": obj.values.mean_rate,
-                "oneMinuteRate": obj.values.one_minute_rate,
-                "fiveMinuteRate": obj.values.five_minute_rate,
-                "fifteenMinuteRate": obj.values.fifteen_minute_rate
+                "timestamp": obj.timestamp,
+                "max": obj.values.maxDuration.toFixed(2),
+                "mean": obj.values.meanDuration.toFixed(2),
+                "oneMinuteRate": obj.values.rate.toFixed(2)
             });
         }
     }

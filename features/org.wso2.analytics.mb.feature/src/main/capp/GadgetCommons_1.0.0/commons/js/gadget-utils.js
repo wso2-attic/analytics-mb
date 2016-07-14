@@ -55,7 +55,7 @@ var COLOR_GREEN = "#5CB85C";
 var PARENT_WINDOW = window.parent.document;
 
 function GadgetUtil() {
-    var DEFAULT_START_TIME = new Date(moment().subtract(29, 'days')).getTime();
+    var DEFAULT_START_TIME = new Date(moment().subtract(1, 'hours')).getTime();
     var DEFAULT_END_TIME = new Date(moment()).getTime();
 
     this.getQueryString = function() {

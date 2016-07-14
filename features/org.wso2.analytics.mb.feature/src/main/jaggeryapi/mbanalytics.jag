@@ -41,8 +41,8 @@
     var AnalyticsCache = Packages.org.wso2.carbon.analytics.jsservice.AnalyticsCachedJSServiceConnector.AnalyticsCache;
     var cacheTimeoutSeconds = 5;
     var loggedInUser = null;
-    //var timeRangeUtil = Packages.org.wso2.carbon.analytics.esb.util.TimeRangeUtils;
-    //var timeRange = Packages.org.wso2.carbon.analytics.esb.bean.TimeRange;
+    var timeRangeUtil = Packages.org.wso2.analytics.mb.util.TimeRangeUtils;
+    var timeRange = Packages.org.wso2.analytics.mb.bean.TimeRange;
 
     //operation types
     var TYPE_MSG_RECEIVE_RATE = 1;
@@ -115,51 +115,57 @@
     }
 
     //call relevant function in mbanalytics-utils.jag based on the type passed by gadget
+    var timeFrom = request.getParameter("timeFrom");
+    var timeTo = request.getParameter("timeTo");
+    var timeUnit = timeRangeUtil.getSuitableTimeRangeUnit(timeFrom, timeTo);
+    if (timeUnit == "SECOND") {
+        timeUnit = "MINUTE";
+    }
     var result = null;
     switch (type) {
         case TYPE_MSG_RECEIVE_RATE:
         {
-            var result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, "org.wso2.mb.message.receive");
+            var result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.receive");
             break;
         }
         case TYPE_MSG_SEND_RATE:
         {
-            var result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, "org.wso2.mb.message.sent");
+            var result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.sent");
             break;
         }
         case TYPE_TOTAL_CHANNEL_COUNT:
         {
-            var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, "org.wso2.mb.channels.active.count");
+            var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.channels.active.count");
             break;
         }
         case TYPE_TOTAL_QUEUE_SUB_COUNT:
         {
-            var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, "org.wso2.mb.queue.subscribers.count");
+            var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.queue.subscribers.count");
             break;
         }
         case TYPE_TOTAL_TOPIC_SUB_COUNT:
         {
-            var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, "org.wso2.mb.topic.subscribers.count");
+            var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.topic.subscribers.count");
             break;
         }
         case TYPE_DB_READ_TIME:
         {
-            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, "org.wso2.mb.database.read");
+            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read");
             break;
         }
         case TYPE_DB_WRITE_TIME:
         {
-            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, "org.wso2.mb.database.write");
+            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write");
             break;
         }
         case TYPE_DB_READ_RATE:
         {
-            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, "org.wso2.mb.database.read");
+            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read");
             break;
         }
         case TYPE_DB_WRITE_RATE:
         {
-            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, "org.wso2.mb.database.write");
+            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write");
             break;
         }
         default:
