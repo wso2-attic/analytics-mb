@@ -86,6 +86,44 @@ function getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, t
 };
 
 /*
+* Get multi results from metrics GAUGE table for the given view
+*/
+function getMultiResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view) {
+    var result = [];
+    var tableName = "ORG_WSO2_MB_GAUGE_STATS_" + timeUnit;
+    for (var key in view) {
+        var query = stringify({
+            query: "_name : \"" + view[key] + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "]",
+            "start": 0,
+            "count": 1000,
+            "sortBy": [{
+                field: "_timestamp",
+                sortType: "ASC",
+            }]
+        });
+        var resp = connector.search(loggedInUser, tableName, query);
+        var dataPoints = [];
+        try {
+            dataPoints = JSON.parse(resp.getMessage());
+        } catch (error) {
+            var log = new Log();
+            log.error(error);
+        }
+        for (var i = 0; i < dataPoints.length; i++) {
+            var obj = dataPoints[i];
+            if (obj != null) {
+                result.push({
+                    "timestamp": obj.timestamp,
+                    "type": key,
+                    "count": obj.values.value.toFixed(2)
+                });
+            }
+        }
+    }
+    return result;
+};
+
+/*
 * Get results from metrics TIMER table for the given view
 */
 function getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view) {

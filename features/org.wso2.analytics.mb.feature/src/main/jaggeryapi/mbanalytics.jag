@@ -48,12 +48,11 @@
     var TYPE_MSG_RECEIVE_RATE = 1;
     var TYPE_MSG_SEND_RATE = 2;
     var TYPE_TOTAL_CHANNEL_COUNT = 3;
-    var TYPE_TOTAL_QUEUE_SUB_COUNT = 4;
-    var TYPE_TOTAL_TOPIC_SUB_COUNT = 5;
-    var TYPE_DB_READ_TIME = 6;
-    var TYPE_DB_WRITE_TIME = 7;
-    var TYPE_DB_READ_RATE = 8;
-    var TYPE_DB_WRITE_RATE = 9;
+    var TYPE_TOTAL_SUB_COUNT = 4;
+    var TYPE_DB_READ_TIME = 5;
+    var TYPE_DB_WRITE_TIME = 6;
+    var TYPE_DB_READ_RATE = 7;
+    var TYPE_DB_WRITE_RATE = 8;
 
     if (configs.cacheTimeoutSeconds) {
         cacheTimeoutSeconds = parseInt(configs.cacheTimeoutSeconds);
@@ -125,47 +124,46 @@
     switch (type) {
         case TYPE_MSG_RECEIVE_RATE:
         {
-            var result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.receive");
+            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.receive");
             break;
         }
         case TYPE_MSG_SEND_RATE:
         {
-            var result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.sent");
+            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.sent");
             break;
         }
         case TYPE_TOTAL_CHANNEL_COUNT:
         {
-            var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.channels.active.count");
+            result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.channels.active.count");
             break;
         }
-        case TYPE_TOTAL_QUEUE_SUB_COUNT:
+        case TYPE_TOTAL_SUB_COUNT:
         {
-            var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.queue.subscribers.count");
-            break;
-        }
-        case TYPE_TOTAL_TOPIC_SUB_COUNT:
-        {
-            var result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.topic.subscribers.count");
+            var view = {
+                "Queue": "org.wso2.mb.queue.subscribers.count",
+                "Topic": "org.wso2.mb.topic.subscribers.count"
+            }
+            result = mbanalyticsUtils.getMultiResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view);
             break;
         }
         case TYPE_DB_READ_TIME:
         {
-            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read");
+            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read");
             break;
         }
         case TYPE_DB_WRITE_TIME:
         {
-            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write");
+            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write");
             break;
         }
         case TYPE_DB_READ_RATE:
         {
-            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read");
+            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read");
             break;
         }
         case TYPE_DB_WRITE_RATE:
         {
-            var result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write");
+            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write");
             break;
         }
         default:
