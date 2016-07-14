@@ -26,6 +26,7 @@ var PAGE_LANDING = "landing";
 
 var ROLE_RATE = "rate";
 var ROLE_COUNT = "count";
+var ROLE_MULTI_COUNT = "multi_count";
 var ROLE_TIME = "time";
 
 //rate types
@@ -36,8 +37,7 @@ var TYPE_DB_WRITE_RATE = "db_write_rate";
 
 //gauge types
 var TYPE_TOTAL_CHANNEL_COUNT = "total_channel_count";
-var TYPE_TOTAL_QUEUE_SUB_COUNT = "total_queue_sub_count";
-var TYPE_TOTAL_TOPIC_SUB_COUNT = "total_topic_sub_count";
+var TYPE_TOTAL_SUB_COUNT = "total_sub_count";
 
 //timer type
 var TYPE_DB_READ_TIME = "db_read_time";
