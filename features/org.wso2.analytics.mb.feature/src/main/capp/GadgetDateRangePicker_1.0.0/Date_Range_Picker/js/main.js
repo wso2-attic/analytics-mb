@@ -10,7 +10,7 @@ $(function() {
         datePickerBtn = $('#btnCustomRange');
     //if there are url elemements present, use them. Otherwis use last hour
 
-    var timeFrom = moment().subtract(29, 'days');
+    var timeFrom = moment().subtract(1, 'hours');
     var timeTo = moment();
     var message = {};
 
@@ -29,7 +29,7 @@ $(function() {
     if (timeUnit != null) {
         $("#date-select [role=date-update][data-value=" + timeUnit + "]").addClass("active");
     } else {
-        $("#date-select [role=date-update][data-value=LastMonth]").addClass("active");
+        $("#date-select [role=date-update][data-value=LastHour]").addClass("active");
     }
 
     cb(moment(timeFrom), moment(timeTo));
