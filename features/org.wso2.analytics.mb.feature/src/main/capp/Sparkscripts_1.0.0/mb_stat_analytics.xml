@@ -29,6 +29,15 @@
         mergeSchema "false",
         globalTenantAccess "true");
 
+        CREATE TEMPORARY TABLE mbCounterStatPerMinute USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_counter_stats_minute",
+        schema "year INT -i, month INT -i, day INT -i, hour INT -i, minute INT -i, source FACET -i, name FACET -i,
+        type FACET -i, destination FACET -i, totalCount LONG, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, day, hour, minute, name, type, destination, source",
+        incrementalProcessing "mbCounterStatPerMinute, HOUR",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
         CREATE TEMPORARY TABLE mbTimerStatPerHour USING CarbonAnalytics
         OPTIONS (tableName "org_wso2_mb_timer_stats_hour",
         schema "year INT -i, month INT -i, day INT -i, hour INT -i, source FACET -i, name FACET -i, type FACET -i,
@@ -84,6 +93,24 @@
 
         INCREMENTAL_TABLE_COMMIT mbGaugeStatPerMinute;
 
+        CREATE TEMPORARY TABLE mbCounterStatPerHour USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_counter_stats_hour",
+        schema "year INT -i, month INT -i, day INT -i, hour INT -i, source FACET -i, name FACET -i, type FACET -i,
+        destination FACET -i, totalCount LONG, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, day, hour, name, type, destination, source",
+        incrementalProcessing "mbCounterStatPerHour, DAY",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        INSERT INTO TABLE mbCounterStatPerHour
+        SELECT year, month, day, hour, source, name, type, destination, MAX(totalCount), _tenantId,
+        getHourStartingTime(year, month, day, hour) as _timestamp
+        FROM mbCounterStatPerMinute
+        GROUP BY
+        year, month, day, hour, name, type, destination, source, _tenantId;
+
+        INCREMENTAL_TABLE_COMMIT mbCounterStatPerMinute;
+
         CREATE TEMPORARY TABLE mbTimerStatPerDay USING CarbonAnalytics
         OPTIONS (tableName "org_wso2_mb_timer_stats_day",
         schema "year INT -i, month INT -i, day INT -i, source FACET -i, name FACET -i, type FACET -i,
@@ -134,6 +161,23 @@
         GROUP BY
         year, month, day, name, type, destination, source, _tenantId;
 
+        CREATE TEMPORARY TABLE mbCounterStatPerDay USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_counter_stats_day",
+        schema "year INT -i, month INT -i, day INT -i, source FACET -i, name FACET -i, type FACET -i,
+        destination FACET -i, totalCount LONG, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, day, name, type, destination, source",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        INSERT INTO TABLE mbCounterStatPerDay
+        SELECT year, month, day, source, name, type, destination, MAX(totalCount), _tenantId,
+        getDateStartingTime(year, month, day) as _timestamp
+        FROM mbCounterStatPerHour
+        GROUP BY
+        year, month, day, name, type, destination, source, _tenantId;
+
+        INCREMENTAL_TABLE_COMMIT mbCounterStatPerHour;
+
         CREATE TEMPORARY TABLE mbTimerStatPerMonth USING CarbonAnalytics
         OPTIONS (tableName "org_wso2_mb_timer_stats_month",
         schema "year INT -i, month INT -i, source FACET -i, name FACET -i, type FACET -i,
@@ -177,6 +221,21 @@
         SELECT year, month, source, name, type, destination, AVG(value) as value, _tenantId,
         getMonthStartingTime(year, month) as _timestamp
         FROM mbGaugeStatPerDay
+        GROUP BY
+        year, month, name, type, destination, source, _tenantId;
+
+        CREATE TEMPORARY TABLE mbCounterStatPerMonth USING CarbonAnalytics
+        OPTIONS (tableName "org_wso2_mb_counter_stats_month",
+        schema "year INT -i, month INT -i, source FACET -i, name FACET -i, type FACET -i,
+        destination FACET -i, totalCount LONG, _tenantId INT, _timestamp LONG -i",
+        primaryKeys "year, month, name, type, destination, source",
+        mergeSchema "false",
+        globalTenantAccess "true");
+
+        INSERT INTO TABLE mbCounterStatPerMonth
+        SELECT year, month, source, name, type, destination, MAX(totalCount), _tenantId,
+        getMonthStartingTime(year, month) as _timestamp
+        FROM mbCounterStatPerDay
         GROUP BY
         year, month, name, type, destination, source, _tenantId;
     </Script>
