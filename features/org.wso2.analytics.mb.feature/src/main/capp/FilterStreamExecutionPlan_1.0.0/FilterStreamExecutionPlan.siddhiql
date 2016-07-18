@@ -15,6 +15,9 @@ define stream metricMeterStream (meta_timestamp long, source string, name string
 @Import('org.wso2.metrics.stream.Gauge:1.0.0')
 define stream metricGaugeStream (meta_timestamp long, source string, name string, value double);
 
+@Import('org.wso2.metrics.stream.Counter:1.0.0')
+define stream metricCounterStream (meta_timestamp long, source string, name string, count long);
+
 @Export('org.wso2.mb.timer.stats.minute:1.0.0')
 define stream mbTimerStatsMinute (year int, month int, day int, hour int, minute int, source string, name string, type string, destination string, maxDuration double, meanDuration double, rate double, _timestamp long);
 
@@ -23,6 +26,9 @@ define stream mbMeterStatsMinute (year int, month int, day int, hour int, minute
 
 @Export('org.wso2.mb.gauge.stats.minute:1.0.0')
 define stream mbGaugeStatsMinute (year int, month int, day int, hour int, minute int, source string, name string, type string, destination string, value double, _timestamp long);
+
+@Export('org.wso2.mb.counter.stats.minute:1.0.0')
+define stream mbCounterStatsMinute (year int, month int, day int, hour int, minute int, source string, name string, type string, destination string, totalCount long, _timestamp long);
 
 from metricTimerStream[str:contains(name, 'org.wso2.mb.database.read') or str:contains(name, 'org.wso2.mb.database.write')]#mbAnalytics:formatStream(meta_timestamp, name)
 select year, month, day, hour, minute, source, name, type, destination, max as maxDuration, mean as meanDuration, one_minute_rate as rate, meta_timestamp as _timestamp
@@ -35,3 +41,7 @@ insert into mbMeterStatsMinute;
 from metricGaugeStream[str:contains(name, 'org.wso2.mb.channels.active.count') or str:contains(name, 'org.wso2.mb.queue.subscribers.count') or str:contains(name, 'org.wso2.mb.topic.subscribers.count')]#mbAnalytics:formatStream(meta_timestamp, name)
 select year, month, day, hour, minute, source, name, type, destination, value, meta_timestamp as _timestamp
 insert into mbGaugeStatsMinute;
+
+from metricCounterStream [str:contains(name, 'org.wso2.mb.enqueue.count') or str:contains(name, 'org.wso2.mb.dequeue.count') or str:contains(name, 'org.wso2.mb.ack.count') or str:contains(name, 'org.wso2.mb.reject.count')]#mbAnalytics:formatStream(meta_timestamp, name)
+select year, month, day, hour, minute, source, name, type, destination, count as totalCount, meta_timestamp as _timestamp
+insert into mbCounterStatsMinute;

@@ -14,6 +14,8 @@
         <dependency artifact="MBMeterStatsMinuteStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="MBTimerStatsMinuteStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="MBTimerStatsMinuteStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MBCounterStatsMinuteStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MBCounterStatsMinuteStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <!-- Execution plan -->
         <dependency artifact="FilterStreamExecutionPlan" version="1.0.0" include="true" serverRole="ComplexEventProcessor"/>
         <!-- Spark Script -->
