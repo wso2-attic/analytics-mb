@@ -159,4 +159,66 @@ function getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, t
     }
     return result;
 };
+
+/*
+* Get results from metrics COUNTER table for the message overview
+*/
+function getResultsFromCounterTableForMessageOverview(connector, loggedInUser, timeUnit, timeFrom, timeTo, view) {
+    var result = [];
+    var tableName = "ORG_WSO2_MB_COUNTER_STATS_" + timeUnit;
+    var enqueue, dequeue, acknowledge, reject = 0;
+    for (var key in view) {
+        var query = stringify({
+            query: "_name : \"" + view[key] + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "]",
+            "start": 0,
+            "count": 1,
+            "sortBy": [{
+                field: "_timestamp",
+                sortType: "DESC",
+            }]
+        });
+        var resp = connector.search(loggedInUser, tableName, query);
+        var dataPoints = [];
+        try {
+            dataPoints = JSON.parse(resp.getMessage());
+        } catch (error) {
+            var log = new Log();
+            log.error(error);
+        }
+        for (var i = 0; i < dataPoints.length; i++) {
+            var obj = dataPoints[i];
+            if (obj != null) {
+                switch (obj.values.name) {
+                    case "org.wso2.mb.enqueue.count":
+                    {
+                        enqueue = obj.values.totalCount;
+                        break;
+                    }
+                    case "org.wso2.mb.dequeue.count":
+                    {
+                        dequeue = obj.values.totalCount;
+                        break;
+                    }
+                    case "org.wso2.mb.ack.count":
+                    {
+                        acknowledge = obj.values.totalCount;
+                        break;
+                    }
+                    case "org.wso2.mb.reject.count":
+                    {
+                        reject = obj.values.totalCount;
+                        break;
+                    }
+                    default:
+                    {
+                        break;
+                    }
+
+                }
+            }
+        }
+    }
+    result = {enqueue: enqueue, dequeue: dequeue, acknowledge: acknowledge, reject: reject};
+    return result;
+};
 %>
