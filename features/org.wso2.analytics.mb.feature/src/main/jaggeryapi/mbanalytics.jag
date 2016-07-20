@@ -53,6 +53,7 @@
     var TYPE_DB_WRITE_TIME = 6;
     var TYPE_DB_READ_RATE = 7;
     var TYPE_DB_WRITE_RATE = 8;
+    var TYPE_MSG_OVERVIEW = 9;
 
     if (configs.cacheTimeoutSeconds) {
         cacheTimeoutSeconds = parseInt(configs.cacheTimeoutSeconds);
@@ -164,6 +165,17 @@
         case TYPE_DB_WRITE_RATE:
         {
             result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write");
+            break;
+        }
+        case TYPE_MSG_OVERVIEW:
+        {
+            var view = {
+                "enqueue": "org.wso2.mb.enqueue.count",
+                "dequeue": "org.wso2.mb.dequeue.count",
+                "ack": "org.wso2.mb.ack.count",
+                "reject": "org.wso2.mb.reject.count"
+            }
+            result = mbanalyticsUtils.getResultsFromCounterTableForMessageOverview(connector, loggedInUser, timeUnit, timeFrom, timeTo, view);
             break;
         }
         default:
