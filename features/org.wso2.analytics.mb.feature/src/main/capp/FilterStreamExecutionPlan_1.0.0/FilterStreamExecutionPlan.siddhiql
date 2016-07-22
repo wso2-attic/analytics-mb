@@ -34,7 +34,7 @@ from metricTimerStream[str:contains(name, 'org.wso2.mb.database.read') or str:co
 select year, month, day, hour, minute, source, name, type, destination, max as maxDuration, mean as meanDuration, one_minute_rate as rate, meta_timestamp as _timestamp
 insert into mbTimerStatsMinute;
 
-from metricMeterStream[str:contains(name, 'org.wso2.mb.message.receive') or str:contains(name, 'org.wso2.mb.message.sent')]#mbAnalytics:formatStream(meta_timestamp, name)
+from metricMeterStream[str:contains(name, 'org.wso2.mb.message.receive') or str:contains(name, 'org.wso2.mb.message.sent') or str:contains(name, 'org.wso2.mb.ack.receive') or str:contains(name, 'org.wso2.mb.reject.receive')]#mbAnalytics:formatStream(meta_timestamp, name)
 select year, month, day, hour, minute, source, name, type, destination, one_minute_rate as rate, meta_timestamp as _timestamp
 insert into mbMeterStatsMinute;
 

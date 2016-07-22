@@ -34,6 +34,8 @@ var TYPE_MSG_RECEIVE_RATE = "msg_receive_rate";
 var TYPE_MSG_SEND_RATE = "msg_send_rate";
 var TYPE_DB_READ_RATE = "db_read_rate";
 var TYPE_DB_WRITE_RATE = "db_write_rate";
+var TYPE_MSG_ACK_RATE = "msg_ack_rate";
+var TYPE_MSG_REJECT_RATE = "msg_reject_rate";
 
 //gauge types
 var TYPE_TOTAL_CHANNEL_COUNT = "total_channel_count";

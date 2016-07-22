@@ -33,7 +33,9 @@ var charts = [{
         { name: TYPE_MSG_RECEIVE_RATE, type: 1 },
         { name: TYPE_MSG_SEND_RATE, type: 2 },
         { name: TYPE_DB_READ_RATE, type: 7 },
-        { name: TYPE_DB_WRITE_RATE, type: 8 }
+        { name: TYPE_DB_WRITE_RATE, type: 8 },
+        { name: TYPE_MSG_ACK_RATE, type: 10 },
+        { name: TYPE_MSG_REJECT_RATE, type: 11 }
     ],
     processData: function(data) {
         var result = [];
