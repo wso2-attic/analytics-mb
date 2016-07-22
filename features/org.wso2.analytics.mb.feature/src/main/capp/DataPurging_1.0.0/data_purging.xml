@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<analytics-data-purging>
+    <cron-expression>0 0 0 * * ?</cron-expression>
+    <purge-include-tables>
+        <table>ORG_WSO2_METRICS_STREAM_COUNTER</table>
+        <table>ORG_WSO2_METRICS_STREAM_GAUGE</table>
+        <table>ORG_WSO2_METRICS_STREAM_HISTOGRAM</table>
+        <table>ORG_WSO2_METRICS_STREAM_METER</table>
+        <table>ORG_WSO2_METRICS_STREAM_TIMER</table>
+    </purge-include-tables>
+    <data-retention-days>1</data-retention-days>
+</analytics-data-purging>

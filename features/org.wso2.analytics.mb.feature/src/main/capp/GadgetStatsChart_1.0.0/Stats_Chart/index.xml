@@ -69,7 +69,7 @@
                             <div class="pull-left arc-chart">
                                 <div id="dChartTrue"></div>
                                 <div class="chart-label-count"><span id="successCount"></span> Acknowledge</div>
-                                <div class="chart-label">Success Rate</div>
+                                <div class="chart-label">Delivery Success</div>
                             </div>
                             <div class="pull-left chart-breakdown hidden">
                                 <h2>Min.</h2>
@@ -84,7 +84,7 @@
                             <div class="pull-left arc-chart">
                                 <div id="dChartFalse"></div>
                                 <div class="chart-label-count"><span id="failedCount"></span> Reject</div>
-                                <div class="chart-label">Failure Rate</div>
+                                <div class="chart-label">Delivery Failure</div>
                             </div>
                         </div>
                     </div>
