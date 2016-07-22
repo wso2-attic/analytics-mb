@@ -54,6 +54,8 @@
     var TYPE_DB_READ_RATE = 7;
     var TYPE_DB_WRITE_RATE = 8;
     var TYPE_MSG_OVERVIEW = 9;
+    var TYPE_MSG_ACK_RATE = 10;
+    var TYPE_MSG_REJECT_RATE = 11;
 
     if (configs.cacheTimeoutSeconds) {
         cacheTimeoutSeconds = parseInt(configs.cacheTimeoutSeconds);
@@ -176,6 +178,16 @@
                 "reject": "org.wso2.mb.reject.count"
             }
             result = mbanalyticsUtils.getResultsFromCounterTableForMessageOverview(connector, loggedInUser, timeUnit, timeFrom, timeTo, view);
+            break;
+        }
+        case TYPE_MSG_ACK_RATE:
+        {
+            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.ack.receive");
+            break;
+        }
+        case TYPE_MSG_REJECT_RATE:
+        {
+            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.reject.receive");
             break;
         }
         default:
