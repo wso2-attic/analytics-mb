@@ -47,15 +47,14 @@
     //operation types
     var TYPE_MSG_RECEIVE_RATE = 1;
     var TYPE_MSG_SEND_RATE = 2;
-    var TYPE_TOTAL_CHANNEL_COUNT = 3;
-    var TYPE_TOTAL_SUB_COUNT = 4;
-    var TYPE_DB_READ_TIME = 5;
-    var TYPE_DB_WRITE_TIME = 6;
-    var TYPE_DB_READ_RATE = 7;
-    var TYPE_DB_WRITE_RATE = 8;
-    var TYPE_MSG_OVERVIEW = 9;
-    var TYPE_MSG_ACK_RATE = 10;
-    var TYPE_MSG_REJECT_RATE = 11;
+    var TYPE_TOTAL_PUB_SUB_CHANNEL_COUNT = 3;
+    var TYPE_DB_READ_TIME = 4;
+    var TYPE_DB_WRITE_TIME = 5;
+    var TYPE_DB_READ_RATE = 6;
+    var TYPE_DB_WRITE_RATE = 7;
+    var TYPE_MSG_OVERVIEW = 8;
+    var TYPE_MSG_ACK_RATE = 9;
+    var TYPE_MSG_REJECT_RATE = 10;
 
     if (configs.cacheTimeoutSeconds) {
         cacheTimeoutSeconds = parseInt(configs.cacheTimeoutSeconds);
@@ -135,16 +134,12 @@
             result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.sent");
             break;
         }
-        case TYPE_TOTAL_CHANNEL_COUNT:
-        {
-            result = mbanalyticsUtils.getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.channels.active.count");
-            break;
-        }
-        case TYPE_TOTAL_SUB_COUNT:
+        case TYPE_TOTAL_PUB_SUB_CHANNEL_COUNT:
         {
             var view = {
-                "Queue": "org.wso2.mb.queue.subscribers.count",
-                "Topic": "org.wso2.mb.topic.subscribers.count"
+                Channel: "org.wso2.mb.channels.active.count",
+                Queue: "org.wso2.mb.queue.subscribers.count",
+                Topic: "org.wso2.mb.topic.subscribers.count"
             }
             result = mbanalyticsUtils.getMultiResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view);
             break;
@@ -172,10 +167,10 @@
         case TYPE_MSG_OVERVIEW:
         {
             var view = {
-                "enqueue": "org.wso2.mb.enqueue.count",
-                "dequeue": "org.wso2.mb.dequeue.count",
-                "ack": "org.wso2.mb.ack.count",
-                "reject": "org.wso2.mb.reject.count"
+                enqueue: "org.wso2.mb.enqueue.count",
+                dequeue: "org.wso2.mb.dequeue.count",
+                ack: "org.wso2.mb.ack.count",
+                reject: "org.wso2.mb.reject.count"
             }
             result = mbanalyticsUtils.getResultsFromCounterTableForMessageOverview(connector, loggedInUser, timeUnit, timeFrom, timeTo, view);
             break;
