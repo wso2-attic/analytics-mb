@@ -17,7 +17,7 @@
 var TOPIC = "subscriber";
 var page = gadgetUtil.getCurrentPageName();
 var qs = gadgetUtil.getQueryString();
-var type = 9;
+var type = 8;
 
 $(function() {
 

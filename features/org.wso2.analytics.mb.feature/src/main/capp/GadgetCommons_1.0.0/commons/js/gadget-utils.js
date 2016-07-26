@@ -26,7 +26,6 @@ var PAGE_LANDING = "landing";
 
 var ROLE_RATE = "rate";
 var ROLE_COUNT = "count";
-var ROLE_MULTI_COUNT = "multi_count";
 var ROLE_TIME = "time";
 
 //rate types
@@ -38,8 +37,7 @@ var TYPE_MSG_ACK_RATE = "msg_ack_rate";
 var TYPE_MSG_REJECT_RATE = "msg_reject_rate";
 
 //gauge types
-var TYPE_TOTAL_CHANNEL_COUNT = "total_channel_count";
-var TYPE_TOTAL_SUB_COUNT = "total_sub_count";
+var TYPE_TOTAL_PUB_SUB_CHANNEL_COUNT = "total_pub_sub_channel_count";
 
 //timer type
 var TYPE_DB_READ_TIME = "db_read_time";

@@ -32,10 +32,10 @@ var charts = [{
     types: [
         { name: TYPE_MSG_RECEIVE_RATE, type: 1 },
         { name: TYPE_MSG_SEND_RATE, type: 2 },
-        { name: TYPE_DB_READ_RATE, type: 7 },
-        { name: TYPE_DB_WRITE_RATE, type: 8 },
-        { name: TYPE_MSG_ACK_RATE, type: 10 },
-        { name: TYPE_MSG_REJECT_RATE, type: 11 }
+        { name: TYPE_DB_READ_RATE, type: 6 },
+        { name: TYPE_DB_WRITE_RATE, type: 7 },
+        { name: TYPE_MSG_ACK_RATE, type: 9 },
+        { name: TYPE_MSG_REJECT_RATE, type: 10 }
     ],
     processData: function(data) {
         var result = [];
@@ -47,63 +47,6 @@ var charts = [{
         });
         return result;
     }
-}, {
-    name: ROLE_COUNT,
-    schema: [{
-        "metadata": {
-            "names": ["Time", "Count"],
-            "types": ["time", "linear"]
-        },
-        "data": []
-    }],
-    chartConfig: {
-        x: "Time",
-        charts: [{ type: "line", y: "Count"}],
-        padding: { "top": 30, "left": 60, "bottom": 60, "right": 110 },
-        range: false
-    },
-    types: [
-        { name: TYPE_TOTAL_CHANNEL_COUNT, type: 3 },
-    ],
-    processData: function(data) {
-        var result = [];
-        data.forEach(function(row, i) {
-            var timestamp = row['timestamp'];
-            var count = parseFloat(row["count"]);
-            //add result to visualize
-            result.push([timestamp, count]);
-        });
-        return result;
-    }
-}, {
-       name: ROLE_MULTI_COUNT,
-       schema: [{
-           "metadata": {
-               "names": ["Time", "Type", "Count"],
-               "types": ["time", "ordinal", "linear"]
-           },
-           "data": []
-       }],
-       chartConfig: {
-           x: "Time",
-           charts: [{ type: "line", y: "Count", color: "Type"}],
-           padding: { "top": 30, "left": 60, "bottom": 60, "right": 110 },
-           range: false
-       },
-       types: [
-           { name: TYPE_TOTAL_SUB_COUNT, type: 4 }
-       ],
-       processData: function(data) {
-           var result = [];
-           data.forEach(function(row, i) {
-               var timestamp = row['timestamp'];
-               var type = row['type'];
-               var count = parseFloat(row["count"]);
-               //add result to visualize
-               result.push([timestamp, type, count]);
-           });
-           return result;
-       }
 }, {
     name: ROLE_TIME,
     schema: [{
@@ -120,8 +63,8 @@ var charts = [{
         range: false
     },
     types: [
-        { name: TYPE_DB_READ_TIME, type: 5 },
-        { name: TYPE_DB_WRITE_TIME, type: 6 }
+        { name: TYPE_DB_READ_TIME, type: 4 },
+        { name: TYPE_DB_WRITE_TIME, type: 5 }
     ],
     processData: function(data) {
         var result = [];

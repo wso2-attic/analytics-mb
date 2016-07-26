@@ -49,15 +49,7 @@
                 "id":"9fb07a2701203c5e7c9b3de4949d8069",
                 "x":0,
                 "y":13,
-                "width":6,
-                "height":4,
-                "banner":false
-              },
-              {
-                "id":"02f7bdf819228dbfe9a49e24831fba58",
-                "x":6,
-                "y":13,
-                "width":6,
+                "width":12,
                 "height":4,
                 "banner":false
               },
@@ -336,14 +328,14 @@
           ],
           "9fb07a2701203c5e7c9b3de4949d8069":[
             {
-              "id":"Line_Chart-2",
+              "id":"Scatter_Chart-0",
               "content":{
-                "id":"Line_Chart",
-                "title":"Line Chart",
+                "id":"Scatter_Chart",
+                "title":"Scatter Chart",
                 "type":"gadget",
                 "thumbnail":"fs://gadget/usa-business-revenue/index.png",
                 "data":{
-                  "url":"fs://gadget/Line_Chart/index.xml"
+                  "url":"fs://gadget/Scatter_Chart/index.xml"
                 },
                 "toolbarButtons":{
                   "default":{
@@ -377,7 +369,7 @@
                   "no_heading":false,
                   "hide_gadget":false,
                   "titlePosition":"left",
-                  "title":"Total Channels"
+                  "title":"Total Channels and Subscribers"
                 },
                 "options":{
                   "role":{
@@ -392,7 +384,7 @@
                   "view":{
                     "type":"STRING",
                     "title":"Gadget View",
-                    "value":"total_channel_count",
+                    "value":"total_pub_sub_channel_count",
                     "options":[
 
                     ],
@@ -400,81 +392,7 @@
                   }
                 },
                 "locale_titles":{
-                  "en-US":"Total Channels"
-                },
-                "settings":{
-                  "priority":"5"
-                }
-              }
-            }
-          ],
-          "02f7bdf819228dbfe9a49e24831fba58":[
-            {
-              "id":"Line_Chart-3",
-              "content":{
-                "id":"Line_Chart",
-                "title":"Line Chart",
-                "type":"gadget",
-                "thumbnail":"fs://gadget/usa-business-revenue/index.png",
-                "data":{
-                  "url":"fs://gadget/Line_Chart/index.xml"
-                },
-                "toolbarButtons":{
-                  "default":{
-                    "maximize":false,
-                    "configurations":false
-                  },
-                  "custom":[
-
-                  ],
-                  "isDropdownView":false
-                },
-                "listen":{
-                  "subscriber":{
-                    "type":"date-range",
-                    "description":"This notifies message generated in publisher",
-                    "on":[
-                      {
-                        "from":"Date_Range_Picker-0",
-                        "event":"range-selected"
-                      }
-                    ]
-                  }
-                },
-                "notify":{
-                  "chart-zoomed":{
-                    "type":"date-range",
-                    "description":"This notifies message generated in publisher"
-                  }
-                },
-                "styles":{
-                  "no_heading":false,
-                  "hide_gadget":false,
-                  "titlePosition":"left",
-                  "title":"Total Subscribers"
-                },
-                "options":{
-                  "role":{
-                    "type":"STRING",
-                    "title":"Gadget Role",
-                    "value":"multi_count",
-                    "options":[
-
-                    ],
-                    "required":true
-                  },
-                  "view":{
-                    "type":"STRING",
-                    "title":"Gadget View",
-                    "value":"total_sub_count",
-                    "options":[
-
-                    ],
-                    "required":true
-                  }
-                },
-                "locale_titles":{
-                  "en-US":"Total Subscribers"
+                  "en-US":"Total Channels and Subscribers"
                 },
                 "settings":{
                   "priority":"5",
@@ -482,6 +400,9 @@
                 }
               }
             }
+          ],
+          "02f7bdf819228dbfe9a49e24831fba58":[
+
           ],
           "f08d0001f11fe6c50591aaaa15961be3":[
 
