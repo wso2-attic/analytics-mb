@@ -16,14 +16,12 @@
   ~  specific language governing permissions and limitations
   ~  under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
         <groupId>org.wso2.analytics.mb</groupId>
         <artifactId>wso2analytics-mb-parent</artifactId>
-        <version>3.5.0-SNAPSHOT</version>
+        <version>3.2.0-M1</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
@@ -121,10 +119,7 @@
                                 https://wso2.org/jira/browse/IDENTITY-3489 -->
                                 <echo message="########### Comment out GetAllRolesOfUserEnabled property ##############" />
                                 <replace file="target/wso2carbon-core-${carbon.kernel.version}/repository/conf/user-mgt.xml" token="&lt;Property name=&quot;GetAllRolesOfUserEnabled&quot;&gt;true&lt;/Property&gt;" value="&lt;!--Property name=&quot;GetAllRolesOfUserEnabled&quot;&gt;true&lt;/Property--&gt;" />
-                                <replace
-                                        file="target/wso2carbon-core-${carbon.kernel.version}/repository/conf/security/Owasp.CsrfGuard.Carbon.properties"
-                                        token="org.owasp.csrfguard.unprotected.Services=%servletContext%/services/*"
-                                        value="org.owasp.csrfguard.unprotected.Services=%servletContext%/services/*${line.separator}org.owasp.csrfguard.unprotected.Endpoints=%servletContext%/endpoints/*${line.separator}org.owasp.csrfguard.unprotected.RestApi=%servletContext%/analytics/*${line.separator}org.owasp.csrfguard.unprotected.JsApi=%servletContext%/portal/apis/analytics/*${line.separator}org.owasp.csrfguard.unprotected.Servlet=%servletContext%/analytics-api/*${line.separator}org.owasp.csrfguard.unprotected.ml=%servletContext%/api/login"/>
+                                <replace file="target/wso2carbon-core-${carbon.kernel.version}/repository/conf/security/Owasp.CsrfGuard.Carbon.properties" token="org.owasp.csrfguard.unprotected.Services=%servletContext%/services/*" value="org.owasp.csrfguard.unprotected.Services=%servletContext%/services/*${line.separator}org.owasp.csrfguard.unprotected.Endpoints=%servletContext%/endpoints/*${line.separator}org.owasp.csrfguard.unprotected.RestApi=%servletContext%/analytics/*${line.separator}org.owasp.csrfguard.unprotected.JsApi=%servletContext%/portal/apis/analytics/*${line.separator}org.owasp.csrfguard.unprotected.Servlet=%servletContext%/analytics-api/*${line.separator}org.owasp.csrfguard.unprotected.ml=%servletContext%/api/login" />
                             </target>
                         </configuration>
                     </execution>
