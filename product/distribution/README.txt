@@ -1,52 +1,20 @@
-WSO2 Data Analytics Server, v3.0.0
+WSO2 Message Broker Analytics, v3.2.0
 ==================================
 
 @buildNumber@
 
-Welcome to the WSO2 Data Analytics Server, v3.0.0 release.
+Welcome to the WSO2 Message Broker Analytics Server, v 3.2.0 release.
 
-The WSO2 DAS version 3.0.0 is the first version of WSO2 DAS, which is complete rewrite of the analytics solution based on the latest technologies. It contains the following new features and enhancements.
+The WSO2 MB Analytics, based on WSO2 DAS 3.1.0, provides the components necessary for performing analytics tasks on WSO2 Message Broker 3.2.0.
 
-WSO2 DAS is powered by WSO2 Carbon, the SOA middleware component platform. 
-
-New Features
-============
-
-	- Data abstraction layer for analytics
-
-	- Apache Spark SQL-based analytics query execution
-
-	- Data publisher rewrite
-
-	- RDBMS datasource support
-
-	- REST APIs for analytics data service
-
-	- CLI like user interface for Spark integration
-
-
-Also, WSO2 DAS contains the following major new technological changes/substitutions when compared to its predecessor, which is WSO2 BAM. 
-
-	- Introduction of a generic data store that can mount RDBMS, HBase, Cassandra or any other data store, instead of supporting Cassandra as the one and only event store.
-
-	- Replaced Hadoop by Apache Spark, and Hive by Spark SQL.
-
-	- Introduced indexing on stream persistence using Apache Solr, instead of the Casandra secondary and custom index based indexing.
-
-	- Replaced the Gadget Server and Gadget generating tool with WSO2 UES-based dashboards and its new gadget generating tool.
-
-	- Integration of WSO2 CEP 4.0.0 based features, instead of WSO2 CEP 3.x.
-
-	- Introduced CAR file-based artifact deployment for WSO2 BAM toolbox support.
-
-	- Removed WSO2 BAM report generation.
+WSO2 MB Analytics is powered by WSO2 Carbon, the SOA middleware component platform.
 
 
 Features
 ========
 
 *Data aggregation	
-    Receives data from event sources through Java agents (Thrift, Kafka, JMS), JavaScript clients (Web Sockets, REST), to IoT (MQTT), and also from WSO2 Enterprise Service Bus Connectors.
+    Receives data from event sources through Java agents (Thrift, Kafka, JMS), JavaScript clients (Web Sockets, REST), to IoT (MQTT), and also from WSO2 Message Broker Connectors.
     Publishes events to one API for real-time, batch or interactive processing.
     Ability to access the analytics service via comprehensive REST API.
 
@@ -78,12 +46,12 @@ Features
 
 Issues Fixed in This Release
 ============================
-* WSO2 Data Analytics Server related components of the WSO2 Carbon Platform - https://wso2.org/jira/issues/?filter=12425
+* Issues fixed in this release could be found at https://wso2.org/jira/issues/?filter=13150
 
 Known Issues in This Release
 ============================
 
-* All known issues have been recorded at https://wso2.org/jira/issues/?filter=12426
+* All known issues have been recorded at https://wso2.org/jira/issues/?filter=13151
 
 Installation & Running
 ======================
@@ -101,7 +69,7 @@ System Requirements
 2. The Management Console requires full Javascript enablement of the Web browser
 
 For more details see the Installation guide or,
-https://docs.wso2.com/display/DAS300/Installation+Prerequisites
+https://docs.wso2.com/display/DAS310/Installation+Prerequisites
 
 Including External Dependencies
 ===============================
@@ -300,5 +268,5 @@ For further details, see the WSO2 Carbon documentation at
 http://docs.wso2.org/display/Carbon420/WSO2+Carbon+Documentation
 
 ---------------------------------------------------------------------------
-(c)  @copyright.year@2016, WSO2 Inc.
+(c)  2016, WSO2 Inc.
 

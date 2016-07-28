@@ -477,7 +477,7 @@
     </profiles>
 
     <properties>
-        <mb.analytics.version>3.5.0-SNAPSHOT</mb.analytics.version>
+        <mb.analytics.version>3.2.0-M1</mb.analytics.version>
 
         <carbon.kernel.version>4.4.7</carbon.kernel.version>
         <carbon.analytics.version>1.1.0</carbon.analytics.version>
@@ -538,7 +538,7 @@
         <geoip.api.version>1.2.15</geoip.api.version>
         <kryo.orbit.version>2.24.0.wso2v1</kryo.orbit.version>
         <kryo.import.version>[2.24.0,3.0)</kryo.import.version>
-        <project.scm.id>my-scm-server</project.scm.id>
+        <project.scm.id>wso2-scm-server</project.scm.id>
     </properties>
 
     <pluginRepositories>
