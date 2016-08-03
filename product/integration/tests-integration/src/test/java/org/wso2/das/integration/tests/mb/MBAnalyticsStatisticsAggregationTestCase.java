@@ -55,7 +55,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
 
     protected static final Log log = LogFactory.getLog(MBAnalyticsStatisticsAggregationTestCase.class);
     private static final int WAIT_FOR_INDEXING = 120000;
-    private static final int TIMEOUT = 60000;
+    private static final int TIMEOUT = 120000;
     private MetricService metricService;
 
     /**
