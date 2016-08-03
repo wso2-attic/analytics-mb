@@ -44,7 +44,6 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @BeforeClass(groups = "wso2.das4mb.publish", alwaysRun = true)
     protected void init() throws Exception {
         super.init();
-        log.info("%%%%%%%%%%%%%%%%%%%%%%% init %%%%%%%%%%%%%%%%%%%%%%%");
         // Updating the redelivery attempts to 1 to speed up the test case.
         super.serverManager = new ServerConfigurationManager(dasServer);
         String defaultMBConfigurationPath = ServerConfigurationManager.getCarbonHome() + File.separator + "repository" +
@@ -476,10 +475,6 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @AfterClass(groups = "wso2.das4mb.publish", alwaysRun = true)
     public void tearDown() throws IOException, AutomationUtilException, InterruptedException,
             XPathExpressionException, LoginAuthenticationExceptionException, AnalyticsException {
-        log.info("%%%%%%%%%%%%%%%%%%%%%%% tearDown %%%%%%%%%%%%%%%%%%%%%%%");
-        //Revert back to original configuration.
-//        super.serverManager.restoreToLastConfiguration(true);
-//        ClientConnectionUtil.waitForLogin(dasServer);
         // Clean up tables
         cleanupTables();
     }

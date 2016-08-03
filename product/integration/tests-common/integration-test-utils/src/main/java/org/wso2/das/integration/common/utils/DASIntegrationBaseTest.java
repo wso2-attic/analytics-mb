@@ -172,7 +172,6 @@ public class DASIntegrationBaseTest {
                 this.analyticsDataAPI.delete(-1234, table, Long.MIN_VALUE, Long.MAX_VALUE);
             }
         }
-        log.info("%%%%%%%%%%%%%%%%%%%%%%% cleanupTables %%%%%%%%%%%%%%%%%%%%%%%");
     }
 
     /**

@@ -89,13 +89,5 @@
             <groupId>org.wso2.carbon.analytics</groupId>
             <artifactId>org.wso2.carbon.analytics.spark.stub</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.metrics</groupId>
-            <artifactId>org.wso2.carbon.metrics.manager</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.metrics</groupId>
-            <artifactId>org.wso2.carbon.metrics.impl</artifactId>
-        </dependency>
     </dependencies>
 </project>

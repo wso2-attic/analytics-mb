@@ -67,7 +67,6 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @BeforeClass(groups = "wso2.das4mb.stats", alwaysRun = true)
     protected void init() throws Exception {
         super.init();
-        log.info("%%%%%%%%%%%%%%%%%%%%%%% init %%%%%%%%%%%%%%%%%%%%%%%");
         // Updating the redelivery attempts to 1 to speed up the test case.
         super.serverManager = new ServerConfigurationManager(dasServer);
         String defaultMBConfigurationPath = ServerConfigurationManager.getCarbonHome() + File.separator + "repository" +
@@ -165,10 +164,6 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @AfterClass(groups = "wso2.das4mb.stats", alwaysRun = true)
     public void tearDown() throws IOException, AutomationUtilException, InterruptedException,
             XPathExpressionException, LoginAuthenticationExceptionException, AnalyticsException {
-        log.info("%%%%%%%%%%%%%%%%%%%%%%% tearDown %%%%%%%%%%%%%%%%%%%%%%%");
-        //Revert back to original configuration.
-//        super.serverManager.restoreToLastConfiguration(false);
-//        ClientConnectionUtil.waitForLogin(dasServer);
         // Clean up tables
         cleanupTables();
     }
