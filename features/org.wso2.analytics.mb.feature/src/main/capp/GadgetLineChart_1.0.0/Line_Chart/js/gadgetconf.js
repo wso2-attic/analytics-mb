@@ -18,14 +18,14 @@ var charts = [{
     name: ROLE_RATE,
     schema: [{
         "metadata": {
-            "names": ["Time", "Rate/Second"],
+            "names": ["Time", "Rate / Second"],
             "types": ["time", "linear"]
         },
         "data": []
     }],
     chartConfig: {
         x: "Time",
-        charts: [{ type: "line", y: "Rate/Second"}],
+        charts: [{ type: "line", y: "Rate / Second"}],
         padding: { "top": 30, "left": 60, "bottom": 60, "right": 110 },
         range: false
     },
@@ -51,14 +51,14 @@ var charts = [{
     name: ROLE_TIME,
     schema: [{
         "metadata": {
-        "names": ["Time", "Type", "Duration/Millisecond"],
+        "names": ["Time", "Type", "Duration / Millisecond"],
         "types": ["time", "ordinal", "linear"]
         },
           "data": []
     }],
     chartConfig: {
         x: "Time",
-        charts: [{ type: "line", y: "Duration/Millisecond", color: "Type"}],
+        charts: [{ type: "line", y: "Duration / Millisecond", color: "Type"}],
         padding: { "top": 30, "left": 60, "bottom": 60, "right": 110 },
         range: false
     },

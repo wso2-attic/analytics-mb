@@ -23,9 +23,9 @@ import org.apache.commons.logging.LogFactory;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.wso2.carbon.integration.common.admin.client.AuthenticatorClient;
-import org.wso2.das.integration.common.utils.DASIntegrationTest;
+import org.wso2.das.integration.common.utils.DASIntegrationBaseTest;
 
-public class LoginLogoutTestCase extends DASIntegrationTest {
+public class LoginLogoutTestCase extends DASIntegrationBaseTest {
 
     private static final Log log = LogFactory.getLog(LoginLogoutTestCase.class);
     private AuthenticatorClient authClient;

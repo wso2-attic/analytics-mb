@@ -23,7 +23,6 @@ import org.wso2.carbon.databridge.agent.DataPublisher;
 import org.wso2.carbon.databridge.agent.exception.DataEndpointException;
 import org.wso2.carbon.databridge.commons.Event;
 import org.wso2.carbon.databridge.commons.utils.DataBridgeCommonsUtils;
-import org.wso2.carbon.metrics.das.reporter.DASReporter;
 
 import java.io.File;
 import java.util.List;
@@ -35,7 +34,6 @@ public class DataPublisherClient {
     //FIXME: remove hardcoding
     private static final String URL = "tcp://localhost:8311";
     private DataPublisher dataPublisher;
-    private DASReporter reporter;
 
     public DataPublisherClient(String url) throws Exception {
         String resourceDir = new File(this.getClass().getClassLoader().getResource("datapublisher").toURI()).getAbsolutePath();

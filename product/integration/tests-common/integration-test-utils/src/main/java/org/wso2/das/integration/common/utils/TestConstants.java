@@ -30,10 +30,31 @@ public class TestConstants {
     public static final String NUMBER_OF_INVOCATION = "noOfInvocation";
     public static final String FAULT_COUNT = "faultCount";
     
-    // Event streams
-    public static final String ORG_WSO2_MB_ANALYTICS_STREAM_GAUGE = "ORG_WSO2_MB_ANALYTICS_STREAM_GAUGE";
-    public static final String ORG_WSO2_MB_ANALYTICS_STREAM_METER = "ORG_WSO2_MB_ANALYTICS_STREAM_METER";
-    public static final String ORG_WSO2_MB_ANALYTICS_STREAM_TIMER = "ORG_WSO2_MB_ANALYTICS_STREAM_TIMER";
+    // Minute Tables
+    public static final String ORG_WSO2_MB_COUNTER_STATS_MINUTE = "ORG_WSO2_MB_COUNTER_STATS_MINUTE";
+    public static final String ORG_WSO2_MB_GAUGE_STATS_MINUTE = "ORG_WSO2_MB_GAUGE_STATS_MINUTE";
+    public static final String ORG_WSO2_MB_METER_STATS_MINUTE = "ORG_WSO2_MB_METER_STATS_MINUTE";
+    public static final String ORG_WSO2_MB_TIMER_STATS_MINUTE = "ORG_WSO2_MB_TIMER_STATS_MINUTE";
+
+    // Hour Tables
+    public static final String ORG_WSO2_MB_COUNTER_STATS_HOUR = "ORG_WSO2_MB_COUNTER_STATS_HOUR";
+    public static final String ORG_WSO2_MB_GAUGE_STATS_HOUR = "ORG_WSO2_MB_GAUGE_STATS_HOUR";
+    public static final String ORG_WSO2_MB_METER_STATS_HOUR = "ORG_WSO2_MB_METER_STATS_HOUR";
+    public static final String ORG_WSO2_MB_TIMER_STATS_HOUR = "ORG_WSO2_MB_TIMER_STATS_HOUR";
+
+    // Day Tables
+    public static final String ORG_WSO2_MB_COUNTER_STATS_DAY = "ORG_WSO2_MB_COUNTER_STATS_DAY";
+    public static final String ORG_WSO2_MB_GAUGE_STATS_DAY = "ORG_WSO2_MB_GAUGE_STATS_DAY";
+    public static final String ORG_WSO2_MB_METER_STATS_DAY = "ORG_WSO2_MB_METER_STATS_DAY";
+    public static final String ORG_WSO2_MB_TIMER_STATS_DAY = "ORG_WSO2_MB_TIMER_STATS_DAY";
+
+    // Month Tables
+    public static final String ORG_WSO2_MB_COUNTER_STATS_MONTH = "ORG_WSO2_MB_COUNTER_STATS_MONTH";
+    public static final String ORG_WSO2_MB_GAUGE_STATS_MONTH = "ORG_WSO2_MB_GAUGE_STATS_MONTH";
+    public static final String ORG_WSO2_MB_METER_STATS_MONTH = "ORG_WSO2_MB_METER_STATS_MONTH";
+    public static final String ORG_WSO2_MB_TIMER_STATS_MONTH = "ORG_WSO2_MB_TIMER_STATS_MONTH";
+
+    // Carbon metric streams
     public static final String ORG_WSO2_METRICS_STREAM_COUNTER = "ORG_WSO2_METRICS_STREAM_COUNTER";
     public static final String ORG_WSO2_METRICS_STREAM_GAUGE = "ORG_WSO2_METRICS_STREAM_GAUGE";
     public static final String ORG_WSO2_METRICS_STREAM_HISTOGRAM = "ORG_WSO2_METRICS_STREAM_HISTOGRAM";

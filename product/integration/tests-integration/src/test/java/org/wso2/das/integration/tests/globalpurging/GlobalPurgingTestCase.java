@@ -32,7 +32,7 @@ import org.wso2.carbon.analytics.webservice.stub.beans.StreamDefAttributeBean;
 import org.wso2.carbon.analytics.webservice.stub.beans.StreamDefinitionBean;
 import org.wso2.carbon.automation.engine.frameworkutils.FrameworkPathUtil;
 import org.wso2.carbon.integration.common.utils.mgt.ServerConfigurationManager;
-import org.wso2.das.integration.common.utils.DASIntegrationTest;
+import org.wso2.das.integration.common.utils.DASIntegrationBaseTest;
 import org.wso2.das4mb.integration.common.clients.AnalyticsWebServiceClient;
 import org.wso2.das4mb.integration.common.clients.EventStreamPersistenceClient;
 
@@ -40,7 +40,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GlobalPurgingTestCase extends DASIntegrationTest {
+public class GlobalPurgingTestCase extends DASIntegrationBaseTest {
 
     private static final String STREAM_VERSION_1 = "1.0.0";
     public static final String SOMETABLE_PATTERN1_TABLE1 = "sometable.pattern1.table1";
