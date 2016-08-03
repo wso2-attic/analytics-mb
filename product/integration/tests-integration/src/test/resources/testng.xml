@@ -3,18 +3,20 @@
 <suite name="DAS-features-test-suite" parallel="false">
     <parameter name="useDefaultListeners" value="false"/>
     <test name="das-tests" preserve-order="true" parallel="false">
-        <packages>
-            <package name="org.wso2.das.integration.tests.jsapi.analytics"/>
-        </packages>
+        <classes>
+            <class name="org.wso2.das.integration.tests.jsapi.analytics.AnalyticsJSAPITenantAdminTestCase"/>
+            <class name="org.wso2.das.integration.tests.jsapi.analytics.AnalyticsJSAPITestCase"/>
+        </classes>
     </test>
     <test name="global-purging" preserve-order="true" parallel="false">
-        <packages>
-            <package name="org.wso2.das.integration.tests.globalpurging"/>
-        </packages>
+        <classes>
+            <class name="org.wso2.das.integration.tests.globalpurging.GlobalPurgingTestCase"/>
+        </classes>
     </test>
-    <!--<test name="analytics-esb-tests" preserve-order="true" parallel="false">
-        <packages>
-            <package name="org.wso2.das.integration.tests.esb"/>
-        </packages>
-    </test>-->
+    <test name="analytics-mb-tests" preserve-order="true" parallel="false">
+        <classes>
+            <class name="org.wso2.das.integration.tests.mb.MBAnalyticsDataPublishingAndSiddhiExecutionTestCase"/>
+            <class name="org.wso2.das.integration.tests.mb.MBAnalyticsStatisticsAggregationTestCase"/>
+        </classes>
+    </test>
 </suite>
