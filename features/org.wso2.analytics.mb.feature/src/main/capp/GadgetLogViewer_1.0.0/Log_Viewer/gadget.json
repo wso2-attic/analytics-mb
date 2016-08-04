@@ -1,0 +1,21 @@
+{
+  "id": "Log_Viewer",
+  "title": "Log Viewer",
+  "type": "gadget",
+  "thumbnail": "store://Log_Viewer/img/thumbnail.png",
+  "data": {
+    "url": "store://gadget/Log_Viewer/index.xml"
+  },
+  "toolbarButtons": {
+    "default": {
+      "maximize": false,
+      "configurations": false
+    }
+  },
+  "listen": {
+    "subscriber": {
+      "type": "filter-range",
+      "description": "Used to listen to any filters"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "Log_Error_Filtered_Message",
+  "title": "Filtered Messages",
+  "type": "gadget",
+  "thumbnail": "store://gadget/Log_Error_Filtered_Message/img/thumbnail.png",
+  "data": {
+    "url": "store://gadget/Log_Error_Filtered_Message/index.xml"
+  },
+  "toolbarButtons": {
+    "default": {
+      "maximize": false,
+      "configurations": false
+    }
+  },
+  "notify": {
+    "publisher": {
+      "type": "filter-range",
+      "description": "This notifies selected filter"
+    }
+  },
+  "listen": {
+    "subscriber": {
+      "type": "filter",
+      "description": "Used to listen to any filters"
+    }
+  }
+}
