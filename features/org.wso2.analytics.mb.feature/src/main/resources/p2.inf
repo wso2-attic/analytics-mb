@@ -6,6 +6,7 @@ org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../featur
 org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.wso2.analytics.mb_${feature.version}/org_wso2_analytics_mb-1.0.0.car,target:${installFolder}/../../deployment/server/carbonapps/org_wso2_analytics_mb-1.0.0.car,overwrite:true);\
 org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.wso2.analytics.mb_${feature.version}/mbanalytics.jag,target:${installFolder}/../../deployment/server/jaggeryapps/portal/controllers/apis/mbanalytics.jag,overwrite:true);\
 org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.wso2.analytics.mb_${feature.version}/mbanalytics-utils.jag,target:${installFolder}/../../deployment/server/jaggeryapps/portal/controllers/apis/mbanalytics-utils.jag,overwrite:true);\
+org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.wso2.analytics.mb_${feature.version}/log-analytics.jag,target:${installFolder}/../../deployment/server/jaggeryapps/portal/controllers/apis/log-analytics.jag,overwrite:true);\
 
 instructions.uninstall = \
 org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/../../deployment/server/carbonapps/org_wso2_carbon_metrics-1.0.0.car,overwrite:true);\

@@ -485,6 +485,7 @@
         <carbon.kernel.version>4.4.7</carbon.kernel.version>
         <carbon.analytics.version>1.1.0</carbon.analytics.version>
         <carbon.analytics.common.version>5.1.0</carbon.analytics.common.version>
+        <carbon.analytics.shared.version>1.0.1</carbon.analytics.shared.version>
         <carbon.automationutils.version>4.4.1</carbon.automationutils.version>
         <carbon.automation.version>4.4.2</carbon.automation.version>
         <carbon.registry.version>4.5.5</carbon.registry.version>
