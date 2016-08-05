@@ -37,6 +37,7 @@ var charts = [
             xAxisAngle: true,
             color: "tenantID",
             charts: [{type: "bar", y: "count", mode: "stack"}],
+            barGap:0.05,
             width: $(document).width()/1.27,
             height: $(document).height()/1.05,
             padding: {"top": 10, "left": 80, "bottom": 70, "right": 50},
