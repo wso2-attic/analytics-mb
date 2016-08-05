@@ -15,8 +15,8 @@
   },
   "pages": [
     {
-      "id": "landing",
-      "title": "Home",
+      "id": "overview",
+      "title": "Overview",
       "layout": {
         "content": {
           "loggedIn": {
@@ -31,14 +31,6 @@
               },
               {
                 "id": "66f087746414dff6e679c1b2de2dc145",
-                "x": 0,
-                "y": 8,
-                "width": 12,
-                "height": 7,
-                "banner": false
-              },
-              {
-                "id": "a10eb6ebfc38d84455a9aec842a142eb",
                 "x": 0,
                 "y": 1,
                 "width": 12,
@@ -158,7 +150,232 @@
               }
             }
           ],
-          "a10eb6ebfc38d84455a9aec842a142eb": [
+          "a10eb6ebfc38d84455a9aec842a142eb": []
+        },
+        "anon": {}
+      }
+    },
+    {
+      "id": "application-errors",
+      "title": "Application Errors",
+      "layout": {
+        "content": {
+          "loggedIn": {
+            "blocks": [
+              {
+                "id": "9f56a0c298ccd58cebb8952874f8108f",
+                "x": 0,
+                "y": 0,
+                "width": 12,
+                "height": 1,
+                "banner": false
+              },
+              {
+                "id": "48791372bf27987c997e959a514b97b4",
+                "x": 0,
+                "y": 1,
+                "width": 12,
+                "height": 5,
+                "banner": false
+              },
+              {
+                "id": "9f8c562c6c7638bc346d4ee22bb7f9f2",
+                "x": 0,
+                "y": 6,
+                "width": 12,
+                "height": 5,
+                "banner": false
+              },
+              {
+                "id": "a4b56085feaecd3ff82480c98d726320",
+                "x": 0,
+                "y": 11,
+                "width": 12,
+                "height": 5,
+                "banner": false
+              }
+            ]
+          }
+        },
+        "fluidLayout": true
+      },
+      "isanon": false,
+      "content": {
+        "default": {
+          "9f56a0c298ccd58cebb8952874f8108f": [
+            {
+              "id": "Date_Range_Picker-0",
+              "content": {
+                "id": "Date_Range_Picker",
+                "title": "Date Range Picker",
+                "type": "widget",
+                "category": "Widgets",
+                "thumbnail": "fs://gadget/Date_Range_Picker/index.png",
+                "data": {
+                  "url": "fs://gadget/Date_Range_Picker/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "styles": {
+                  "no_heading": true,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Date Range Picker"
+                },
+                "notify": {
+                  "range-selected": {
+                    "type": "date-range",
+                    "description": "This notifies selected state"
+                  }
+                },
+                "listen": {
+                  "chart-zoomed": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher"
+                  }
+                },
+                "options": {},
+                "locale_titles": {
+                  "en-US": "Date Range Picker"
+                },
+                "settings": {
+                  "priority": "5",
+                  "timeoutInterval": "60000"
+                }
+              }
+            }
+          ],
+          "48791372bf27987c997e959a514b97b4": [
+            {
+              "id": "Log_Error_Bar_Chart-0",
+              "content": {
+                "id": "Log_Error_Bar_Chart",
+                "title": "Log Error Bar Chart",
+                "type": "gadget",
+                "thumbnail": "fs://gadget/Log_Error_Bar_Chart/img/thumbnail.png",
+                "data": {
+                  "url": "fs://gadget/Log_Error_Bar_Chart/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "notify": {
+                  "publisher": {
+                    "type": "filter",
+                    "description": "This notifies selected filter"
+                  }
+                },
+                "listen": {
+                  "subscriber": {
+                    "type": "date-range",
+                    "description": "Used to listen to any date range-selected",
+                    "on": [
+                      {
+                        "from": "Date_Range_Picker-0",
+                        "event": "range-selected"
+                      }
+                    ]
+                  }
+                },
+                "styles": {
+                  "no_heading": false,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Log Error Bar Chart"
+                },
+                "options": {
+                  "type": {
+                    "type": "STRING",
+                    "title": "Gadget Type",
+                    "value": "MB",
+                    "options": [],
+                    "required": true
+                  }
+                },
+                "locale_titles": {
+                  "en-US": "Log Error Bar Chart"
+                },
+                "settings": {
+                  "priority": "5",
+                  "timeoutInterval": "60000"
+                }
+              }
+            }
+          ],
+          "9f8c562c6c7638bc346d4ee22bb7f9f2": [
+            {
+              "id": "Log_Error_Filtered_Message-0",
+              "content": {
+                "id": "Log_Error_Filtered_Message",
+                "title": "Filtered Messages",
+                "type": "gadget",
+                "thumbnail": "fs://gadget/Log_Error_Filtered_Message/img/thumbnail.png",
+                "data": {
+                  "url": "fs://gadget/Log_Error_Filtered_Message/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "notify": {
+                  "publisher": {
+                    "type": "filter-range",
+                    "description": "This notifies selected filter"
+                  }
+                },
+                "listen": {
+                  "subscriber": {
+                    "type": "filter",
+                    "description": "Used to listen to any filters",
+                    "on": [
+                      {
+                        "from": "Log_Error_Bar_Chart-0",
+                        "event": "publisher"
+                      }
+                    ]
+                  }
+                },
+                "styles": {
+                  "no_heading": false,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Filtered Messages"
+                },
+                "options": {
+                  "type": {
+                    "type": "STRING",
+                    "title": "Gadget Type",
+                    "value": "MB",
+                    "options": [],
+                    "required": true
+                  }
+                },
+                "locale_titles": {
+                  "en-US": "Filtered Messages"
+                },
+                "settings": {
+                  "priority": "5",
+                  "timeoutInterval": "60000"
+                }
+              }
+            }
+          ],
+          "a4b56085feaecd3ff82480c98d726320": [
             {
               "id": "Log_Viewer-0",
               "content": {
@@ -180,7 +397,13 @@
                 "listen": {
                   "subscriber": {
                     "type": "filter-range",
-                    "description": "Used to listen to any filters"
+                    "description": "Used to listen to any filters",
+                    "on": [
+                      {
+                        "from": "Log_Error_Filtered_Message-0",
+                        "event": "publisher"
+                      }
+                    ]
                   }
                 },
                 "styles": {
@@ -211,14 +434,174 @@
         },
         "anon": {}
       }
+    },
+    {
+      "id": "login-erros",
+      "title": "Login Errors",
+      "layout": {
+        "content": {
+          "loggedIn": {
+            "blocks": [
+              {
+                "id": "71e2d55a46ed5b24d216dc617a8f11b0",
+                "x": 0,
+                "y": 1,
+                "width": 12,
+                "height": 7,
+                "banner": false
+              },
+              {
+                "id": "4e6a08a91e25b21c39ec78bc9af198bc",
+                "x": 0,
+                "y": 0,
+                "width": 12,
+                "height": 1,
+                "banner": false
+              }
+            ]
+          }
+        },
+        "fluidLayout": false
+      },
+      "isanon": false,
+      "content": {
+        "default": {
+          "4e6a08a91e25b21c39ec78bc9af198bc": [
+            {
+              "id": "Date_Range_Picker-0",
+              "content": {
+                "id": "Date_Range_Picker",
+                "title": "Date Range Picker",
+                "type": "widget",
+                "category": "Widgets",
+                "thumbnail": "fs://gadget/Date_Range_Picker/index.png",
+                "data": {
+                  "url": "fs://gadget/Date_Range_Picker/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "styles": {
+                  "no_heading": true,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Date Range Picker"
+                },
+                "notify": {
+                  "range-selected": {
+                    "type": "date-range",
+                    "description": "This notifies selected state"
+                  }
+                },
+                "listen": {
+                  "chart-zoomed": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher"
+                  }
+                },
+                "options": {},
+                "locale_titles": {
+                  "en-US": "Date Range Picker"
+                },
+                "settings": {
+                  "priority": "5",
+                  "timeoutInterval": "60000"
+                }
+              }
+            }
+          ],
+          "71e2d55a46ed5b24d216dc617a8f11b0": [
+            {
+              "id": "Log_Invalid_Logging_Count-0",
+              "content": {
+                "id": "Log_Invalid_Logging_Count",
+                "title": "Invalid login count",
+                "type": "gadget",
+                "thumbnail": "fs://gadget/Log_Invalid_Logging_Count/img/thumbnail.png",
+                "data": {
+                  "url": "fs://gadget/Log_Invalid_Logging_Count/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "notify": {
+                  "publisher": {
+                    "type": "filter",
+                    "description": "This notifies selected filter"
+                  }
+                },
+                "listen": {
+                  "subscriber": {
+                    "type": "date-range",
+                    "description": "Used to listen to any date range-selected",
+                    "on": [
+                      {
+                        "from": "Date_Range_Picker-0",
+                        "event": "range-selected"
+                      }
+                    ]
+                  }
+                },
+                "styles": {
+                  "no_heading": false,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Invalid login count"
+                },
+                "options": {
+                  "type": {
+                    "type": "STRING",
+                    "title": "Gadget Type",
+                    "value": "MB",
+                    "options": [],
+                    "required": true
+                  }
+                },
+                "locale_titles": {
+                  "en-US": "Invalid login count"
+                },
+                "settings": {
+                  "priority": "5",
+                  "timeoutInterval": "60000"
+                }
+              }
+            }
+          ]
+        },
+        "anon": {}
+      }
     }
   ],
   "menu": [
     {
-      "id": "landing",
+      "id": "overview",
       "isanon": false,
       "ishidden": false,
-      "title": "Home",
+      "title": "Overview",
+      "subordinates": []
+    },
+    {
+      "id": "application-errors",
+      "isanon": false,
+      "ishidden": false,
+      "title": "Application Errors",
+      "subordinates": []
+    },
+    {
+      "id": "login-erros",
+      "isanon": false,
+      "ishidden": false,
+      "title": "Login Errors",
       "subordinates": []
     }
   ],
@@ -235,6 +618,7 @@
     "globalBannerExists": false,
     "customBannerExists": false
   },
-  "landing": "landing",
-  "isanon": false
+  "landing": "overview",
+  "isanon": false,
+  "defaultPriority": "5"
 }
