@@ -24,6 +24,13 @@
     <property name="jaggery-api-dir" value="src/main/jaggeryapi"/>
 
     <property name="ANALYTICS_MB_dir" value="src/main/capp"/>
+    <property name="dashboard" value="src/main/capp/dashboard"/>
+    <property name="execution" value="src/main/capp/execution"/>
+    <property name="gadget" value="src/main/capp/gadget"/>
+    <property name="purge" value="src/main/capp/purge"/>
+    <property name="spark" value="src/main/capp/spark"/>
+    <property name="stream" value="src/main/capp/stream"/>
+
     <property name="ANALYTICS_MB_capp" value="org_wso2_analytics_mb-1.0.0"/>
 
     <target name="clean">
@@ -39,7 +46,13 @@
 
     <target name="zip" depends="clean,pre-configure">
         <zip destfile="${res-dir}/${ANALYTICS_MB_capp}.car">
-          <zipfileset dir="${ANALYTICS_MB_dir}"/>
+            <zipfileset dir="${ANALYTICS_MB_dir}"/>
+            <zipfileset dir="${dashboard}"/>
+            <zipfileset dir="${execution}"/>
+            <zipfileset dir="${gadget}"/>
+            <zipfileset dir="${purge}"/>
+            <zipfileset dir="${spark}"/>
+            <zipfileset dir="${stream}"/>
         </zip>
     </target>
 
