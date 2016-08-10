@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.wso2.analytics.mb</groupId>
         <artifactId>das4mb-integration</artifactId>
-        <version>3.2.0-SNAPSHOT</version>
+        <version>3.2.0-M2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
