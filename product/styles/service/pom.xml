@@ -20,7 +20,7 @@
     <parent>
         <artifactId>org.wso2.das4mb.styles.parent</artifactId>
         <groupId>org.wso2.analytics.mb</groupId>
-        <version>3.2.0-M2</version>
+        <version>3.2.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
