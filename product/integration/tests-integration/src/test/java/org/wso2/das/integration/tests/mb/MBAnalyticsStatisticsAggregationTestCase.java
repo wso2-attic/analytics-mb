@@ -119,7 +119,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test message receive hour data publishing")
     public void testMessageReceiveHourData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_HOUR, "org.wso2.mb.message.receive", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_HOUR, "org.wso2.mb.message.receive", 2);
     }
 
     /**
@@ -134,7 +134,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test message receive day data publishing")
     public void testMessageReceiveDayData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_DAY, "org.wso2.mb.message.receive", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_DAY, "org.wso2.mb.message.receive", 2);
     }
 
     /**
@@ -149,7 +149,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test message receive month data publishing")
     public void testMessageReceiveMonthData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_MONTH, "org.wso2.mb.message.receive", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_MONTH, "org.wso2.mb.message.receive", 2);
     }
 
     /**
@@ -164,7 +164,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test message sent hour data publishing")
     public void testMessageSentHourData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_HOUR, "org.wso2.mb.message.sent", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_HOUR, "org.wso2.mb.message.sent", 2);
     }
 
     /**
@@ -179,7 +179,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test message sent day data publishing")
     public void testMessageSentDayData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_DAY, "org.wso2.mb.message.sent", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_DAY, "org.wso2.mb.message.sent", 2);
     }
 
     /**
@@ -194,7 +194,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test message sent month data publishing")
     public void testMessageSentMonthData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_MONTH, "org.wso2.mb.message.sent", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_MONTH, "org.wso2.mb.message.sent", 2);
     }
 
     /**
@@ -209,7 +209,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test ack receive hour data publishing")
     public void testAckReceiveHourData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_HOUR, "org.wso2.mb.ack.receive", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_HOUR, "org.wso2.mb.ack.receive", 2);
     }
 
     /**
@@ -224,7 +224,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test ack receive day data publishing")
     public void testAckReceiveDayData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_DAY, "org.wso2.mb.ack.receive", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_DAY, "org.wso2.mb.ack.receive", 2);
     }
 
     /**
@@ -239,7 +239,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test ack receive month data publishing")
     public void testAckReceiveMonthData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_MONTH, "org.wso2.mb.ack.receive", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_MONTH, "org.wso2.mb.ack.receive", 2);
     }
 
     /**
@@ -254,7 +254,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test reject receive hour data publishing")
     public void testRejectReceiveHourData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_HOUR, "org.wso2.mb.ack.receive", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_HOUR, "org.wso2.mb.ack.receive", 2);
     }
 
     /**
@@ -269,7 +269,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test reject receive day data publishing")
     public void testRejectReceiveDayData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_DAY, "org.wso2.mb.reject.receive", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_DAY, "org.wso2.mb.reject.receive", 2);
     }
 
     /**
@@ -284,7 +284,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test reject receive month data publishing")
     public void testRejectReceiveMonthData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_MONTH, "org.wso2.mb.reject.receive", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_METER_STATS_MONTH, "org.wso2.mb.reject.receive", 2);
     }
 
     /**
@@ -299,7 +299,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test enqueue count hour data publishing")
     public void testEnqueueCountHourData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_HOUR, "org.wso2.mb.enqueue.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_HOUR, "org.wso2.mb.enqueue.count", 2);
     }
 
     /**
@@ -314,7 +314,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test enqueue count day data publishing")
     public void testEnqueueCountDayData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_DAY, "org.wso2.mb.enqueue.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_DAY, "org.wso2.mb.enqueue.count", 2);
     }
 
     /**
@@ -329,7 +329,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test enqueue count month data publishing")
     public void testEnqueueCountMonthData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_MONTH, "org.wso2.mb.enqueue.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_MONTH, "org.wso2.mb.enqueue.count", 2);
     }
 
     /**
@@ -344,7 +344,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test dequeue count hour data publishing")
     public void testDequeueCountHourData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_HOUR, "org.wso2.mb.dequeue.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_HOUR, "org.wso2.mb.dequeue.count", 2);
     }
 
     /**
@@ -359,7 +359,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test dequeue count day data publishing")
     public void testDequeueCountDayData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_DAY, "org.wso2.mb.dequeue.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_DAY, "org.wso2.mb.dequeue.count", 2);
     }
 
     /**
@@ -374,7 +374,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test dequeue count month data publishing")
     public void testDequeueCountMonthData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_MONTH, "org.wso2.mb.dequeue.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_MONTH, "org.wso2.mb.dequeue.count", 2);
     }
 
     /**
@@ -389,7 +389,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test ack count hour data publishing")
     public void testAckCountHourData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_HOUR, "org.wso2.mb.ack.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_HOUR, "org.wso2.mb.ack.count", 2);
     }
 
     /**
@@ -404,7 +404,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test ack count day data publishing")
     public void testAckCountDayData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_DAY, "org.wso2.mb.ack.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_DAY, "org.wso2.mb.ack.count", 2);
     }
 
     /**
@@ -419,7 +419,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test ack count month data publishing")
     public void testAckCountMonthData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_MONTH, "org.wso2.mb.ack.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_MONTH, "org.wso2.mb.ack.count", 2);
     }
 
     /**
@@ -434,7 +434,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test reject count hour data publishing")
     public void testRejectCountHourData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_HOUR, "org.wso2.mb.reject.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_HOUR, "org.wso2.mb.reject.count", 2);
     }
 
     /**
@@ -449,7 +449,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test reject count day data publishing")
     public void testRejectCountDayData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_DAY, "org.wso2.mb.reject.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_DAY, "org.wso2.mb.reject.count", 2);
     }
 
     /**
@@ -464,7 +464,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test reject count month data publishing")
     public void testRejectCountMonthData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_MONTH, "org.wso2.mb.reject.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_COUNTER_STATS_MONTH, "org.wso2.mb.reject.count", 2);
     }
 
     /**
@@ -479,7 +479,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test database read hour data publishing")
     public void testDatabaseReadHourData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_TIMER_STATS_HOUR, "org.wso2.mb.database.read", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_TIMER_STATS_HOUR, "org.wso2.mb.database.read", 2);
     }
 
     /**
@@ -494,7 +494,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test database read day data publishing")
     public void testDatabaseReadDayData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_TIMER_STATS_DAY, "org.wso2.mb.database.read", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_TIMER_STATS_DAY, "org.wso2.mb.database.read", 2);
     }
 
     /**
@@ -509,7 +509,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test database read month data publishing")
     public void testDatabaseReadMonthData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_TIMER_STATS_MONTH, "org.wso2.mb.database.read", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_TIMER_STATS_MONTH, "org.wso2.mb.database.read", 2);
     }
 
     /**
@@ -524,7 +524,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test database write hour data publishing")
     public void testDatabaseWriteHourData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_TIMER_STATS_HOUR, "org.wso2.mb.database.write", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_TIMER_STATS_HOUR, "org.wso2.mb.database.write", 2);
     }
 
     /**
@@ -539,7 +539,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test database write day data publishing")
     public void testDatabaseWriteDayData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_TIMER_STATS_DAY, "org.wso2.mb.database.write", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_TIMER_STATS_DAY, "org.wso2.mb.database.write", 2);
     }
 
     /**
@@ -554,7 +554,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test database write month data publishing")
     public void testDatabaseWriteMonthData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_TIMER_STATS_MONTH, "org.wso2.mb.database.write", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_TIMER_STATS_MONTH, "org.wso2.mb.database.write", 2);
     }
 
     /**
@@ -569,7 +569,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test active channel hour data publishing")
     public void testActiveChannelHourData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_HOUR, "org.wso2.mb.channels.active.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_HOUR, "org.wso2.mb.channels.active.count", 2);
     }
 
     /**
@@ -584,7 +584,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test active channel day data publishing")
     public void testActiveChannelDayData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_DAY, "org.wso2.mb.channels.active.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_DAY, "org.wso2.mb.channels.active.count", 2);
     }
 
     /**
@@ -599,7 +599,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test active channel month data publishing")
     public void testActiveChannelMonthData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_MONTH, "org.wso2.mb.channels.active.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_MONTH, "org.wso2.mb.channels.active.count", 2);
     }
 
     /**
@@ -614,7 +614,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test queue subscriber hour data publishing")
     public void testQueueSubscriberHourData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_HOUR, "org.wso2.mb.queue.subscribers.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_HOUR, "org.wso2.mb.queue.subscribers.count", 2);
     }
 
     /**
@@ -629,7 +629,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test queue subscriber day data publishing")
     public void testQueueSubscriberDayData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_DAY, "org.wso2.mb.queue.subscribers.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_DAY, "org.wso2.mb.queue.subscribers.count", 2);
     }
 
     /**
@@ -644,7 +644,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test queue subscriber month data publishing")
     public void testQueueSubscriberMonthData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_MONTH, "org.wso2.mb.queue.subscribers.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_MONTH, "org.wso2.mb.queue.subscribers.count", 2);
     }
 
     /**
@@ -659,7 +659,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test topic subscriber hour data publishing")
     public void testTopicSubscriberHourData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_HOUR, "org.wso2.mb.topic.subscribers.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_HOUR, "org.wso2.mb.topic.subscribers.count", 2);
     }
 
     /**
@@ -674,7 +674,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test topic subscriber day data publishing")
     public void testTopicSubscriberDayData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_DAY, "org.wso2.mb.topic.subscribers.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_DAY, "org.wso2.mb.topic.subscribers.count", 2);
     }
 
     /**
@@ -689,7 +689,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     @Test(groups = "wso2.das4mb.stats", description = "Test topic subscriber month data publishing")
     public void testTopicSubscriberMonthData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsException, InterruptedException {
-        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_MONTH, "org.wso2.mb.topic.subscribers.count", 1);
+        testCounts(TestConstants.ORG_WSO2_MB_GAUGE_STATS_MONTH, "org.wso2.mb.topic.subscribers.count", 2);
     }
 
     /**
