@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "nickName": "MBGaugeStat",
   "description": "MB Gauge Stats Per Minute",
+  "metaData": [
+    {
+      "name": "tenantDomain",
+      "type": "STRING"
+    }
+  ],
   "payloadData": [
     {
       "name": "year",
