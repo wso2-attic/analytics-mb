@@ -18,11 +18,12 @@
 /*
 * Get results from metrics METER table for the given view
 */
-function getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain) {
+function getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
     var tableName = "ORG_WSO2_MB_METER_STATS_" + timeUnit;
     var query = stringify({
-        query: "_name : \"" + view + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "] AND meta_tenantDomain : \"" + tenantDomain + "\"",
+        query: "_name : \"" + view + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "] AND " +
+                                       "meta_tenantDomain : \"" + tenantDomain + "\"  AND source : \"" + source + "\"",
         "start": 0,
         "count": 1000,
         "sortBy": [{
@@ -53,11 +54,12 @@ function getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, t
 /*
 * Get results from metrics GAUGE table for the given view
 */
-function getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain) {
+function getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
     var tableName = "ORG_WSO2_MB_GAUGE_STATS_" + timeUnit;
     var query = stringify({
-        query: "_name : \"" + view + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "] AND meta_tenantDomain : \"" + tenantDomain + "\"",
+        query: "_name : \"" + view + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "] AND " +
+                                       "meta_tenantDomain : \"" + tenantDomain + "\"  AND source : \"" + source + "\"",
         "start": 0,
         "count": 1000,
         "sortBy": [{
@@ -88,12 +90,13 @@ function getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, t
 /*
 * Get multi results from metrics GAUGE table for the given view
 */
-function getMultiResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain) {
+function getMultiResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
     var tableName = "ORG_WSO2_MB_GAUGE_STATS_" + timeUnit;
     for (var key in view) {
         var query = stringify({
-            query: "_name : \"" + view[key] + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "] AND meta_tenantDomain : \"" + tenantDomain + "\"",
+            query: "_name : \"" + view[key] + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "] AND " +
+                                       "meta_tenantDomain : \"" + tenantDomain + "\"  AND source : \"" + source + "\"",
             "start": 0,
             "count": 1000,
             "sortBy": [{
@@ -126,11 +129,12 @@ function getMultiResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFr
 /*
 * Get results from metrics TIMER table for the given view
 */
-function getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain) {
+function getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
     var tableName = "ORG_WSO2_MB_TIMER_STATS_" + timeUnit;
     var query = stringify({
-        query: "_name : \"" + view + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "] AND meta_tenantDomain : \"" + tenantDomain + "\"",
+        query: "_name : \"" + view + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "] AND " +
+                                        "meta_tenantDomain : \"" + tenantDomain + "\"  AND source : \"" + source + "\"",
         "start": 0,
         "count": 1000,
         "sortBy": [{
@@ -163,13 +167,14 @@ function getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, t
 /*
 * Get results from metrics COUNTER table for the message overview
 */
-function getResultsFromCounterTableForMessageOverview(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain) {
+function getResultsFromCounterTableForMessageOverview(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
     var tableName = "ORG_WSO2_MB_COUNTER_STATS_" + timeUnit;
     var enqueue, dequeue, acknowledge, reject = 0;
     for (var key in view) {
         var query = stringify({
-            query: "_name : \"" + view[key] + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "] AND meta_tenantDomain : \"" + tenantDomain + "\"",
+            query: "_name : \"" + view[key] + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "] AND " +
+                                        "meta_tenantDomain : \"" + tenantDomain + "\"  AND source : \"" + source + "\"",
             "start": 0,
             "count": 1,
             "sortBy": [{

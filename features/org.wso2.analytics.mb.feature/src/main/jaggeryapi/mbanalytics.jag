@@ -106,6 +106,7 @@
     if (paramType != null) {
         type = parseInt(paramType);
     }
+    var source = "CLUSTER";
 
     if (type == 0) {
         log.error("operation type is not specified!");
@@ -137,12 +138,14 @@
     switch (type) {
         case TYPE_MSG_RECEIVE_RATE:
         {
-            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.receive", tenantDomain);
+            result = mbanalyticsUtils.getResultsFromMeterTable
+            (connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.receive", tenantDomain, source);
             break;
         }
         case TYPE_MSG_SEND_RATE:
         {
-            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.sent", tenantDomain);
+            result = mbanalyticsUtils.getResultsFromMeterTable
+            (connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.sent", tenantDomain, source);
             break;
         }
         case TYPE_TOTAL_PUB_SUB_CHANNEL_COUNT:
@@ -152,27 +155,32 @@
                 Queue: "org.wso2.mb.queue.subscribers.count",
                 Topic: "org.wso2.mb.topic.subscribers.count"
             }
-            result = mbanalyticsUtils.getMultiResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain);
+            result = mbanalyticsUtils.getMultiResultsFromGaugeTable
+            (connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain, source);
             break;
         }
         case TYPE_DB_READ_TIME:
         {
-            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read", tenantDomain);
+            result = mbanalyticsUtils.getResultsFromTimerTable
+            (connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read", tenantDomain, source);
             break;
         }
         case TYPE_DB_WRITE_TIME:
         {
-            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write", tenantDomain);
+            result = mbanalyticsUtils.getResultsFromTimerTable
+            (connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write", tenantDomain, source);
             break;
         }
         case TYPE_DB_READ_RATE:
         {
-            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read", tenantDomain);
+            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo,
+                                                                     "org.wso2.mb.database.read", tenantDomain, source);
             break;
         }
         case TYPE_DB_WRITE_RATE:
         {
-            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write", tenantDomain);
+            result = mbanalyticsUtils.getResultsFromTimerTable
+            (connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write", tenantDomain, source);
             break;
         }
         case TYPE_MSG_OVERVIEW:
@@ -183,17 +191,20 @@
                 ack: "org.wso2.mb.ack.count",
                 reject: "org.wso2.mb.reject.count"
             }
-            result = mbanalyticsUtils.getResultsFromCounterTableForMessageOverview(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain);
+            result = mbanalyticsUtils.getResultsFromCounterTableForMessageOverview
+            (connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain, source);
             break;
         }
         case TYPE_MSG_ACK_RATE:
         {
-            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.ack.receive", tenantDomain);
+            result = mbanalyticsUtils.getResultsFromMeterTable
+            (connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.ack.receive", tenantDomain, source);
             break;
         }
         case TYPE_MSG_REJECT_RATE:
         {
-            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.reject.receive", tenantDomain);
+            result = mbanalyticsUtils.getResultsFromMeterTable
+            (connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.reject.receive", tenantDomain, source);
             break;
         }
         default:
