@@ -41,6 +41,8 @@
     var AnalyticsCache = Packages.org.wso2.carbon.analytics.jsservice.AnalyticsCachedJSServiceConnector.AnalyticsCache;
     var cacheTimeoutSeconds = 5;
     var loggedInUser = null;
+    var tenantId = -1;
+    var tenantDomain = "carbon.super"
     var timeRangeUtil = Packages.org.wso2.analytics.mb.util.TimeRangeUtils;
     var timeRange = Packages.org.wso2.analytics.mb.bean.TimeRange;
 
@@ -80,6 +82,15 @@
             print('{ "status": "Failed", "message": "User is not authenticated." }');
             return;
         }
+    }
+
+    var user = carbon.server.tenantUser(loggedInUser);
+    tenantId = user.tenantId;
+    //initialize tenant domain
+    if (carbon.server.superTenant.tenantId != tenantId) {
+        tenantDomain = carbon.server.tenantDomain({
+            tenantId: tenantId
+        });
     }
 
     var cache = application.get("AnalyticsWebServiceCache");
@@ -126,12 +137,12 @@
     switch (type) {
         case TYPE_MSG_RECEIVE_RATE:
         {
-            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.receive");
+            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.receive", tenantDomain);
             break;
         }
         case TYPE_MSG_SEND_RATE:
         {
-            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.sent");
+            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.sent", tenantDomain);
             break;
         }
         case TYPE_TOTAL_PUB_SUB_CHANNEL_COUNT:
@@ -141,27 +152,27 @@
                 Queue: "org.wso2.mb.queue.subscribers.count",
                 Topic: "org.wso2.mb.topic.subscribers.count"
             }
-            result = mbanalyticsUtils.getMultiResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view);
+            result = mbanalyticsUtils.getMultiResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain);
             break;
         }
         case TYPE_DB_READ_TIME:
         {
-            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read");
+            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read", tenantDomain);
             break;
         }
         case TYPE_DB_WRITE_TIME:
         {
-            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write");
+            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write", tenantDomain);
             break;
         }
         case TYPE_DB_READ_RATE:
         {
-            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read");
+            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read", tenantDomain);
             break;
         }
         case TYPE_DB_WRITE_RATE:
         {
-            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write");
+            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write", tenantDomain);
             break;
         }
         case TYPE_MSG_OVERVIEW:
@@ -172,17 +183,17 @@
                 ack: "org.wso2.mb.ack.count",
                 reject: "org.wso2.mb.reject.count"
             }
-            result = mbanalyticsUtils.getResultsFromCounterTableForMessageOverview(connector, loggedInUser, timeUnit, timeFrom, timeTo, view);
+            result = mbanalyticsUtils.getResultsFromCounterTableForMessageOverview(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain);
             break;
         }
         case TYPE_MSG_ACK_RATE:
         {
-            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.ack.receive");
+            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.ack.receive", tenantDomain);
             break;
         }
         case TYPE_MSG_REJECT_RATE:
         {
-            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.reject.receive");
+            result = mbanalyticsUtils.getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.reject.receive", tenantDomain);
             break;
         }
         default:

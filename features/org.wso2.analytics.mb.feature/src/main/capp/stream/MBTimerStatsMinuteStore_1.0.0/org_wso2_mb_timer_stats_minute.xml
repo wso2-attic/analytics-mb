@@ -100,6 +100,13 @@
             <EnableScoreParam>false</EnableScoreParam>
             <Type>DOUBLE</Type>
         </ColumnDefinition>
+        <ColumnDefinition>
+            <Name>meta_tenantDomain</Name>
+            <EnableIndexing>true</EnableIndexing>
+            <IsPrimaryKey>false</IsPrimaryKey>
+            <EnableScoreParam>false</EnableScoreParam>
+            <Type>STRING</Type>
+        </ColumnDefinition>
     </TableSchema>
     <Source>
         <StreamId>org.wso2.mb.timer.stats.minute:1.0.0</StreamId>

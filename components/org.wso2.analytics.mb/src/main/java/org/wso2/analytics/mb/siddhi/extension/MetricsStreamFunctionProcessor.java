@@ -54,6 +54,10 @@ public class MetricsStreamFunctionProcessor extends StreamFunctionProcessor {
         int year, month, day, hour, minute;
         String type = "queue";
         String destination = "myQueue";
+        String tenantDomain = "carbon.super";
+        if (destination.contains("/")) {
+            tenantDomain = destination.substring(0, destination.indexOf("/"));
+        }
         try {
             year = dateTimeUDF.getYear(timestamp);
             month = dateTimeUDF.getMonth(timestamp);
@@ -63,7 +67,7 @@ public class MetricsStreamFunctionProcessor extends StreamFunctionProcessor {
         } catch (ParseException e) {
             throw new ExecutionPlanCreationException("Error occurred while parsing timestamp");
         }
-        return new Object[]{year, month, day, hour, minute, type, destination};
+        return new Object[]{tenantDomain, year, month, day, hour, minute, type, destination};
     }
 
     /**
@@ -93,6 +97,7 @@ public class MetricsStreamFunctionProcessor extends StreamFunctionProcessor {
                     "required 2: meta_timestamp and name, but found " + attributeExpressionExecutors.length);
         }
         ArrayList<Attribute> attributes = new ArrayList<>();
+        attributes.add(new Attribute("tenantDomain", Attribute.Type.STRING));
         attributes.add(new Attribute("year", Attribute.Type.INT));
         attributes.add(new Attribute("month", Attribute.Type.INT));
         attributes.add(new Attribute("day", Attribute.Type.INT));
