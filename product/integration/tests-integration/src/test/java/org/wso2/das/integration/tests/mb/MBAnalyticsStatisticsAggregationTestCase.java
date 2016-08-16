@@ -769,7 +769,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
      */
     private void testCounts(String table, String name, int expectedCount) throws AnalyticsException {
         int records = this.analyticsDataAPI.searchCount(-1234,
-                table, "name:\"" + name + "\"");
+                table, "_name :\"" + name + "\"");
         Assert.assertEquals(records, expectedCount, "");
     }
 }

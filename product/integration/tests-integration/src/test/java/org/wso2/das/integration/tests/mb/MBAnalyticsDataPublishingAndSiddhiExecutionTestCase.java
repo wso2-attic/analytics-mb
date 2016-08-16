@@ -97,7 +97,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_METER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_MB_METER_STATS_MINUTE, "name:\"org.wso2.mb.message.receive\"");
+                TestConstants.ORG_WSO2_MB_METER_STATS_MINUTE, "_name :\"org.wso2.mb.message.receive\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
         Assert.assertEquals(mbRecordsCount, 1, "Expected message receive record count is 1 but found " + mbRecordsCount);
 
@@ -126,7 +126,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_METER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_MB_METER_STATS_MINUTE, "name:\"org.wso2.mb.message.sent\"");
+                TestConstants.ORG_WSO2_MB_METER_STATS_MINUTE, "_name :\"org.wso2.mb.message.sent\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
         Assert.assertEquals(mbRecordsCount, 1, "Expected message sent record count is 1 but found " + mbRecordsCount);
 
@@ -155,7 +155,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_METER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_MB_METER_STATS_MINUTE, "name:\"org.wso2.mb.ack.receive\"");
+                TestConstants.ORG_WSO2_MB_METER_STATS_MINUTE, "_name :\"org.wso2.mb.ack.receive\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
         Assert.assertEquals(mbRecordsCount, 1, "Expected ack receive record count is 1 but found " + mbRecordsCount);
 
@@ -184,7 +184,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_METER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_MB_METER_STATS_MINUTE, "name:\"org.wso2.mb.reject.receive\"");
+                TestConstants.ORG_WSO2_MB_METER_STATS_MINUTE, "_name :\"org.wso2.mb.reject.receive\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
         Assert.assertEquals(mbRecordsCount, 1, "Expected reject receive record count is 1 but found " + mbRecordsCount);
 
@@ -213,7 +213,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_COUNTER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_MB_COUNTER_STATS_MINUTE, "name:\"org.wso2.mb.enqueue.count\"");
+                TestConstants.ORG_WSO2_MB_COUNTER_STATS_MINUTE, "_name :\"org.wso2.mb.enqueue.count\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
         Assert.assertEquals(mbRecordsCount, 1, "Expected enqueue message record count is 1 but found " + mbRecordsCount);
 
@@ -242,7 +242,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_COUNTER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_MB_COUNTER_STATS_MINUTE, "name:\"org.wso2.mb.dequeue.count\"");
+                TestConstants.ORG_WSO2_MB_COUNTER_STATS_MINUTE, "_name :\"org.wso2.mb.dequeue.count\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
         Assert.assertEquals(mbRecordsCount, 1, "Expected dequeue message record count is 1 but found " + mbRecordsCount);
 
@@ -271,7 +271,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_COUNTER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_MB_COUNTER_STATS_MINUTE, "name:\"org.wso2.mb.ack.count\"");
+                TestConstants.ORG_WSO2_MB_COUNTER_STATS_MINUTE, "_name :\"org.wso2.mb.ack.count\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
         Assert.assertEquals(mbRecordsCount, 1, "Expected ack message record count is 1 but found " + mbRecordsCount);
 
@@ -300,7 +300,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_COUNTER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_MB_COUNTER_STATS_MINUTE, "name:\"org.wso2.mb.reject.count\"");
+                TestConstants.ORG_WSO2_MB_COUNTER_STATS_MINUTE, "_name :\"org.wso2.mb.reject.count\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
         Assert.assertEquals(mbRecordsCount, 1, "Expected reject message record count is 1 but found " + mbRecordsCount);
 
@@ -329,7 +329,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_TIMER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_MB_TIMER_STATS_MINUTE, "name:\"org.wso2.mb.database.read\"");
+                TestConstants.ORG_WSO2_MB_TIMER_STATS_MINUTE, "_name :\"org.wso2.mb.database.read\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
         Assert.assertEquals(mbRecordsCount, 1, "Expected, db read record count is 1 but found " + mbRecordsCount);
 
@@ -358,7 +358,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_TIMER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_MB_TIMER_STATS_MINUTE, "name:\"org.wso2.mb.database.write\"");
+                TestConstants.ORG_WSO2_MB_TIMER_STATS_MINUTE, "_name :\"org.wso2.mb.database.write\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
         Assert.assertEquals(mbRecordsCount, 1, "Expected db write record count is 1 but found " + mbRecordsCount);
 
@@ -391,7 +391,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_GAUGE, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_MB_GAUGE_STATS_MINUTE, "name:\"org.wso2.mb.channels.active.count\"");
+                TestConstants.ORG_WSO2_MB_GAUGE_STATS_MINUTE, "_name :\"org.wso2.mb.channels.active.count\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
         Assert.assertEquals(mbRecordsCount, 1, "Expected active channel record count is 1 but found " + mbRecordsCount);
 
@@ -424,7 +424,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_GAUGE, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_MB_GAUGE_STATS_MINUTE, "name:\"org.wso2.mb.queue.subscribers.count\"");
+                TestConstants.ORG_WSO2_MB_GAUGE_STATS_MINUTE, "_name :\"org.wso2.mb.queue.subscribers.count\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
         Assert.assertEquals(mbRecordsCount, 1, "Expected queue subscriber record count is 1 but found " + mbRecordsCount);
 
@@ -457,7 +457,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_GAUGE, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_MB_GAUGE_STATS_MINUTE, "name:\"org.wso2.mb.topic.subscribers.count\"");
+                TestConstants.ORG_WSO2_MB_GAUGE_STATS_MINUTE, "_name :\"org.wso2.mb.topic.subscribers.count\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
         Assert.assertEquals(mbRecordsCount, 1, "Expected topic subscriber record count is 1 but found " + mbRecordsCount);
 
