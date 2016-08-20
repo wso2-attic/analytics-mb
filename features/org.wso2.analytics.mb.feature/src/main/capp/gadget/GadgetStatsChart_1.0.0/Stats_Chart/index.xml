@@ -42,12 +42,12 @@
                         <div class="stats add-padding-5x">
                             <div class="row no-gutter">
                                 <div class="col-7 stats-total add-padding-top-1x">
-                                    <h2><b>Enqueue</b> <span id="title"></span></h2>
+                                    <h2><b>Enqueue</b></h2>
                                     <h1 id="enqueue"></h1>
                                 </div>
 
                                 <div class="col-5 stats-total add-padding-top-1x">
-                                    <h2><b>Dequeue</b> <span id="title"></span></h2>
+                                    <h2><b>Dequeue</b></h2>
                                     <h1 id="dequeue"></h1>
                                 </div>
                             </div>

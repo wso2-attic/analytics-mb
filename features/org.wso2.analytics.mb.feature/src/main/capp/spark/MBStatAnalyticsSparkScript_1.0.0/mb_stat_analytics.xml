@@ -7,7 +7,7 @@
         schema "year INT -i, month INT -i, day INT -i, hour INT -i, minute INT -i, source FACET -i, name FACET -i,
         type FACET -i, destination FACET -i, maxDuration DOUBLE, meanDuration DOUBLE, rate DOUBLE, meta_tenantDomain FACET -i, _timestamp LONG -i",
         primaryKeys "year, month, day, hour, minute, name, type, destination, source",
-        incrementalProcessing "mbTimerStatPerMinute, HOUR",
+        incrementalParams "mbTimerStatPerMinute, HOUR",
         mergeSchema "false");
 
         CREATE TEMPORARY TABLE mbMeterStatPerMinute USING CarbonAnalytics
@@ -15,7 +15,7 @@
         schema "year INT -i, month INT -i, day INT -i, hour INT -i, minute INT -i, source FACET -i, name FACET -i,
         type FACET -i, destination FACET -i, rate DOUBLE, meta_tenantDomain FACET -i, _timestamp LONG -i",
         primaryKeys "year, month, day, hour, minute, name, type, destination, source",
-        incrementalProcessing "mbMeterStatPerMinute, HOUR",
+        incrementalParams "mbMeterStatPerMinute, HOUR",
         mergeSchema "false");
 
         CREATE TEMPORARY TABLE mbGaugeStatPerMinute USING CarbonAnalytics
@@ -23,7 +23,7 @@
         schema "year INT -i, month INT -i, day INT -i, hour INT -i, minute INT -i, source FACET -i, name FACET -i,
         type FACET -i, destination FACET -i, value DOUBLE, meta_tenantDomain FACET -i, _timestamp LONG -i",
         primaryKeys "year, month, day, hour, minute, name, type, destination, source",
-        incrementalProcessing "mbGaugeStatPerMinute, HOUR",
+        incrementalParams "mbGaugeStatPerMinute, HOUR",
         mergeSchema "false");
 
         CREATE TEMPORARY TABLE mbCounterStatPerMinute USING CarbonAnalytics
@@ -31,7 +31,7 @@
         schema "year INT -i, month INT -i, day INT -i, hour INT -i, minute INT -i, source FACET -i, name FACET -i,
         type FACET -i, destination FACET -i, totalCount LONG, meta_tenantDomain FACET -i, _timestamp LONG -i",
         primaryKeys "year, month, day, hour, minute, name, type, destination, source",
-        incrementalProcessing "mbCounterStatPerMinute, HOUR",
+        incrementalParams "mbCounterStatPerMinute, HOUR",
         mergeSchema "false");
 
         CREATE TEMPORARY TABLE mbTimerStatPerHour USING CarbonAnalytics
@@ -39,7 +39,7 @@
         schema "year INT -i, month INT -i, day INT -i, hour INT -i, source FACET -i, name FACET -i, type FACET -i,
         destination FACET -i, maxDuration DOUBLE, meanDuration DOUBLE, rate DOUBLE, meta_tenantDomain FACET -i, _timestamp LONG -i",
         primaryKeys "year, month, day, hour, name, type, destination, source",
-        incrementalProcessing "mbTimerStatPerHour, DAY",
+        incrementalParams "mbTimerStatPerHour, DAY",
         mergeSchema "false");
 
         INSERT INTO TABLE mbTimerStatPerHour
@@ -57,7 +57,7 @@
         schema "year INT -i, month INT -i, day INT -i, hour INT -i, source FACET -i, name FACET -i, type FACET -i,
         destination FACET -i, rate DOUBLE, meta_tenantDomain FACET -i, _timestamp LONG -i",
         primaryKeys "year, month, day, hour, name, type, destination, source",
-        incrementalProcessing "mbMeterStatPerHour, DAY",
+        incrementalParams "mbMeterStatPerHour, DAY",
         mergeSchema "false");
 
         INSERT INTO TABLE mbMeterStatPerHour
@@ -74,7 +74,7 @@
         schema "year INT -i, month INT -i, day INT -i, hour INT -i, source FACET -i, name FACET -i, type FACET -i,
         destination FACET -i, value DOUBLE, meta_tenantDomain FACET -i, _timestamp LONG -i",
         primaryKeys "year, month, day, hour, name, type, destination, source",
-        incrementalProcessing "mbGaugeStatPerHour, DAY",
+        incrementalParams "mbGaugeStatPerHour, DAY",
         mergeSchema "false");
 
         INSERT INTO TABLE mbGaugeStatPerHour
@@ -91,7 +91,7 @@
         schema "year INT -i, month INT -i, day INT -i, hour INT -i, source FACET -i, name FACET -i, type FACET -i,
         destination FACET -i, totalCount LONG, meta_tenantDomain FACET -i, _timestamp LONG -i",
         primaryKeys "year, month, day, hour, name, type, destination, source",
-        incrementalProcessing "mbCounterStatPerHour, DAY",
+        incrementalParams "mbCounterStatPerHour, DAY",
         mergeSchema "false");
 
         INSERT INTO TABLE mbCounterStatPerHour

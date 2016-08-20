@@ -27,9 +27,6 @@ $(function() {
     }
     else {
         $('#stats').show();
-        if(qs[PARAM_ID]) {
-            $("#title").html('for ' + qs[PARAM_ID]);
-        }
     }
     var timeFrom = gadgetUtil.timeFrom();
     var timeTo = gadgetUtil.timeTo();
@@ -37,6 +34,7 @@ $(function() {
 
     gadgetUtil.fetchData(CONTEXT, {
         type: type,
+        id: qs.id,
         timeFrom: timeFrom,
         timeTo: timeTo
     }, onData, onError);

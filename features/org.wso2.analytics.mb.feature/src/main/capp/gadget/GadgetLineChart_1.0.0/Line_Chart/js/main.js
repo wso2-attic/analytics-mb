@@ -47,6 +47,7 @@ $(function() {
     console.log("LINE_CHART[" + view + "]: TimeFrom: " + timeFrom + " TimeTo: " + timeTo);
     gadgetUtil.fetchData(CONTEXT, {
         type: type,
+        id: qs.id,
         timeFrom: timeFrom,
         timeTo: timeTo
     }, onData, onError);
@@ -61,6 +62,7 @@ gadgets.HubSettings.onConnect = function() {
 function onTimeRangeChanged(data) {
     gadgetUtil.fetchData(CONTEXT, {
         type: type,
+        id: qs.id,
         timeFrom: data.timeFrom,
         timeTo: data.timeTo,
     }, onData, onError);

@@ -39,9 +39,9 @@
               },
               {
                 "id": "9842888c0680676360fea9e38a12d60c",
-                "x": 0,
+                "x": 4,
                 "y": 0,
-                "width": 12,
+                "width": 8,
                 "height": 1,
                 "banner": false
               },
@@ -107,6 +107,14 @@
                 "y": 9,
                 "width": 6,
                 "height": 4,
+                "banner": false
+              },
+              {
+                "id": "75b9d1cce58322b5bb5bdae9525b0489",
+                "x": 0,
+                "y": 0,
+                "width": 4,
+                "height": 1,
                 "banner": false
               }
             ]
@@ -833,7 +841,53 @@
                 }
               }
             }
-          ]
+          ],
+          "75b9d1cce58322b5bb5bdae9525b0489": [
+            {
+              "id": "Search_Box-0",
+              "content": {
+                "id": "Search_Box",
+                "title": "Search Box",
+                "type": "widget",
+                "category": "Widgets",
+                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "data": {
+                  "url": "fs://gadget/Search_Box/index.xml"
+                },
+                "styles": {
+                  "no_heading": true,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Search Box"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "options": {
+                  "search": {
+                    "type": "STRING",
+                    "title": "Search",
+                    "value": "search_node",
+                    "options": [],
+                    "required": true
+                  }
+                },
+                "locale_titles": {
+                  "en-US": "Search Box"
+                },
+                "settings": {
+                  "priority": "5",
+                  "timeoutInterval": "60000"
+                }
+              }
+            }
+          ],
+          "fedd5cd18ebd2797907ea9c3f3669f39": []
         },
         "anon": {}
       }
@@ -861,5 +915,6 @@
     "customBannerExists": false
   },
   "landing": "landing",
-  "isanon": false
+  "isanon": false,
+  "defaultPriority": "5"
 }

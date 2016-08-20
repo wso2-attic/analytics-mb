@@ -13,6 +13,7 @@
         <dependency artifact="GadgetLogEvents" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="GadgetLogInvalidLoggingCount" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="GadgetLogViewer" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="GadgetSearchBox" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <!-- MB Dashboard Definition -->
         <dependency artifact="AnalyticsMBDashboard" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="LogAnalyzerDashboard" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
