@@ -47,6 +47,7 @@ import javax.management.MalformedObjectNameException;
 import javax.xml.xpath.XPathExpressionException;
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Class contains test cases related to statistics
@@ -54,7 +55,7 @@ import java.io.IOException;
 public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBaseTest {
 
     protected static final Log log = LogFactory.getLog(MBAnalyticsStatisticsAggregationTestCase.class);
-    private static final int WAIT_FOR_INDEXING = 120000;
+    private static final int WAIT_FOR_INDEXING = 240000;
     private static final int TIMEOUT = 120000;
     private MetricService metricService;
 
@@ -711,7 +712,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
     /**
      * Publish sample data
      */
-    private void publishSampleData() {
+    private void publishSampleData() throws InterruptedException {
         // publish meter stats
         Meter messageReceive = metricService.meter("org.wso2.mb.message.receive", Level.INFO);
         messageReceive.mark();
@@ -756,6 +757,7 @@ public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBase
         });
         // report above data to event streams
         metricService.report();
+        TimeUnit.SECONDS.sleep(15);
     }
 
 

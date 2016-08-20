@@ -93,7 +93,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         Meter messageReceive = metricService.meter("org.wso2.mb.message.receive", Level.INFO);
         messageReceive.mark();
         metricService.report();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_METER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
@@ -122,7 +122,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         Meter messageSent = metricService.meter("org.wso2.mb.message.sent", Level.INFO);
         messageSent.mark();
         metricService.report();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_METER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
@@ -151,7 +151,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         Meter ackReceive = metricService.meter("org.wso2.mb.ack.receive", Level.INFO);
         ackReceive.mark();
         metricService.report();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_METER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
@@ -180,7 +180,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         Meter rejectReceive = metricService.meter("org.wso2.mb.reject.receive", Level.INFO);
         rejectReceive.mark();
         metricService.report();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_METER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
@@ -209,7 +209,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         Counter enqueueCounter = metricService.counter("org.wso2.mb.enqueue.count", Level.INFO);
         enqueueCounter.inc();
         metricService.report();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_COUNTER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
@@ -238,7 +238,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         Counter dequeueCounter = metricService.counter("org.wso2.mb.dequeue.count", Level.INFO);
         dequeueCounter.inc();
         metricService.report();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_COUNTER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
@@ -267,7 +267,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         Counter ackCounter = metricService.counter("org.wso2.mb.ack.count", Level.INFO);
         ackCounter.inc();
         metricService.report();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_COUNTER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
@@ -296,7 +296,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         Counter rejectCounter = metricService.counter("org.wso2.mb.reject.count", Level.INFO);
         rejectCounter.inc();
         metricService.report();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_COUNTER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
@@ -325,7 +325,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         Timer.Context dbReadTimerContext = metricService.timer("org.wso2.mb.database.read", Level.INFO).start();
         dbReadTimerContext.stop();
         metricService.report();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_TIMER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
@@ -354,7 +354,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         Timer.Context dbWriteTimerContext = metricService.timer("org.wso2.mb.database.write", Level.INFO).start();
         dbWriteTimerContext.stop();
         metricService.report();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_TIMER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
@@ -387,7 +387,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
             }
         });
         metricService.report();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_GAUGE, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
@@ -420,7 +420,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
             }
         });
         metricService.report();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_GAUGE, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
@@ -453,7 +453,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
             }
         });
         metricService.report();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_GAUGE, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
