@@ -18,7 +18,7 @@
 /*
 * Get results from metrics METER table for the given view
 */
-function getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
+function getResultsFromMeterTable(connector, superTenantId, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
     var tableName = "ORG_WSO2_MB_METER_STATS_" + timeUnit;
     var query = stringify({
@@ -31,7 +31,7 @@ function getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, t
             sortType: "ASC",
         }]
     });
-    var resp = connector.search(loggedInUser, tableName, query);
+    var resp = connector.search(superTenantId, tableName, query);
     var dataPoints = [];
     try {
         dataPoints = JSON.parse(resp.getMessage());
@@ -54,7 +54,7 @@ function getResultsFromMeterTable(connector, loggedInUser, timeUnit, timeFrom, t
 /*
 * Get results from metrics GAUGE table for the given view
 */
-function getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
+function getResultsFromGaugeTable(connector, superTenantId, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
     var tableName = "ORG_WSO2_MB_GAUGE_STATS_" + timeUnit;
     var query = stringify({
@@ -67,7 +67,7 @@ function getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, t
             sortType: "ASC",
         }]
     });
-    var resp = connector.search(loggedInUser, tableName, query);
+    var resp = connector.search(superTenantId, tableName, query);
     var dataPoints = [];
     try {
         dataPoints = JSON.parse(resp.getMessage());
@@ -90,7 +90,7 @@ function getResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, t
 /*
 * Get multi results from metrics GAUGE table for the given view
 */
-function getMultiResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
+function getMultiResultsFromGaugeTable(connector, superTenantId, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
     var tableName = "ORG_WSO2_MB_GAUGE_STATS_" + timeUnit;
     for (var key in view) {
@@ -104,7 +104,7 @@ function getMultiResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFr
                 sortType: "ASC",
             }]
         });
-        var resp = connector.search(loggedInUser, tableName, query);
+        var resp = connector.search(superTenantId, tableName, query);
         var dataPoints = [];
         try {
             dataPoints = JSON.parse(resp.getMessage());
@@ -129,7 +129,7 @@ function getMultiResultsFromGaugeTable(connector, loggedInUser, timeUnit, timeFr
 /*
 * Get results from metrics TIMER table for the given view
 */
-function getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
+function getResultsFromTimerTable(connector, superTenantId, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
     var tableName = "ORG_WSO2_MB_TIMER_STATS_" + timeUnit;
     var query = stringify({
@@ -142,7 +142,7 @@ function getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, t
             sortType: "ASC",
         }]
     });
-    var resp = connector.search(loggedInUser, tableName, query);
+    var resp = connector.search(superTenantId, tableName, query);
     var dataPoints = [];
     try {
         dataPoints = JSON.parse(resp.getMessage());
@@ -167,7 +167,7 @@ function getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, t
 /*
 * Get results from metrics COUNTER table for the message overview
 */
-function getResultsFromCounterTableForMessageOverview(connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
+function getResultsFromCounterTableForMessageOverview(connector, superTenantId, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
     var tableName = "ORG_WSO2_MB_COUNTER_STATS_" + timeUnit;
     var enqueue, dequeue, acknowledge, reject = 0;
@@ -182,7 +182,7 @@ function getResultsFromCounterTableForMessageOverview(connector, loggedInUser, t
                 sortType: "DESC",
             }]
         });
-        var resp = connector.search(loggedInUser, tableName, query);
+        var resp = connector.search(superTenantId, tableName, query);
         var dataPoints = [];
         try {
             dataPoints = JSON.parse(resp.getMessage());
@@ -224,6 +224,31 @@ function getResultsFromCounterTableForMessageOverview(connector, loggedInUser, t
         }
     }
     result = {enqueue: enqueue, dequeue: dequeue, acknowledge: acknowledge, reject: reject};
+    return result;
+};
+
+/*
+* Get all node (source) identifiers from table
+*/
+function getAllSource(connector, superTenantId, tenantDomain) {
+    result = [];
+    var tableName = "ORG_WSO2_MB_TIMER_STATS_MINUTE";
+    query = stringify({
+                          "fieldName": "source",
+                          "query": "meta_tenantDomain : \"" + tenantDomain + "\""
+                      });
+    resp = connector.drillDownCategories(superTenantId, tableName, query);
+    if (resp.status == "success") {
+        var sources = JSON.parse(resp.getMessage());
+        for (var name in sources["categories"]) {
+            if (name != "CLUSTER") {
+                result.push(name);
+            }
+        }
+    } else {
+        var log = new Log();
+        log.error(resp.getMessage());
+    }
     return result;
 };
 %>

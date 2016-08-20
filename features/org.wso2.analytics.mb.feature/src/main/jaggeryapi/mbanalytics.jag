@@ -42,6 +42,7 @@
     var cacheTimeoutSeconds = 5;
     var loggedInUser = null;
     var tenantId = -1;
+    var superTenantId = -1234;
     var tenantDomain = "carbon.super"
     var timeRangeUtil = Packages.org.wso2.analytics.mb.util.TimeRangeUtils;
     var timeRange = Packages.org.wso2.analytics.mb.bean.TimeRange;
@@ -57,6 +58,8 @@
     var TYPE_MSG_OVERVIEW = 8;
     var TYPE_MSG_ACK_RATE = 9;
     var TYPE_MSG_REJECT_RATE = 10;
+    var TYPE_SEARCH_NODE = 11;
+    var TYPE_SEARCH_QUEUE_TOPIC = 12;
 
     if (configs.cacheTimeoutSeconds) {
         cacheTimeoutSeconds = parseInt(configs.cacheTimeoutSeconds);
@@ -106,7 +109,11 @@
     if (paramType != null) {
         type = parseInt(paramType);
     }
-    var source = "CLUSTER";
+
+    var source = request.getParameter("id");
+    if (source == "undefined") {
+        source = "CLUSTER";
+    }
 
     if (type == 0) {
         log.error("operation type is not specified!");
@@ -130,22 +137,25 @@
     //call relevant function in mbanalytics-utils.jag based on the type passed by gadget
     var timeFrom = request.getParameter("timeFrom");
     var timeTo = request.getParameter("timeTo");
-    var timeUnit = timeRangeUtil.getSuitableTimeRangeUnit(timeFrom, timeTo);
-    if (timeUnit == "SECOND") {
-        timeUnit = "MINUTE";
+    var timeUnit = null;
+    if (timeFrom != null && timeTo != null) {
+     	timeUnit = timeRangeUtil.getSuitableTimeRangeUnit(timeFrom, timeTo);
+        if (timeUnit == "SECOND") {
+    	    timeUnit = "MINUTE";
+    	}
     }
     var result = null;
     switch (type) {
         case TYPE_MSG_RECEIVE_RATE:
         {
             result = mbanalyticsUtils.getResultsFromMeterTable
-            (connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.receive", tenantDomain, source);
+            (connector, superTenantId, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.receive", tenantDomain, source);
             break;
         }
         case TYPE_MSG_SEND_RATE:
         {
             result = mbanalyticsUtils.getResultsFromMeterTable
-            (connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.sent", tenantDomain, source);
+            (connector, superTenantId, timeUnit, timeFrom, timeTo, "org.wso2.mb.message.sent", tenantDomain, source);
             break;
         }
         case TYPE_TOTAL_PUB_SUB_CHANNEL_COUNT:
@@ -156,31 +166,31 @@
                 Topic: "org.wso2.mb.topic.subscribers.count"
             }
             result = mbanalyticsUtils.getMultiResultsFromGaugeTable
-            (connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain, source);
+            (connector, superTenantId, timeUnit, timeFrom, timeTo, view, tenantDomain, source);
             break;
         }
         case TYPE_DB_READ_TIME:
         {
             result = mbanalyticsUtils.getResultsFromTimerTable
-            (connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read", tenantDomain, source);
+            (connector, superTenantId, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.read", tenantDomain, source);
             break;
         }
         case TYPE_DB_WRITE_TIME:
         {
             result = mbanalyticsUtils.getResultsFromTimerTable
-            (connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write", tenantDomain, source);
+            (connector, superTenantId, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write", tenantDomain, source);
             break;
         }
         case TYPE_DB_READ_RATE:
         {
-            result = mbanalyticsUtils.getResultsFromTimerTable(connector, loggedInUser, timeUnit, timeFrom, timeTo,
+            result = mbanalyticsUtils.getResultsFromTimerTable(connector, superTenantId, timeUnit, timeFrom, timeTo,
                                                                      "org.wso2.mb.database.read", tenantDomain, source);
             break;
         }
         case TYPE_DB_WRITE_RATE:
         {
             result = mbanalyticsUtils.getResultsFromTimerTable
-            (connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write", tenantDomain, source);
+            (connector, superTenantId, timeUnit, timeFrom, timeTo, "org.wso2.mb.database.write", tenantDomain, source);
             break;
         }
         case TYPE_MSG_OVERVIEW:
@@ -192,19 +202,28 @@
                 reject: "org.wso2.mb.reject.count"
             }
             result = mbanalyticsUtils.getResultsFromCounterTableForMessageOverview
-            (connector, loggedInUser, timeUnit, timeFrom, timeTo, view, tenantDomain, source);
+            (connector, superTenantId, timeUnit, timeFrom, timeTo, view, tenantDomain, source);
             break;
         }
         case TYPE_MSG_ACK_RATE:
         {
             result = mbanalyticsUtils.getResultsFromMeterTable
-            (connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.ack.receive", tenantDomain, source);
+            (connector, superTenantId, timeUnit, timeFrom, timeTo, "org.wso2.mb.ack.receive", tenantDomain, source);
             break;
         }
         case TYPE_MSG_REJECT_RATE:
         {
             result = mbanalyticsUtils.getResultsFromMeterTable
-            (connector, loggedInUser, timeUnit, timeFrom, timeTo, "org.wso2.mb.reject.receive", tenantDomain, source);
+            (connector, superTenantId, timeUnit, timeFrom, timeTo, "org.wso2.mb.reject.receive", tenantDomain, source);
+            break;
+        }
+        case TYPE_SEARCH_NODE:
+        {
+            result = mbanalyticsUtils.getAllSource(connector, superTenantId, tenantDomain);
+            break;
+        }
+        case TYPE_SEARCH_QUEUE_TOPIC:
+        {
             break;
         }
         default:
