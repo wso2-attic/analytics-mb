@@ -55,7 +55,7 @@ import java.util.concurrent.TimeUnit;
 public class MBAnalyticsStatisticsAggregationTestCase extends DASIntegrationBaseTest {
 
     protected static final Log log = LogFactory.getLog(MBAnalyticsStatisticsAggregationTestCase.class);
-    private static final int WAIT_FOR_INDEXING = 240000;
+    private static final int WAIT_FOR_INDEXING = 120000;
     private static final int TIMEOUT = 120000;
     private MetricService metricService;
 
