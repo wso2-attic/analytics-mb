@@ -111,7 +111,7 @@
     }
 
     var source = request.getParameter("id");
-    if (source == "undefined") {
+    if (source == "undefined" || source == "ALL") {
         source = "CLUSTER";
     }
 
