@@ -8,7 +8,7 @@ $(function() {
     var search = gadgetUtil.getGadgetConfig(prefs.getString(PARAM_SEARCH));
     var qs = gadgetUtil.getQueryString();
     
-    $("#txtSearch").attr('placeholder', 'Search ' + search.placeholder + ' ...');
+    $("#txtSearch").attr('placeholder', 'FILTER BY ' + search.placeholder + ' ...');
 
     if(qs[PARAM_ID] != null) {
         $("#txtSearch").val(qs[PARAM_ID]);

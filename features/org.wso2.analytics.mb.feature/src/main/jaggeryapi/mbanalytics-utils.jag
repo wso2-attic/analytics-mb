@@ -245,6 +245,7 @@ function getAllSource(connector, superTenantId, tenantDomain) {
                 result.push(name);
             }
         }
+        result.push("ALL");
     } else {
         var log = new Log();
         log.error(resp.getMessage());
