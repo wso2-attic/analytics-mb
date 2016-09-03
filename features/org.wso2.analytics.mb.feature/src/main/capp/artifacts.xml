@@ -7,35 +7,35 @@
         <dependency artifact="GadgetDateRangePicker" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="GadgetStatsChart" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="GadgetScatterChart" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <!-- Log Analyzer Gadgets -->
-        <dependency artifact="GadgetLogErrorBarChart" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="GadgetLogErrorFilteredMessage" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="GadgetLogEvents" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="GadgetLogInvalidLoggingCount" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="GadgetLogViewer" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="GadgetSearchBox" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+
         <!-- MB Dashboard Definition -->
-        <dependency artifact="AnalyticsMBDashboard" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="LogAnalyzerDashboard" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <!-- Persistent Store and Stream-->
-        <dependency artifact="MBGaugeStatsMinuteStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="MBGaugeStatsMinuteStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="MBMeterStatsMinuteStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="MBMeterStatsMinuteStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="MBTimerStatsMinuteStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="MBTimerStatsMinuteStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="MBCounterStatsMinuteStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="MBCounterStatsMinuteStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="MBLogAnalyzerEventStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="MBLogAnalyzerEventStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <!-- Event receivers -->
-        <dependency artifact="MBLogAnalyzerEventReceiver" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MbAnalyticsDashboard" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <!--<dependency artifact="LogAnalyzerDashboard" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>-->
+
+        <!-- MB Persistent Store and Stream-->
+        <dependency artifact="MbGaugeStatsMinuteStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MbGaugeStatsMinuteStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MbMeterStatsMinuteStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MbMeterStatsMinuteStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MbTimerStatsMinuteStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MbTimerStatsMinuteStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MbCounterStatsMinuteStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MbCounterStatsMinuteStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+
+        <!-- Log Analyzer Receivers, Persistent Store and Stream -->
+        <dependency artifact="MbLogAnalyzerEventStore" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MbLogAnalyzerEventStream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MbLogAnalyzerEventReceiver" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+
         <!-- Execution plan -->
-        <dependency artifact="FilterStreamExecutionPlan" version="1.0.0" include="true" serverRole="ComplexEventProcessor"/>
+        <dependency artifact="MbAnalyticsExecutionPlan" version="1.0.0" include="true" serverRole="ComplexEventProcessor"/>
+
         <!-- Spark Script -->
-        <dependency artifact="MBStatAnalyticsSparkScript" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="MBLogAnalyzerSparkScript" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MbAnalyticsSparkScript" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MbLogAnalyzerSparkScript" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+
         <!-- Data purging -->
-        <dependency artifact="DataPurging" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="MbAnalyticsDataPurging" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
     </artifact>
 </artifacts>

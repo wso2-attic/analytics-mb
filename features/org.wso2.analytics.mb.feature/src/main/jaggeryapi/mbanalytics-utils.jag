@@ -20,7 +20,7 @@
 */
 function getResultsFromMeterTable(connector, superTenantId, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
-    var tableName = "ORG_WSO2_MB_METER_STATS_" + timeUnit;
+    var tableName = "ORG_WSO2_MB_ANALYTICS_STREAM_METERSTATS" + timeUnit;
     var query = stringify({
         query: "_name : \"" + view + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "] AND " +
                                        "meta_tenantDomain : \"" + tenantDomain + "\"  AND source : \"" + source + "\"",
@@ -56,7 +56,7 @@ function getResultsFromMeterTable(connector, superTenantId, timeUnit, timeFrom, 
 */
 function getResultsFromGaugeTable(connector, superTenantId, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
-    var tableName = "ORG_WSO2_MB_GAUGE_STATS_" + timeUnit;
+    var tableName = "ORG_WSO2_MB_ANALYTICS_STREAM_GAUGESTATS" + timeUnit;
     var query = stringify({
         query: "_name : \"" + view + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "] AND " +
                                        "meta_tenantDomain : \"" + tenantDomain + "\"  AND source : \"" + source + "\"",
@@ -92,7 +92,7 @@ function getResultsFromGaugeTable(connector, superTenantId, timeUnit, timeFrom, 
 */
 function getMultiResultsFromGaugeTable(connector, superTenantId, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
-    var tableName = "ORG_WSO2_MB_GAUGE_STATS_" + timeUnit;
+    var tableName = "ORG_WSO2_MB_ANALYTICS_STREAM_GAUGESTATS" + timeUnit;
     for (var key in view) {
         var query = stringify({
             query: "_name : \"" + view[key] + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "] AND " +
@@ -131,7 +131,7 @@ function getMultiResultsFromGaugeTable(connector, superTenantId, timeUnit, timeF
 */
 function getResultsFromTimerTable(connector, superTenantId, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
-    var tableName = "ORG_WSO2_MB_TIMER_STATS_" + timeUnit;
+    var tableName = "ORG_WSO2_MB_ANALYTICS_STREAM_TIMERSTATS" + timeUnit;
     var query = stringify({
         query: "_name : \"" + view + "\" AND _timestamp : [" + timeFrom + " TO " + timeTo + "] AND " +
                                         "meta_tenantDomain : \"" + tenantDomain + "\"  AND source : \"" + source + "\"",
@@ -169,7 +169,7 @@ function getResultsFromTimerTable(connector, superTenantId, timeUnit, timeFrom, 
 */
 function getResultsFromCounterTableForMessageOverview(connector, superTenantId, timeUnit, timeFrom, timeTo, view, tenantDomain, source) {
     var result = [];
-    var tableName = "ORG_WSO2_MB_COUNTER_STATS_" + timeUnit;
+    var tableName = "ORG_WSO2_MB_ANALYTICS_STREAM_COUNTERSTATS" + timeUnit;
     var enqueue, dequeue, acknowledge, reject = 0;
     for (var key in view) {
         var query = stringify({
@@ -232,7 +232,7 @@ function getResultsFromCounterTableForMessageOverview(connector, superTenantId, 
 */
 function getAllSource(connector, superTenantId, tenantDomain) {
     result = [];
-    var tableName = "ORG_WSO2_MB_TIMER_STATS_MINUTE";
+    var tableName = "ORG_WSO2_MB_ANALYTICS_STREAM_TIMERSTATSMINUTE";
     query = stringify({
                           "fieldName": "source",
                           "query": "meta_tenantDomain : \"" + tenantDomain + "\""

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artifact name="MbLogAnalyzerEventReceiver" version="1.0.0" type="event/receiver" serverRole="DataAnalyticsServer">
+    <file>MbAnalytics-Receiver-Wso2event-LogAnalyzer.xml</file>
+</artifact>

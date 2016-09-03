@@ -1,0 +1,58 @@
+{
+  "name": "org.wso2.mb.analytics.stream.GaugeStatsMinute",
+  "version": "1.0.0",
+  "nickName": "MbGaugeStat",
+  "description": "Message broker channel, subscriber count etc...",
+  "metaData": [
+    {
+      "name": "tenantDomain",
+      "type": "STRING"
+    }
+  ],
+  "payloadData": [
+    {
+      "name": "year",
+      "type": "INT"
+    },
+    {
+      "name": "month",
+      "type": "INT"
+    },
+    {
+      "name": "day",
+      "type": "INT"
+    },
+    {
+      "name": "hour",
+      "type": "INT"
+    },
+    {
+      "name": "minute",
+      "type": "INT"
+    },
+    {
+      "name": "source",
+      "type": "STRING"
+    },
+    {
+      "name": "name",
+      "type": "STRING"
+    },
+    {
+      "name": "type",
+      "type": "STRING"
+    },
+    {
+      "name": "destination",
+      "type": "STRING"
+    },
+    {
+      "name": "value",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "_timestamp",
+      "type": "LONG"
+    }
+  ]
+}

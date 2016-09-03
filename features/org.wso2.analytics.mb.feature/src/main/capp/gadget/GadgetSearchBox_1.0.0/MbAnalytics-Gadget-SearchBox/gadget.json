@@ -1,0 +1,20 @@
+{
+  "id": "MbAnalytics-Gadget-SearchBox",
+  "title": "Search Box",
+  "type": "widget",
+  "category": "Widgets",
+  "thumbnail": "store://gadget/MbAnalytics-Gadget-SearchBox/index.png",
+  "data": {
+    "url": "store://gadget/MbAnalytics-Gadget-SearchBox/index.xml"
+  },
+  "styles": {
+    "borders": false,
+    "title": false
+  },
+  "toolbarButtons":{
+    "default":{
+        "maximize": false,
+        "configurations": false
+    }
+  }
+}
