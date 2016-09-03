@@ -2,7 +2,7 @@
 <Analytics>
     <Name>MbAnalytics-SparkScript-LogAnalyzer</Name>
     <Script>
-        CREATE TEMPORARY TABLE CopyOfLoganalyzer USING CarbonAnalytics OPTIONS (tableName "org_wso2_mb_analytics_stream_LogAnalyzer", schema "_class
+        CREATE TEMPORARY TABLE CopyOfLoganalyzer USING CarbonAnalytics OPTIONS (tableName "logAnalyzer", schema "_class
         string -i, _content string -i, tenantID string -i, _level string -i, _trace string -i, _eventTimeStamp long
         -i",primaryKeys "_class, _content, _level, _eventTimeStamp");
 
