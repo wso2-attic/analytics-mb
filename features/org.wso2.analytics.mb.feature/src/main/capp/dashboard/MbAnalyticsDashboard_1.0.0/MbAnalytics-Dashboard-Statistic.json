@@ -1,0 +1,920 @@
+{
+  "id": "MbAnalytics-Dashboard-Statistic",
+  "title": "Message Broker Analytics",
+  "description": "",
+  "permissions": {
+    "viewers": [
+      "Internal/everyone"
+    ],
+    "editors": [
+      "Internal/everyone"
+    ],
+    "owners": [
+      "Internal/everyone"
+    ]
+  },
+  "pages": [
+    {
+      "id": "overview",
+      "title": "Overview",
+      "layout": {
+        "content": {
+          "loggedIn": {
+            "blocks": [
+              {
+                "id": "4f6f363540cb7973b46cb61b516187b1",
+                "x": 0,
+                "y": 5,
+                "width": 6,
+                "height": 4,
+                "banner": false
+              },
+              {
+                "id": "c65c6f9f90e0f1e74595a37421f16018",
+                "x": 6,
+                "y": 5,
+                "width": 6,
+                "height": 4,
+                "banner": false
+              },
+              {
+                "id": "9842888c0680676360fea9e38a12d60c",
+                "x": 4,
+                "y": 0,
+                "width": 8,
+                "height": 1,
+                "banner": false
+              },
+              {
+                "id": "9fb07a2701203c5e7c9b3de4949d8069",
+                "x": 0,
+                "y": 13,
+                "width": 12,
+                "height": 4,
+                "banner": false
+              },
+              {
+                "id": "35e5b551b7e8cef23e1624e733563e30",
+                "x": 0,
+                "y": 17,
+                "width": 6,
+                "height": 4,
+                "banner": false
+              },
+              {
+                "id": "afb7159275f5e3a075837c3744ceedc9",
+                "x": 0,
+                "y": 21,
+                "width": 6,
+                "height": 4,
+                "banner": false
+              },
+              {
+                "id": "8bfddd401951b48cb9885c3cab42e9c2",
+                "x": 6,
+                "y": 17,
+                "width": 6,
+                "height": 4,
+                "banner": false
+              },
+              {
+                "id": "b8b7e373fdc84e7b0f146b0ec6454f52",
+                "x": 6,
+                "y": 21,
+                "width": 6,
+                "height": 4,
+                "banner": false
+              },
+              {
+                "id": "2cd5a3d04eafb0548fe37810201660b6",
+                "x": 0,
+                "y": 1,
+                "width": 12,
+                "height": 4,
+                "banner": false
+              },
+              {
+                "id": "11479434bb081a030f634bf118b3c56a",
+                "x": 0,
+                "y": 9,
+                "width": 6,
+                "height": 4,
+                "banner": false
+              },
+              {
+                "id": "365345ecff85787461197075977a5f7c",
+                "x": 6,
+                "y": 9,
+                "width": 6,
+                "height": 4,
+                "banner": false
+              },
+              {
+                "id": "75b9d1cce58322b5bb5bdae9525b0489",
+                "x": 0,
+                "y": 0,
+                "width": 4,
+                "height": 1,
+                "banner": false
+              }
+            ]
+          }
+        },
+        "fluidLayout": true
+      },
+      "isanon": false,
+      "content": {
+        "default": {
+          "4f6f363540cb7973b46cb61b516187b1": [
+            {
+              "id": "MbAnalytics-Gadget-LineChart-0",
+              "content": {
+                "id": "MbAnalytics-Gadget-LineChart",
+                "title": "Line Chart",
+                "type": "gadget",
+                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "data": {
+                  "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "listen": {
+                  "subscriber": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher",
+                    "on": [
+                      {
+                        "from": "MbAnalytics-Gadget-DateRangePicker-0",
+                        "event": "range-selected"
+                      }
+                    ]
+                  }
+                },
+                "notify": {
+                  "chart-zoomed": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher"
+                  }
+                },
+                "styles": {
+                  "no_heading": false,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Enqueue Rate"
+                },
+                "options": {
+                  "role": {
+                    "type": "STRING",
+                    "title": "Gadet Role",
+                    "value": "rate",
+                    "options": [],
+                    "required": true
+                  },
+                  "view": {
+                    "type": "STRING",
+                    "title": "Gadget View",
+                    "value": "msg_receive_rate",
+                    "options": [],
+                    "required": true
+                  }
+                },
+                "locale_titles": {
+                  "en-US": "Enqueue Rate"
+                },
+                "settings": {
+                  "priority": "5"
+                }
+              }
+            }
+          ],
+          "cb8ba4b843dc59c587508d1ca822e4b6": [],
+          "db76ccb31a4f399252b7831725bf2e39": [],
+          "c65c6f9f90e0f1e74595a37421f16018": [
+            {
+              "id": "MbAnalytics-Gadget-LineChart-1",
+              "content": {
+                "id": "MbAnalytics-Gadget-LineChart",
+                "title": "Line Chart",
+                "type": "gadget",
+                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "data": {
+                  "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "listen": {
+                  "subscriber": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher",
+                    "on": [
+                      {
+                        "from": "MbAnalytics-Gadget-DateRangePicker-0",
+                        "event": "range-selected"
+                      }
+                    ]
+                  }
+                },
+                "notify": {
+                  "chart-zoomed": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher"
+                  }
+                },
+                "styles": {
+                  "no_heading": false,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Dequeue Rate"
+                },
+                "options": {
+                  "role": {
+                    "type": "STRING",
+                    "title": "Gadget Role",
+                    "value": "rate",
+                    "options": [],
+                    "required": true
+                  },
+                  "view": {
+                    "type": "STRING",
+                    "title": "Gadget View",
+                    "value": "msg_send_rate",
+                    "options": [],
+                    "required": true
+                  }
+                },
+                "locale_titles": {
+                  "en-US": "Dequeue Rate"
+                },
+                "settings": {
+                  "priority": "5"
+                }
+              }
+            }
+          ],
+          "9842888c0680676360fea9e38a12d60c": [
+            {
+              "id": "MbAnalytics-Gadget-DateRangePicker-0",
+              "content": {
+                "id": "MbAnalytics-Gadget-DateRangePicker",
+                "title": "Date Range Picker",
+                "type": "gadget",
+                "category": "Widgets",
+                "thumbnail": "fs://gadget/MbAnalytics-Gadget-DateRangePicker/index.png",
+                "data": {
+                  "url": "fs://gadget/MbAnalytics-Gadget-DateRangePicker/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "styles": {
+                  "no_heading": true,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Date Range Picker"
+                },
+                "notify": {
+                  "range-selected": {
+                    "type": "date-range",
+                    "description": "This notifies selected state"
+                  }
+                },
+                "listen": {
+                  "chart-zoomed": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher",
+                    "on": []
+                  }
+                },
+                "options": {},
+                "locale_titles": {
+                  "en-US": "Date Range Picker"
+                },
+                "settings": {
+                  "priority": "5"
+                }
+              }
+            }
+          ],
+          "9fb07a2701203c5e7c9b3de4949d8069": [
+            {
+              "id": "MbAnalytics-Gadget-ScatterChart-0",
+              "content": {
+                "id": "MbAnalytics-Gadget-ScatterChart",
+                "title": "Scatter Chart",
+                "type": "gadget",
+                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "data": {
+                  "url": "fs://gadget/MbAnalytics-Gadget-ScatterChart/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "listen": {
+                  "subscriber": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher",
+                    "on": [
+                      {
+                        "from": "MbAnalytics-Gadget-DateRangePicker-0",
+                        "event": "range-selected"
+                      }
+                    ]
+                  }
+                },
+                "notify": {
+                  "chart-zoomed": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher"
+                  }
+                },
+                "styles": {
+                  "no_heading": false,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Total Channels and Subscribers"
+                },
+                "options": {
+                  "role": {
+                    "type": "STRING",
+                    "title": "Gadget Role",
+                    "value": "count",
+                    "options": [],
+                    "required": true
+                  },
+                  "view": {
+                    "type": "STRING",
+                    "title": "Gadget View",
+                    "value": "total_pub_sub_channel_count",
+                    "options": [],
+                    "required": true
+                  }
+                },
+                "locale_titles": {
+                  "en-US": "Total Channels and Subscribers"
+                },
+                "settings": {
+                  "priority": "5",
+                  "timeoutInterval": "60000"
+                }
+              }
+            }
+          ],
+          "02f7bdf819228dbfe9a49e24831fba58": [],
+          "f08d0001f11fe6c50591aaaa15961be3": [],
+          "35e5b551b7e8cef23e1624e733563e30": [
+            {
+              "id": "MbAnalytics-Gadget-LineChart-5",
+              "content": {
+                "id": "MbAnalytics-Gadget-LineChart",
+                "title": "Line Chart",
+                "type": "gadget",
+                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "data": {
+                  "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "listen": {
+                  "subscriber": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher",
+                    "on": [
+                      {
+                        "from": "MbAnalytics-Gadget-DateRangePicker-0",
+                        "event": "range-selected"
+                      }
+                    ]
+                  }
+                },
+                "notify": {
+                  "chart-zoomed": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher"
+                  }
+                },
+                "styles": {
+                  "no_heading": false,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Database Read Time"
+                },
+                "options": {
+                  "role": {
+                    "type": "STRING",
+                    "title": "Gadget Role",
+                    "value": "time",
+                    "options": [],
+                    "required": true
+                  },
+                  "view": {
+                    "type": "STRING",
+                    "title": "Gadget View",
+                    "value": "db_read_time",
+                    "options": [],
+                    "required": true
+                  }
+                },
+                "locale_titles": {
+                  "en-US": "Database Read Time"
+                },
+                "settings": {
+                  "priority": "5"
+                }
+              }
+            }
+          ],
+          "afb7159275f5e3a075837c3744ceedc9": [
+            {
+              "id": "MbAnalytics-Gadget-LineChart-6",
+              "content": {
+                "id": "MbAnalytics-Gadget-LineChart",
+                "title": "Line Chart",
+                "type": "gadget",
+                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "data": {
+                  "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "listen": {
+                  "subscriber": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher",
+                    "on": [
+                      {
+                        "from": "MbAnalytics-Gadget-DateRangePicker-0",
+                        "event": "range-selected"
+                      }
+                    ]
+                  }
+                },
+                "notify": {
+                  "chart-zoomed": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher"
+                  }
+                },
+                "styles": {
+                  "no_heading": false,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Database Write Time"
+                },
+                "options": {
+                  "role": {
+                    "type": "STRING",
+                    "title": "Gadget Role",
+                    "value": "time",
+                    "options": [],
+                    "required": true
+                  },
+                  "view": {
+                    "type": "STRING",
+                    "title": "Gadget View",
+                    "value": "db_write_time",
+                    "options": [],
+                    "required": true
+                  }
+                },
+                "locale_titles": {
+                  "en-US": "Database Write Time"
+                },
+                "settings": {
+                  "priority": "5"
+                }
+              }
+            }
+          ],
+          "8bfddd401951b48cb9885c3cab42e9c2": [
+            {
+              "id": "MbAnalytics-Gadget-LineChart-7",
+              "content": {
+                "id": "MbAnalytics-Gadget-LineChart",
+                "title": "Line Chart",
+                "type": "gadget",
+                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "data": {
+                  "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "listen": {
+                  "subscriber": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher",
+                    "on": [
+                      {
+                        "from": "MbAnalytics-Gadget-DateRangePicker-0",
+                        "event": "range-selected"
+                      }
+                    ]
+                  }
+                },
+                "notify": {
+                  "chart-zoomed": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher"
+                  }
+                },
+                "styles": {
+                  "no_heading": false,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Database Read Rate"
+                },
+                "options": {
+                  "role": {
+                    "type": "STRING",
+                    "title": "Gadget Role",
+                    "value": "rate",
+                    "options": [],
+                    "required": true
+                  },
+                  "view": {
+                    "type": "STRING",
+                    "title": "Gadget View",
+                    "value": "db_read_rate",
+                    "options": [],
+                    "required": true
+                  }
+                },
+                "locale_titles": {
+                  "en-US": "Database Read Rate"
+                },
+                "settings": {
+                  "priority": "5"
+                }
+              }
+            }
+          ],
+          "b8b7e373fdc84e7b0f146b0ec6454f52": [
+            {
+              "id": "MbAnalytics-Gadget-LineChart-8",
+              "content": {
+                "id": "MbAnalytics-Gadget-LineChart",
+                "title": "Line Chart",
+                "type": "gadget",
+                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "data": {
+                  "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "listen": {
+                  "subscriber": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher",
+                    "on": [
+                      {
+                        "from": "MbAnalytics-Gadget-DateRangePicker-0",
+                        "event": "range-selected"
+                      }
+                    ]
+                  }
+                },
+                "notify": {
+                  "chart-zoomed": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher"
+                  }
+                },
+                "styles": {
+                  "no_heading": false,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Database Write Rate"
+                },
+                "options": {
+                  "role": {
+                    "type": "STRING",
+                    "title": "Gadget Role",
+                    "value": "rate",
+                    "options": [],
+                    "required": true
+                  },
+                  "view": {
+                    "type": "STRING",
+                    "title": "Gadget View",
+                    "value": "db_write_rate",
+                    "options": [],
+                    "required": true
+                  }
+                },
+                "locale_titles": {
+                  "en-US": "Database Write Rate"
+                },
+                "settings": {
+                  "priority": "5"
+                }
+              }
+            }
+          ],
+          "2cd5a3d04eafb0548fe37810201660b6": [
+            {
+              "id": "MbAnalytics-Gadget-StatsChart-0",
+              "content": {
+                "id": "MbAnalytics-Gadget-StatsChart",
+                "title": "Stats Chart",
+                "type": "gadget",
+                "category": "Gadget",
+                "thumbnail": "fs://gadget/MbAnalytics-Gadget-StatsChart/index.png",
+                "data": {
+                  "url": "fs://gadget/MbAnalytics-Gadget-StatsChart/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "styles": {
+                  "no_heading": false,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Overview"
+                },
+                "listen": {
+                  "subscriber": {
+                    "type": "date-range",
+                    "description": "Used to listen to Any message of type state",
+                    "on": [
+                      {
+                        "from": "MbAnalytics-Gadget-DateRangePicker-0",
+                        "event": "range-selected"
+                      }
+                    ]
+                  }
+                },
+                "options": {},
+                "locale_titles": {
+                  "en-US": "Overview"
+                },
+                "settings": {
+                  "priority": "5",
+                  "timeoutInterval": "60000"
+                }
+              }
+            }
+          ],
+          "11479434bb081a030f634bf118b3c56a": [
+            {
+              "id": "MbAnalytics-Gadget-LineChart-9",
+              "content": {
+                "id": "MbAnalytics-Gadget-LineChart",
+                "title": "Line Chart",
+                "type": "gadget",
+                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "data": {
+                  "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "listen": {
+                  "subscriber": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher",
+                    "on": [
+                      {
+                        "from": "MbAnalytics-Gadget-DateRangePicker-0",
+                        "event": "range-selected"
+                      }
+                    ]
+                  }
+                },
+                "notify": {
+                  "chart-zoomed": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher"
+                  }
+                },
+                "styles": {
+                  "no_heading": false,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Acknowledge Rate"
+                },
+                "options": {
+                  "role": {
+                    "type": "STRING",
+                    "title": "Gadget Role",
+                    "value": "rate",
+                    "options": [],
+                    "required": true
+                  },
+                  "view": {
+                    "type": "STRING",
+                    "title": "Gadget View",
+                    "value": "msg_ack_rate",
+                    "options": [],
+                    "required": true
+                  }
+                },
+                "locale_titles": {
+                  "en-US": "Acknowledge Rate"
+                },
+                "settings": {
+                  "priority": "5",
+                  "timeoutInterval": "60000"
+                }
+              }
+            }
+          ],
+          "365345ecff85787461197075977a5f7c": [
+            {
+              "id": "MbAnalytics-Gadget-LineChart-10",
+              "content": {
+                "id": "MbAnalytics-Gadget-LineChart",
+                "title": "Line Chart",
+                "type": "gadget",
+                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "data": {
+                  "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "listen": {
+                  "subscriber": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher",
+                    "on": [
+                      {
+                        "from": "MbAnalytics-Gadget-DateRangePicker-0",
+                        "event": "range-selected"
+                      }
+                    ]
+                  }
+                },
+                "notify": {
+                  "chart-zoomed": {
+                    "type": "date-range",
+                    "description": "This notifies message generated in publisher"
+                  }
+                },
+                "styles": {
+                  "no_heading": false,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Reject Rate"
+                },
+                "options": {
+                  "role": {
+                    "type": "STRING",
+                    "title": "Gadget Role",
+                    "value": "rate",
+                    "options": [],
+                    "required": true
+                  },
+                  "view": {
+                    "type": "STRING",
+                    "title": "Gadget View",
+                    "value": "msg_reject_rate",
+                    "options": [],
+                    "required": true
+                  }
+                },
+                "locale_titles": {
+                  "en-US": "Reject Rate"
+                },
+                "settings": {
+                  "priority": "5",
+                  "timeoutInterval": "60000"
+                }
+              }
+            }
+          ],
+          "75b9d1cce58322b5bb5bdae9525b0489": [
+            {
+              "id": "MbAnalytics-Gadget-SearchBox-0",
+              "content": {
+                "id": "MbAnalytics-Gadget-SearchBox",
+                "title": "Search Box",
+                "type": "widget",
+                "category": "Widgets",
+                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "data": {
+                  "url": "fs://gadget/MbAnalytics-Gadget-SearchBox/index.xml"
+                },
+                "styles": {
+                  "no_heading": true,
+                  "hide_gadget": false,
+                  "titlePosition": "left",
+                  "title": "Search Box"
+                },
+                "toolbarButtons": {
+                  "default": {
+                    "maximize": false,
+                    "configurations": false
+                  },
+                  "custom": [],
+                  "isDropdownView": false
+                },
+                "options": {
+                  "search": {
+                    "type": "STRING",
+                    "title": "Search",
+                    "value": "search_node",
+                    "options": [],
+                    "required": true
+                  }
+                },
+                "locale_titles": {
+                  "en-US": "Search Box"
+                },
+                "settings": {
+                  "priority": "5",
+                  "timeoutInterval": "60000"
+                }
+              }
+            }
+          ],
+          "fedd5cd18ebd2797907ea9c3f3669f39": []
+        },
+        "anon": {}
+      }
+    }
+  ],
+  "menu": [
+    {
+      "id": "overview",
+      "isanon": false,
+      "ishidden": false,
+      "title": "Overview",
+      "subordinates": []
+    }
+  ],
+  "hideAllMenuItems": false,
+  "identityServerUrl": "",
+  "accessTokenUrl": "",
+  "apiKey": "",
+  "apiSecret": "",
+  "theme": "Default Theme",
+  "isUserCustom": false,
+  "isEditorEnable": true,
+  "banner": {
+    "globalBannerExists": false,
+    "customBannerExists": false
+  },
+  "landing": "overview",
+  "isanon": false,
+  "defaultPriority": "5"
+}

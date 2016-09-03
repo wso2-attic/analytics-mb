@@ -1,0 +1,12 @@
+{
+  "name": "loganalyzer",
+  "version": "1.0.0",
+  "nickName": "MbLogAnalyzer",
+  "description": "Message broker logs",
+  "payloadData": [
+    {
+      "name": "tenantID",
+      "type": "STRING"
+    }
+  ]
+}

@@ -100,48 +100,55 @@ public class TimeRangeUtils {
         MutableDateTime tempToTime = toDate.copy();
 
         if (log.isDebugEnabled()) {
-            log.debug("Time range: " + formatter.format(fromDate.toDate()) + " -> " + formatter.format(toDate.toDate()));
+            log.debug("Time range: " + formatter.format(fromDate.toDate()) + " -> "
+                    + formatter.format(toDate.toDate()));
         }
 
         if (toDate.getMillis() - fromDate.getMillis() < DateTimeConstants.MILLIS_PER_MINUTE) {
             ranges.add(new TimeRange(RangeUnit.SECOND.name(), new long[]{fromDate.getMillis(), toDate.getMillis()}));
         } else {
-            if (tempFromTime.getSecondOfMinute() != 0 && (toDate.getMillis() - fromDate.getMillis() > DateTimeConstants.MILLIS_PER_MINUTE)) {
+            if (tempFromTime.getSecondOfMinute() != 0 && (toDate.getMillis()
+                    - fromDate.getMillis() > DateTimeConstants.MILLIS_PER_MINUTE)) {
                 tempFromTime = tempFromTime.minuteOfHour().roundCeiling();
-                ranges.add(new TimeRange(RangeUnit.SECOND.name(), new long[]{fromDate.getMillis(), tempFromTime.getMillis()}));
+                ranges.add(new TimeRange(RangeUnit.SECOND.name(), new long[]{fromDate.getMillis(),
+                        tempFromTime.getMillis()}));
             }
             if (tempFromTime.getMinuteOfHour() != 0 &&
                 ((toDate.getMillis() - tempFromTime.getMillis()) >= DateTimeConstants.MILLIS_PER_MINUTE)) {
                 fromDate = tempFromTime.copy();
                 if (((toDate.getMillis() - tempFromTime.getMillis()) / DateTimeConstants.MILLIS_PER_MINUTE) < 60) {
-                    tempFromTime = tempFromTime.minuteOfHour().add((toDate.getMillis() - tempFromTime.getMillis()) / DateTimeConstants.MILLIS_PER_MINUTE);
+                    tempFromTime = tempFromTime.minuteOfHour().add((toDate.getMillis()
+                            - tempFromTime.getMillis()) / DateTimeConstants.MILLIS_PER_MINUTE);
                 } else {
                     tempFromTime = tempFromTime.hourOfDay().roundCeiling();
                 }
-                ranges.add(new TimeRange(RangeUnit.MINUTE.name(), new long[]{fromDate.getMillis(), tempFromTime.getMillis()}));
+                ranges.add(new TimeRange(RangeUnit.MINUTE.name(),
+                        new long[]{fromDate.getMillis(), tempFromTime.getMillis()}));
             }
             if (tempFromTime.getHourOfDay() != 0 &&
                 ((toDate.getMillis() - tempFromTime.getMillis()) >= DateTimeConstants.MILLIS_PER_HOUR)) {
                 fromDate = tempFromTime.copy();
                 if (((toDate.getMillis() - tempFromTime.getMillis()) / DateTimeConstants.MILLIS_PER_HOUR) < 24) {
-                    tempFromTime = tempFromTime.hourOfDay().add((toDate.getMillis() - tempFromTime.getMillis()) /
-                                                                DateTimeConstants.MILLIS_PER_HOUR);
+                    tempFromTime = tempFromTime.hourOfDay().add((toDate.getMillis() - tempFromTime.getMillis())
+                            / DateTimeConstants.MILLIS_PER_HOUR);
                 } else {
                     tempFromTime = tempFromTime.dayOfMonth().roundCeiling();
                 }
-                ranges.add(new TimeRange(RangeUnit.HOUR.name(), new long[]{fromDate.getMillis(), tempFromTime.getMillis()}));
+                ranges.add(new TimeRange(RangeUnit.HOUR.name(), new long[]{fromDate.getMillis(),
+                        tempFromTime.getMillis()}));
             }
             if (tempFromTime.getDayOfMonth() != 1 &&
                 ((toDate.getMillis() - tempFromTime.getMillis()) >= DateTimeConstants.MILLIS_PER_DAY)) {
                 fromDate = tempFromTime.copy();
-                if ((((toDate.getMillis() - tempFromTime.getMillis()) / DateTimeConstants.MILLIS_PER_DAY)) < tempFromTime
-                        .dayOfMonth().getMaximumValue()) {
+                if ((((toDate.getMillis() - tempFromTime.getMillis())
+                        / DateTimeConstants.MILLIS_PER_DAY)) < tempFromTime.dayOfMonth().getMaximumValue()) {
                     tempFromTime = tempFromTime.dayOfMonth().add(((toDate.getMillis() - tempFromTime.getMillis()) /
                                                                   ((long) DateTimeConstants.MILLIS_PER_DAY)));
                 } else {
                     tempFromTime = tempFromTime.monthOfYear().roundCeiling();
                 }
-                ranges.add(new TimeRange(RangeUnit.DAY.name(), new long[]{fromDate.getMillis(), tempFromTime.getMillis()}));
+                ranges.add(new TimeRange(RangeUnit.DAY.name(), new long[]{fromDate.getMillis(),
+                        tempFromTime.getMillis()}));
             }
             if (tempToTime.getSecondOfMinute() != 0 &&
                 (tempToTime.getMillis() - tempFromTime.getMillis()) >= DateTimeConstants.MILLIS_PER_SECOND) {
@@ -154,7 +161,8 @@ public class TimeRangeUtils {
                 } else {
                     tempToTime = tempToTime.secondOfMinute().roundFloor();
                 }
-                ranges.add(new TimeRange(RangeUnit.SECOND.name(), new long[]{tempToTime.getMillis(), toDate.getMillis()}));
+                ranges.add(new TimeRange(RangeUnit.SECOND.name(), new long[]{tempToTime.getMillis(),
+                        toDate.getMillis()}));
             }
             if (tempToTime.getMinuteOfHour() != 0 &&
                 ((tempToTime.getMillis() - tempFromTime.getMillis()) >= DateTimeConstants.MILLIS_PER_MINUTE)) {
@@ -166,7 +174,8 @@ public class TimeRangeUtils {
                 } else {
                     tempToTime = tempToTime.hourOfDay().roundFloor();
                 }
-                ranges.add(new TimeRange(RangeUnit.MINUTE.name(), new long[]{tempToTime.getMillis(), toDate.getMillis()}));
+                ranges.add(new TimeRange(RangeUnit.MINUTE.name(),
+                        new long[]{tempToTime.getMillis(), toDate.getMillis()}));
             }
             if (tempToTime.getHourOfDay() != 0 &&
                 ((tempToTime.getMillis() - tempFromTime.getMillis()) >= DateTimeConstants.MILLIS_PER_HOUR)) {
@@ -178,7 +187,8 @@ public class TimeRangeUtils {
                 } else {
                     tempToTime = tempToTime.dayOfMonth().roundFloor();
                 }
-                ranges.add(new TimeRange(RangeUnit.HOUR.name(), new long[]{tempToTime.getMillis(), toDate.getMillis()}));
+                ranges.add(new TimeRange(RangeUnit.HOUR.name(),
+                        new long[]{tempToTime.getMillis(), toDate.getMillis()}));
             }
             if (tempToTime.getDayOfMonth() != 1 &&
                 ((tempToTime.getMillis() - tempFromTime.getMillis()) >= DateTimeConstants.MILLIS_PER_DAY)) {
@@ -187,14 +197,16 @@ public class TimeRangeUtils {
                 ranges.add(new TimeRange(RangeUnit.DAY.name(), new long[]{tempToTime.getMillis(), toDate.getMillis()}));
             }
             if (tempToTime.isAfter(tempFromTime)) {
-                ranges.add(new TimeRange(RangeUnit.MONTH.name(), new long[]{tempFromTime.getMillis(), tempToTime.getMillis()}));
+                ranges.add(new TimeRange(RangeUnit.MONTH.name(),
+                        new long[]{tempFromTime.getMillis(), tempToTime.getMillis()}));
             }
         }
         if (log.isDebugEnabled()) {
             for (TimeRange timeRange : ranges) {
-                log.debug("Unit: " + timeRange.getUnit() + " Range: " + formatter.format(new Date(timeRange.getRange()[0]))
-                          + "(" + timeRange.getRange()[0] + ")->" +
-                          formatter.format(new Date(timeRange.getRange()[1])) + "(" + timeRange.getRange()[1] + ")");
+                log.debug("Unit: " + timeRange.getUnit() + " Range: "
+                        + formatter.format(new Date(timeRange.getRange()[0]))
+                        + "(" + timeRange.getRange()[0] + ")->"
+                        + formatter.format(new Date(timeRange.getRange()[1])) + "(" + timeRange.getRange()[1] + ")");
             }
         }
         return ranges;

@@ -29,7 +29,8 @@
     <property name="gadget" value="src/main/capp/gadget"/>
     <property name="purge" value="src/main/capp/purge"/>
     <property name="spark" value="src/main/capp/spark"/>
-    <property name="stream" value="src/main/capp/stream"/>
+    <property name="mb-stream" value="src/main/capp/stream/mb-statistic"/>
+    <property name="log-stream" value="src/main/capp/stream/log-analyzer"/>
 
     <property name="ANALYTICS_MB_capp" value="org_wso2_analytics_mb-1.0.0"/>
 
@@ -52,7 +53,8 @@
             <zipfileset dir="${gadget}"/>
             <zipfileset dir="${purge}"/>
             <zipfileset dir="${spark}"/>
-            <zipfileset dir="${stream}"/>
+            <zipfileset dir="${mb-stream}"/>
+            <zipfileset dir="${log-stream}"/>
         </zip>
     </target>
 

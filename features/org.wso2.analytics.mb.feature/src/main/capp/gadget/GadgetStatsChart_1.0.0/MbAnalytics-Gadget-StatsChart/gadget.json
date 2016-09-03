@@ -1,0 +1,26 @@
+{
+  "id": "MbAnalytics-Gadget-StatsChart",
+  "title": "Stats Chart",
+  "type": "gadget",
+  "category": "Gadget",
+  "thumbnail": "store://gadget/MbAnalytics-Gadget-StatsChart/index.png",
+  "data": {
+    "url": "store://gadget/MbAnalytics-Gadget-StatsChart/index.xml"
+  },
+  "toolbarButtons": {
+    "default": {
+      "maximize": false,
+      "configurations": false
+    }
+  },
+  "styles": {
+    "borders": true,
+    "title": true
+  },
+    "listen": {
+        "subscriber": {
+            "type": "date-range",
+            "description": "Used to listen to Any message of type state"
+        }
+    }
+}

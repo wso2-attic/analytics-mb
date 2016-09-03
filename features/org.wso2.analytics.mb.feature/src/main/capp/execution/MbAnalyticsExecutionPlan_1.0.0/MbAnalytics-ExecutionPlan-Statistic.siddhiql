@@ -1,0 +1,99 @@
+/* Enter a unique ExecutionPlan */
+@Plan:name('MbAnalytics-ExecutionPlan-Statistic')
+
+/* Enter a unique description for ExecutionPlan */
+-- @Plan:description('ExecutionPlan')
+
+/* define streams/tables and write queries here ... */
+
+@Import('org.wso2.metrics.stream.Timer:1.0.0')
+define stream metricTimerStream (meta_timestamp long, source string, name string, count long, max double, mean double, min double, stddev double, median double, percentile_75th double, percentile_95th double, percentile_98th double, percentile_99th double, percentile_999th double, mean_rate double, one_minute_rate double, five_minute_rate double, fifteen_minute_rate double, rate_unit string, duration_unit string);
+
+@Import('org.wso2.metrics.stream.Meter:1.0.0')
+define stream metricMeterStream (meta_timestamp long, source string, name string, count long, mean_rate double, one_minute_rate double, five_minute_rate double, fifteen_minute_rate double, rate_unit string);
+
+@Import('org.wso2.metrics.stream.Gauge:1.0.0')
+define stream metricGaugeStream (meta_timestamp long, source string, name string, value double);
+
+@Import('org.wso2.metrics.stream.Counter:1.0.0')
+define stream metricCounterStream (meta_timestamp long, source string, name string, count long);
+
+@Export('org.wso2.mb.analytics.stream.TimerStatsMinute:1.0.0')
+define stream mbTimerStatsMinute (meta_tenantDomain string, year int, month int, day int, hour int, minute int, source string, name string, type string, destination string, maxDuration double, meanDuration double, rate double, _timestamp long);
+
+@Export('org.wso2.mb.analytics.stream.MeterStatsMinute:1.0.0')
+define stream mbMeterStatsMinute (meta_tenantDomain string, year int, month int, day int, hour int, minute int, source string, name string, type string, destination string, rate double, _timestamp long);
+
+@Export('org.wso2.mb.analytics.stream.GaugeStatsMinute:1.0.0')
+define stream mbGaugeStatsMinute (meta_tenantDomain string, year int, month int, day int, hour int, minute int, source string, name string, type string, destination string, value double, _timestamp long);
+
+@Export('org.wso2.mb.analytics.stream.CounterStatsMinute:1.0.0')
+define stream mbCounterStatsMinute (meta_tenantDomain string, year int, month int, day int, hour int, minute int, source string, name string, type string, destination string, totalCount long, _timestamp long);
+
+/* TIMER STREAM */
+-- filter data from carbon metrics timer stream and insert to temporary timer minute stream
+from metricTimerStream[str:contains(name, 'org.wso2.mb.database.read') or str:contains(name, 'org.wso2.mb.database.write')]#mbAnalytics:formatStream(meta_timestamp, name)
+select tenantDomain as meta_tenantDomain, year, month, day, hour, minute, source, name, type, destination, max as maxDuration, mean as meanDuration, one_minute_rate as rate, meta_timestamp as _timestamp
+insert into mbTimerStatsMinuteTemp;
+
+-- insert data from temporary timer minute stream to timer minute stream
+from mbTimerStatsMinuteTemp
+select *
+insert into mbTimerStatsMinute;
+
+-- aggregate data in 1 minute batch and group by tenant domain
+from mbTimerStatsMinuteTemp#window.externalTimeBatch(_timestamp , 1 min, 0 , 2min)
+select meta_tenantDomain, year, month, day, hour, minute, 'CLUSTER' as source, name, type, destination, sum(maxDuration) as maxDuration, sum(meanDuration) as meanDuration, sum(rate) as rate, _timestamp
+group by name, meta_tenantDomain
+insert into mbTimerStatsMinute;
+
+/* METER STREAM */
+-- filter data from carbon metrics meter stream and insert to temporary meter minute stream
+from metricMeterStream[str:contains(name, 'org.wso2.mb.message.receive') or str:contains(name, 'org.wso2.mb.message.sent') or str:contains(name, 'org.wso2.mb.ack.receive') or str:contains(name, 'org.wso2.mb.reject.receive')]#mbAnalytics:formatStream(meta_timestamp, name)
+select tenantDomain as meta_tenantDomain, year, month, day, hour, minute, source, name, type, destination, one_minute_rate as rate, meta_timestamp as _timestamp
+insert into mbMeterStatsMinuteTemp;
+
+-- insert data from temporary meter minute stream to meter minute stream
+from mbMeterStatsMinuteTemp
+select *
+insert into mbMeterStatsMinute;
+
+-- aggregate data in 1 minute batch and group by tenant domain
+from mbMeterStatsMinuteTemp#window.externalTimeBatch(_timestamp , 1 min, 0 , 2min)
+select meta_tenantDomain, year, month, day, hour, minute, 'CLUSTER' as source, name, type, destination, sum(rate) as rate, _timestamp
+group by name, meta_tenantDomain
+insert into mbMeterStatsMinute;
+
+/* GAUGE STREAM */
+-- filter data from carbon metrics gauge stream and insert to temporary gauge minute stream
+from metricGaugeStream[str:contains(name, 'org.wso2.mb.channels.active.count') or str:contains(name, 'org.wso2.mb.queue.subscribers.count') or str:contains(name, 'org.wso2.mb.topic.subscribers.count')]#mbAnalytics:formatStream(meta_timestamp, name)
+select tenantDomain as meta_tenantDomain, year, month, day, hour, minute, source, name, type, destination, value, meta_timestamp as _timestamp
+insert into mbGaugeStatsMinuteTemp;
+
+-- insert data from temporary gauge minute stream to gauge minute stream
+from mbGaugeStatsMinuteTemp
+select *
+insert into mbGaugeStatsMinute;
+
+-- aggregate data in 1 minute batch and group by tenant domain
+from mbGaugeStatsMinuteTemp#window.externalTimeBatch(_timestamp , 1 min, 0 , 2min)
+select meta_tenantDomain, year, month, day, hour, minute, 'CLUSTER' as source, name, type, destination, sum(value) as value, _timestamp
+group by name, meta_tenantDomain
+insert into mbGaugeStatsMinute;
+
+/* COUNTER STREAM */
+-- filter data from carbon metrics counter stream and insert to temporary counter minute stream
+from metricCounterStream [str:contains(name, 'org.wso2.mb.enqueue.count') or str:contains(name, 'org.wso2.mb.dequeue.count') or str:contains(name, 'org.wso2.mb.ack.count') or str:contains(name, 'org.wso2.mb.reject.count')]#mbAnalytics:formatStream(meta_timestamp, name)
+select tenantDomain as meta_tenantDomain, year, month, day, hour, minute, source, name, type, destination, count as totalCount, meta_timestamp as _timestamp
+insert into mbCounterStatsMinuteTemp;
+
+-- insert data from temporary counter minute stream to counter minute stream
+from mbCounterStatsMinuteTemp
+select *
+insert into mbCounterStatsMinute;
+
+-- aggregate data in 1 minute batch and group by tenant domain
+from mbCounterStatsMinuteTemp#window.externalTimeBatch(_timestamp , 1 min, 0 , 2min)
+select meta_tenantDomain, year, month, day, hour, minute, 'CLUSTER' as source, name, type, destination, sum(totalCount) as totalCount, _timestamp
+group by name, meta_tenantDomain
+insert into mbCounterStatsMinute;
