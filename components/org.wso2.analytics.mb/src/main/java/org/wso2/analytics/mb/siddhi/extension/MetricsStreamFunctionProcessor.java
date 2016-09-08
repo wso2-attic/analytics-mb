@@ -49,14 +49,20 @@ public class MetricsStreamFunctionProcessor extends StreamFunctionProcessor {
      */
     @Override
     protected Object[] process(Object[] data) {
+        String tenantDomain = "carbon.super";
+        String type = null;
+        String destination = null;
+        int year, month, day, hour, minute;
         Long timestamp = (Long) data[0];
         String name = (String) data[1];
-        int year, month, day, hour, minute;
-        String type = "queue";
-        String destination = "myQueue";
-        String tenantDomain = "carbon.super";
-        if (destination.contains("/")) {
-            tenantDomain = destination.substring(0, destination.indexOf("/"));
+        if (name.contains("|")) {
+            String[] details = name.split("\\|");
+            name = details[0];
+            type = details[1];
+            destination = details[2];
+            if (destination.contains("/")) {
+                tenantDomain = destination.substring(0, destination.indexOf("/"));
+            }
         }
         try {
             year = dateTimeUDF.getYear(timestamp);
@@ -67,7 +73,7 @@ public class MetricsStreamFunctionProcessor extends StreamFunctionProcessor {
         } catch (ParseException e) {
             throw new ExecutionPlanCreationException("Error occurred while parsing timestamp");
         }
-        return new Object[]{tenantDomain, year, month, day, hour, minute, type, destination};
+        return new Object[]{tenantDomain, year, month, day, hour, minute, name, type, destination};
     }
 
     /**
@@ -103,6 +109,7 @@ public class MetricsStreamFunctionProcessor extends StreamFunctionProcessor {
         attributes.add(new Attribute("day", Attribute.Type.INT));
         attributes.add(new Attribute("hour", Attribute.Type.INT));
         attributes.add(new Attribute("minute", Attribute.Type.INT));
+        attributes.add(new Attribute("metricName", Attribute.Type.STRING));
         attributes.add(new Attribute("type", Attribute.Type.STRING));
         attributes.add(new Attribute("destination", Attribute.Type.STRING));
         return attributes;
