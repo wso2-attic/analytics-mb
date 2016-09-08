@@ -2,7 +2,7 @@
   "name": "org.wso2.mb.analytics.stream.MeterStatsMinute",
   "version": "1.0.0",
   "nickName": "MbMeterStats",
-  "description": "Message broker enqueue, dequeue, ack, reject rate etc...",
+  "description": "Message broker enqueue, dequeue, ack, reject rate statistic",
   "metaData": [
     {
       "name": "tenantDomain",

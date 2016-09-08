@@ -2,7 +2,7 @@
   "name": "org.wso2.mb.analytics.stream.GaugeStatsMinute",
   "version": "1.0.0",
   "nickName": "MbGaugeStat",
-  "description": "Message broker channel, subscriber count etc...",
+  "description": "Message broker channel, subscriber count statistic",
   "metaData": [
     {
       "name": "tenantDomain",

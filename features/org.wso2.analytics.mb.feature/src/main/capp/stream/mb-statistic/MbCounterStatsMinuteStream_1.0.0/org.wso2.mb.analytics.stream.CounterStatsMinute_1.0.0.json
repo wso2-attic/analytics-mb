@@ -2,7 +2,7 @@
   "name": "org.wso2.mb.analytics.stream.CounterStatsMinute",
   "version": "1.0.0",
   "nickName": "MbCounterStat",
-  "description": "Message broker enqueue, dequeue, ack, reject count etc...",
+  "description": "Message broker enqueue, dequeue, ack, reject count statistic",
   "metaData": [
     {
       "name": "tenantDomain",

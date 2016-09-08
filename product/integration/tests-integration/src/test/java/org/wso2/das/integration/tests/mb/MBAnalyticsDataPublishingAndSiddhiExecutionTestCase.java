@@ -72,6 +72,7 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
         // Initialize metric service
         metricService = new MetricServiceImpl.Builder().configure(xmlConfiguration)
                 .addReporterBuilder(dasReporterBuilder).build(levelConfiguration);
+        publishSampleData();
     }
 
     /**
@@ -90,16 +91,12 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @Test(groups = "wso2.das4mb.publish", description = "Test message receive data publishing")
     public void testMessageReceiveData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsIndexException, InterruptedException {
-        Meter messageReceive = metricService.meter("org.wso2.mb.message.receive", Level.INFO);
-        messageReceive.mark();
-        metricService.report();
-        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_METER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_METER_STATS_MINUTE, "_name :\"org.wso2.mb.message.receive\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
-        Assert.assertEquals(mbRecordsCount, 1, "Expected message receive record count is 1 but found " + mbRecordsCount);
+        Assert.assertTrue(mbRecordsCount > 0, "Expected message receive record count is 1 but found " + mbRecordsCount);
 
     }
 
@@ -119,16 +116,12 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @Test(groups = "wso2.das4mb.publish", description = "Test message sent data publishing")
     public void testMessageSentData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsIndexException, InterruptedException {
-        Meter messageSent = metricService.meter("org.wso2.mb.message.sent", Level.INFO);
-        messageSent.mark();
-        metricService.report();
-        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_METER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_METER_STATS_MINUTE, "_name :\"org.wso2.mb.message.sent\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
-        Assert.assertEquals(mbRecordsCount, 1, "Expected message sent record count is 1 but found " + mbRecordsCount);
+        Assert.assertTrue(mbRecordsCount > 0, "Expected message sent record count is 1 but found " + mbRecordsCount);
 
     }
 
@@ -148,16 +141,12 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @Test(groups = "wso2.das4mb.publish", description = "Test ack receive data publishing")
     public void testAckReceiveData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsIndexException, InterruptedException {
-        Meter ackReceive = metricService.meter("org.wso2.mb.ack.receive", Level.INFO);
-        ackReceive.mark();
-        metricService.report();
-        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_METER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_METER_STATS_MINUTE, "_name :\"org.wso2.mb.ack.receive\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
-        Assert.assertEquals(mbRecordsCount, 1, "Expected ack receive record count is 1 but found " + mbRecordsCount);
+        Assert.assertTrue(mbRecordsCount > 0, "Expected ack receive record count is 1 but found " + mbRecordsCount);
 
     }
 
@@ -177,16 +166,12 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @Test(groups = "wso2.das4mb.publish", description = "Test reject receive data publishing")
     public void testRejectReceiveData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsIndexException, InterruptedException {
-        Meter rejectReceive = metricService.meter("org.wso2.mb.reject.receive", Level.INFO);
-        rejectReceive.mark();
-        metricService.report();
-        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_METER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_METER_STATS_MINUTE, "_name :\"org.wso2.mb.reject.receive\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
-        Assert.assertEquals(mbRecordsCount, 1, "Expected reject receive record count is 1 but found " + mbRecordsCount);
+        Assert.assertTrue(mbRecordsCount > 0, "Expected reject receive record count is 1 but found " + mbRecordsCount);
 
     }
 
@@ -206,16 +191,12 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @Test(groups = "wso2.das4mb.publish", description = "Test enqueue message data publishing")
     public void testEnqueueMessageCountData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsIndexException, InterruptedException {
-        Counter enqueueCounter = metricService.counter("org.wso2.mb.enqueue.count", Level.INFO);
-        enqueueCounter.inc();
-        metricService.report();
-        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_COUNTER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_COUNTER_STATS_MINUTE, "_name :\"org.wso2.mb.enqueue.count\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
-        Assert.assertEquals(mbRecordsCount, 1, "Expected enqueue message record count is 1 but found " + mbRecordsCount);
+        Assert.assertTrue(mbRecordsCount > 0, "Expected enqueue message record count is 1 but found " + mbRecordsCount);
 
     }
 
@@ -235,16 +216,12 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @Test(groups = "wso2.das4mb.publish", description = "Test dequeue message count data publishing")
     public void testDequeueMessageCountData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsIndexException, InterruptedException {
-        Counter dequeueCounter = metricService.counter("org.wso2.mb.dequeue.count", Level.INFO);
-        dequeueCounter.inc();
-        metricService.report();
-        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_COUNTER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_COUNTER_STATS_MINUTE, "_name :\"org.wso2.mb.dequeue.count\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
-        Assert.assertEquals(mbRecordsCount, 1, "Expected dequeue message record count is 1 but found " + mbRecordsCount);
+        Assert.assertTrue(mbRecordsCount > 0, "Expected dequeue message record count is 1 but found " + mbRecordsCount);
 
     }
 
@@ -264,16 +241,12 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @Test(groups = "wso2.das4mb.publish", description = "Test ack message count data publishing")
     public void testAckMessageCountData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsIndexException, InterruptedException {
-        Counter ackCounter = metricService.counter("org.wso2.mb.ack.count", Level.INFO);
-        ackCounter.inc();
-        metricService.report();
-        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_COUNTER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_COUNTER_STATS_MINUTE, "_name :\"org.wso2.mb.ack.count\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
-        Assert.assertEquals(mbRecordsCount, 1, "Expected ack message record count is 1 but found " + mbRecordsCount);
+        Assert.assertTrue(mbRecordsCount > 0, "Expected ack message record count is 1 but found " + mbRecordsCount);
 
     }
 
@@ -293,16 +266,12 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @Test(groups = "wso2.das4mb.publish", description = "Test reject message count data publishing")
     public void testRejectMessageCountData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsIndexException, InterruptedException {
-        Counter rejectCounter = metricService.counter("org.wso2.mb.reject.count", Level.INFO);
-        rejectCounter.inc();
-        metricService.report();
-        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_COUNTER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_COUNTER_STATS_MINUTE, "_name :\"org.wso2.mb.reject.count\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
-        Assert.assertEquals(mbRecordsCount, 1, "Expected reject message record count is 1 but found " + mbRecordsCount);
+        Assert.assertTrue(mbRecordsCount > 0, "Expected reject message record count is 1 but found " + mbRecordsCount);
 
     }
 
@@ -322,16 +291,12 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @Test(groups = "wso2.das4mb.publish", description = "Test database read time data publishing")
     public void testDatabaseReadTimeData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsIndexException, InterruptedException {
-        Timer.Context dbReadTimerContext = metricService.timer("org.wso2.mb.database.read", Level.INFO).start();
-        dbReadTimerContext.stop();
-        metricService.report();
-        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_TIMER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_TIMER_STATS_MINUTE, "_name :\"org.wso2.mb.database.read\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
-        Assert.assertEquals(mbRecordsCount, 1, "Expected, db read record count is 1 but found " + mbRecordsCount);
+        Assert.assertTrue(mbRecordsCount > 0, "Expected, db read record count is 1 but found " + mbRecordsCount);
 
     }
 
@@ -351,16 +316,12 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @Test(groups = "wso2.das4mb.publish", description = "Test database write time data publishing")
     public void testDatabaseWriteTimeData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsIndexException, InterruptedException {
-        Timer.Context dbWriteTimerContext = metricService.timer("org.wso2.mb.database.write", Level.INFO).start();
-        dbWriteTimerContext.stop();
-        metricService.report();
-        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_TIMER, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_TIMER_STATS_MINUTE, "_name :\"org.wso2.mb.database.write\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
-        Assert.assertEquals(mbRecordsCount, 1, "Expected db write record count is 1 but found " + mbRecordsCount);
+        Assert.assertTrue(mbRecordsCount > 0, "Expected db write record count is 1 but found " + mbRecordsCount);
 
     }
 
@@ -380,20 +341,12 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @Test(groups = "wso2.das4mb.publish", description = "Test active channel count data publishing")
     public void testActiveChannelsData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsIndexException, InterruptedException {
-        metricService.gauge("org.wso2.mb.channels.active.count", Level.INFO, new Gauge<Integer>() {
-            @Override
-            public Integer getValue() {
-                return 1;
-            }
-        });
-        metricService.report();
-        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_GAUGE, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_GAUGE_STATS_MINUTE, "_name :\"org.wso2.mb.channels.active.count\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
-        Assert.assertEquals(mbRecordsCount, 1, "Expected active channel record count is 1 but found " + mbRecordsCount);
+        Assert.assertTrue(mbRecordsCount > 0, "Expected active channel record count is 1 but found " + mbRecordsCount);
 
     }
 
@@ -413,20 +366,12 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @Test(groups = "wso2.das4mb.publish", description = "Test queue subscriber count data publishing")
     public void testQueueSubscriberData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsIndexException, InterruptedException {
-        metricService.gauge("org.wso2.mb.queue.subscribers.count", Level.INFO, new Gauge<Integer>() {
-            @Override
-            public Integer getValue() {
-                return 1;
-            }
-        });
-        metricService.report();
-        TimeUnit.SECONDS.sleep(15);
         int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_METRICS_STREAM_GAUGE, "*:*");
         int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
                 TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_GAUGE_STATS_MINUTE, "_name :\"org.wso2.mb.queue.subscribers.count\"");
         Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
-        Assert.assertEquals(mbRecordsCount, 1, "Expected queue subscriber record count is 1 but found " + mbRecordsCount);
+        Assert.assertTrue(mbRecordsCount > 0, "Expected queue subscriber record count is 1 but found " + mbRecordsCount);
 
     }
 
@@ -446,21 +391,64 @@ public class MBAnalyticsDataPublishingAndSiddhiExecutionTestCase extends DASInte
     @Test(groups = "wso2.das4mb.publish", description = "Test topic subscriber count data publishing")
     public void testTopicSubscriberData() throws XPathExpressionException, MalformedObjectNameException, IOException,
             AnalyticsIndexException, InterruptedException {
+        int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
+                TestConstants.ORG_WSO2_METRICS_STREAM_GAUGE, "*:*");
+        int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
+                TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_GAUGE_STATS_MINUTE, "_name :\"org.wso2.mb.topic.subscribers.count\"");
+        Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
+        Assert.assertTrue(mbRecordsCount > 0, "Expected topic subscriber record count is 1 but found " + mbRecordsCount);
+
+    }
+
+    /**
+     * Publish sample data
+     */
+    private void publishSampleData() throws InterruptedException {
+        // publish meter stats
+        Meter messageReceive = metricService.meter("org.wso2.mb.message.receive", Level.INFO);
+        messageReceive.mark();
+        Meter messageSent = metricService.meter("org.wso2.mb.message.sent", Level.INFO);
+        messageSent.mark();
+        Meter ackReceive = metricService.meter("org.wso2.mb.ack.receive", Level.INFO);
+        ackReceive.mark();
+        Meter rejectReceive = metricService.meter("org.wso2.mb.reject.receive", Level.INFO);
+        rejectReceive.mark();
+        // publish counter stats
+        Counter enqueueCounter = metricService.counter("org.wso2.mb.enqueue.count", Level.INFO);
+        enqueueCounter.inc();
+        Counter dequeueCounter = metricService.counter("org.wso2.mb.dequeue.count", Level.INFO);
+        dequeueCounter.inc();
+        Counter ackCounter = metricService.counter("org.wso2.mb.ack.count", Level.INFO);
+        ackCounter.inc();
+        Counter rejectCounter = metricService.counter("org.wso2.mb.reject.count", Level.INFO);
+        rejectCounter.inc();
+        //publish timer stats
+        Timer.Context dbReadTimerContext = metricService.timer("org.wso2.mb.database.read", Level.INFO).start();
+        dbReadTimerContext.stop();
+        Timer.Context dbWriteTimerContext = metricService.timer("org.wso2.mb.database.write", Level.INFO).start();
+        dbWriteTimerContext.stop();
+        // publish gauge stats
+        metricService.gauge("org.wso2.mb.channels.active.count", Level.INFO, new Gauge<Integer>() {
+            @Override
+            public Integer getValue() {
+                return 1;
+            }
+        });
+        metricService.gauge("org.wso2.mb.queue.subscribers.count", Level.INFO, new Gauge<Integer>() {
+            @Override
+            public Integer getValue() {
+                return 1;
+            }
+        });
         metricService.gauge("org.wso2.mb.topic.subscribers.count", Level.INFO, new Gauge<Integer>() {
             @Override
             public Integer getValue() {
                 return 1;
             }
         });
+        // report above data to event streams
         metricService.report();
-        TimeUnit.SECONDS.sleep(15);
-        int metricsRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_METRICS_STREAM_GAUGE, "*:*");
-        int mbRecordsCount = this.analyticsDataAPI.searchCount(-1234,
-                TestConstants.ORG_WSO2_MB_ANALYTICS_STREAM_GAUGE_STATS_MINUTE, "_name :\"org.wso2.mb.topic.subscribers.count\"");
-        Assert.assertTrue(metricsRecordsCount > 0, "Expected metrics record count > 0 but found " + metricsRecordsCount);
-        Assert.assertEquals(mbRecordsCount, 1, "Expected topic subscriber record count is 1 but found " + mbRecordsCount);
-
+        TimeUnit.MINUTES.sleep(2);
     }
 
     /**

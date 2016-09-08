@@ -112,6 +112,9 @@
                                 <featureArtifactDef>
                                     org.wso2.carbon.analytics.shared:org.wso2.carbon.analytics.shared.spark.common.udf.feature:${carbon.analytics.shared.version}
                                 </featureArtifactDef>
+                                <!--<featureArtifactDef>
+                                    org.wso2.carbon.analytics.shared:org.wso2.carbon.analytics.shared.la.common.feature:${carbon.analytics.shared.version}
+                                </featureArtifactDef>-->
                                 <!-- END - Analytics features -->
 
                                 <!--START - Analytics MB features-->
@@ -402,6 +405,10 @@
                                     <id>org.wso2.carbon.analytics.shared.spark.common.udf.feature.group</id>
                                     <version>${carbon.analytics.shared.version}</version>
                                 </feature>
+                                <!--<feature>
+                                    <id>org.wso2.carbon.analytics.shared.la.common.feature.group</id>
+                                    <version>${carbon.analytics.shared.version}</version>
+                                </feature>-->
                                 <!-- END - Analytics features -->
 
                                 <!--START - Analytics MB Features-->

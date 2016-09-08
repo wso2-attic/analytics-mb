@@ -2,7 +2,7 @@
   "name": "org.wso2.mb.analytics.stream.TimerStatsMinute",
   "version": "1.0.0",
   "nickName": "MbTimerStats",
-  "description": "Message broker database read and write time etc...",
+  "description": "Message broker database read, write time statistic",
   "metaData": [
     {
       "name": "tenantDomain",
