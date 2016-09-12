@@ -4,7 +4,7 @@
     <parent>
         <artifactId>analytics-mb-components</artifactId>
         <groupId>org.wso2.analytics.mb</groupId>
-        <version>3.2.0-M3</version>
+        <version>3.2.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
