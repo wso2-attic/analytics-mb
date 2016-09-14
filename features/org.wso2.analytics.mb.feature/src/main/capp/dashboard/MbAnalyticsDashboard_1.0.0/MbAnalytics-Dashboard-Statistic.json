@@ -132,7 +132,7 @@
                 "id": "MbAnalytics-Gadget-LineChart",
                 "title": "Line Chart",
                 "type": "gadget",
-                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "thumbnail": "fs://gadget/MbAnalytics-Gadget-LineChart/index.png",
                 "data": {
                   "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
                 },
@@ -202,7 +202,7 @@
                 "id": "MbAnalytics-Gadget-LineChart",
                 "title": "Line Chart",
                 "type": "gadget",
-                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "thumbnail": "fs://gadget/MbAnalytics-Gadget-LineChart/index.png",
                 "data": {
                   "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
                 },
@@ -319,7 +319,7 @@
                 "id": "MbAnalytics-Gadget-ScatterChart",
                 "title": "Scatter Chart",
                 "type": "gadget",
-                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "thumbnail": "fs://gadget/MbAnalytics-Gadget-ScatterChart/index.png",
                 "data": {
                   "url": "fs://gadget/MbAnalytics-Gadget-ScatterChart/index.xml"
                 },
@@ -390,7 +390,7 @@
                 "id": "MbAnalytics-Gadget-LineChart",
                 "title": "Line Chart",
                 "type": "gadget",
-                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "thumbnail": "fs://gadget/MbAnalytics-Gadget-LineChart/index.png",
                 "data": {
                   "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
                 },
@@ -458,7 +458,7 @@
                 "id": "MbAnalytics-Gadget-LineChart",
                 "title": "Line Chart",
                 "type": "gadget",
-                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "thumbnail": "fs://gadget/MbAnalytics-Gadget-LineChart/index.png",
                 "data": {
                   "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
                 },
@@ -526,7 +526,7 @@
                 "id": "MbAnalytics-Gadget-LineChart",
                 "title": "Line Chart",
                 "type": "gadget",
-                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "thumbnail": "fs://gadget/MbAnalytics-Gadget-LineChart/index.png",
                 "data": {
                   "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
                 },
@@ -594,7 +594,7 @@
                 "id": "MbAnalytics-Gadget-LineChart",
                 "title": "Line Chart",
                 "type": "gadget",
-                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "thumbnail": "fs://gadget/MbAnalytics-Gadget-LineChart/index.png",
                 "data": {
                   "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
                 },
@@ -711,7 +711,7 @@
                 "id": "MbAnalytics-Gadget-LineChart",
                 "title": "Line Chart",
                 "type": "gadget",
-                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "thumbnail": "fs://gadget/MbAnalytics-Gadget-LineChart/index.png",
                 "data": {
                   "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
                 },
@@ -780,7 +780,7 @@
                 "id": "MbAnalytics-Gadget-LineChart",
                 "title": "Line Chart",
                 "type": "gadget",
-                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "thumbnail": "fs://gadget/MbAnalytics-Gadget-LineChart/index.png",
                 "data": {
                   "url": "fs://gadget/MbAnalytics-Gadget-LineChart/index.xml"
                 },
@@ -844,21 +844,21 @@
           ],
           "75b9d1cce58322b5bb5bdae9525b0489": [
             {
-              "id": "MbAnalytics-Gadget-SearchBox-0",
+              "id": "MbAnalytics-Gadget-SelectBox-0",
               "content": {
-                "id": "MbAnalytics-Gadget-SearchBox",
-                "title": "Search Box",
+                "id": "MbAnalytics-Gadget-SelectBox",
+                "title": "Select Box",
                 "type": "widget",
                 "category": "Widgets",
-                "thumbnail": "fs://gadget/usa-business-revenue/index.png",
+                "thumbnail": "fs://gadget/MbAnalytics-Gadget-SelectBox/index.png",
                 "data": {
-                  "url": "fs://gadget/MbAnalytics-Gadget-SearchBox/index.xml"
+                  "url": "fs://gadget/MbAnalytics-Gadget-SelectBox/index.xml"
                 },
                 "styles": {
                   "no_heading": true,
                   "hide_gadget": false,
                   "titlePosition": "left",
-                  "title": "Search Box"
+                  "title": "Select Box"
                 },
                 "toolbarButtons": {
                   "default": {
@@ -869,16 +869,16 @@
                   "isDropdownView": false
                 },
                 "options": {
-                  "search": {
+                  "select": {
                     "type": "STRING",
-                    "title": "Search",
-                    "value": "search_node",
+                    "title": "Select",
+                    "value": "select_node",
                     "options": [],
                     "required": true
                   }
                 },
                 "locale_titles": {
-                  "en-US": "Search Box"
+                  "en-US": "Select Box"
                 },
                 "settings": {
                   "priority": "5",
