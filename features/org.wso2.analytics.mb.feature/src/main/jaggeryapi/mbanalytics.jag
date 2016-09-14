@@ -58,7 +58,7 @@
     var TYPE_MSG_OVERVIEW = 8;
     var TYPE_MSG_ACK_RATE = 9;
     var TYPE_MSG_REJECT_RATE = 10;
-    var TYPE_SEARCH_NODE = 11;
+    var TYPE_SELECT_NODE = 11;
     var TYPE_SEARCH_QUEUE_TOPIC = 12;
 
     if (configs.cacheTimeoutSeconds) {
@@ -217,7 +217,7 @@
             (connector, superTenantId, timeUnit, timeFrom, timeTo, "org.wso2.mb.reject.receive", tenantDomain, source);
             break;
         }
-        case TYPE_SEARCH_NODE:
+        case TYPE_SELECT_NODE:
         {
             result = mbanalyticsUtils.getAllSource(connector, superTenantId, tenantDomain);
             break;

@@ -67,3 +67,9 @@ body.dark .tt-input {
     border: 1px solid #6B7992  !important;
     color: #E3E5E6;
 }
+
+body.dark select.form-control {
+    background-color: #353c48;
+    color: #E3E5E6;
+    border: 1px solid #6B7992;
+}

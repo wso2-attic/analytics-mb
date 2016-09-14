@@ -7,7 +7,7 @@
         <dependency artifact="GadgetDateRangePicker" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="GadgetStatsChart" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="GadgetScatterChart" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="GadgetSearchBox" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="GadgetSelectBox" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
 
         <!-- MB Dashboard Definition -->
         <dependency artifact="MbAnalyticsDashboard" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>

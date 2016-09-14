@@ -51,14 +51,14 @@ var TYPE_DB_READ_TIME = "db_read_time";
 var TYPE_DB_WRITE_TIME = "db_write_time";
 
 //search type
-var TYPE_SEARCH_NODE = "search_node";
+var TYPE_SELECT_NODE = "select_node";
 var TYPE_SEARCH_QUEUE_TOPIC = "search_queue_topic";
 
 
 var PARAM_ID = "id";
 var PARAM_GADGET_VIEW = "view";
 var PARAM_GADGET_ROLE = "role";
-var PARAM_SEARCH = "search";
+var PARAM_SELECT = "select";
 
 var COLOR_BLUE = "#438CAD";
 var COLOR_RED = "#D9534F";
